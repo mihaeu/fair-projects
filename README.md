@@ -1,3 +1,5 @@
-# ![Mean Memory logo](http://mike-on-a-bike.com/mean-memory.gif) Mean Memory
+# Fair Projects
 
-Mean Memory is an implementation of the famous game Memory implemented using a MEAN stack.
+> Fair projects for students from students ...
+
+Fair Projects is a web app based on the MEAN stack. It's purpose is to help professors and students with managing their projects' assignments.
