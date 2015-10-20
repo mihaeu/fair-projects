@@ -1,0 +1,23 @@
+{
+  "name": "fair-projects",
+  "version": "0.1.0",
+  "description": "Fair projects from students for students ...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihaeu/fair-projects.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mihaeu/fair-projects/issues"
+  },
+  "homepage": "https://github.com/mihaeu/fair-projects#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "http-server": "^0.8.5"
+  }
+}
