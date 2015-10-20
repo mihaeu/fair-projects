@@ -2,9 +2,10 @@
   "name": "fair-projects",
   "version": "0.1.0",
   "description": "Fair projects from students for students ...",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node_modules/nodemon/bin/nodemon.js app.js",
+    "postinstall": "node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -12,16 +13,11 @@
   },
   "author": "",
   "license": "MIT",
-  "scripts": {
-    "start": "node_modules/http-server/bin/http-server -p 3000 -o",
-    "postinstall": "node_modules/bower/bin/bower install"
-  },
   "bugs": {
     "url": "https://github.com/mihaeu/fair-projects/issues"
   },
   "homepage": "https://github.com/mihaeu/fair-projects#readme",
   "dependencies": {
-    "express": "^4.13.3",
-    "http-server": "^0.8.5"
+    "express": "^4.13.3"
   }
 }
