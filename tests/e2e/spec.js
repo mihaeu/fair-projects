@@ -7,8 +7,7 @@ describe('Fair Projects', function() {
 
     it('should say hello', function() {
         browser.get('http://localhost:3000/');
-        element(by.model('sometext')).sendKeys('user');
 
-        expect(element(by.binding('sometext')).getText()).toEqual('Hello user');
+        expect(element(by.css('li:first-child')).getText()).toEqual('DAS SS 2016');
     });
 });
