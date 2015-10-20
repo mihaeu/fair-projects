@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mihaeu/fair-projects#readme",
   "dependencies": {
+    "ejs": "^2.3.4",
     "express": "^4.13.3"
   }
 }
