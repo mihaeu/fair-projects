@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "node_modules/bower/bin/bower install"
+  },
   "bugs": {
     "url": "https://github.com/mihaeu/fair-projects/issues"
   },
