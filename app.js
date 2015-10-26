@@ -5,7 +5,7 @@ var app = express();
 app.use(express.static('public'));
 
 // load routes and inject our app
-require('./app/routes')(app);
+require('./private/routes')(app);
 
 var server = app.listen(3000, function () {
     var host = server.address().address;
