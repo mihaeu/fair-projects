@@ -19,7 +19,7 @@ module.exports = function (app){
                 console.log(err);
                 return next(err);
             }
-            res.json(201, subject);
+            res.status(201).json(subject);
         });
     };
 
@@ -29,6 +29,7 @@ module.exports = function (app){
                 console.log(err);
                 return handleError(err);
             }
+            res.status(204).send();
         });
     };
 
