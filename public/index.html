@@ -14,16 +14,16 @@
         <section ng-controller="FairController as fair">
             <h2>Subjects</h2>
 
-            <ul ng-if="0 < fair.subjects.length">
+            <ul ng-if="0 < fair.subjects.length" class="subjects">
                 <li ng-repeat="subject in fair.subjects">{{ subject.name }}
                     <button ng-click="fair.delete(subject)">X</button>
                 </li>
             </ul>
             <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
 
-            <form ng-submit="fair.create()">
-                <input ng-model="fair.newSubjectName" placeholder="Neues Fach" >
-                <button class="btn btn-primary" type="submit">+</button>
+            <form ng-submit="fair.create()" class="form-inline">
+                <input ng-model="fair.newSubjectName" placeholder="Neues Fach"  class="form-control" >
+                <button class="btn btn-default" type="submit">+</button>
             </form>
         </section>
     </div>

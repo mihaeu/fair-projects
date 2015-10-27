@@ -60,7 +60,13 @@ module.exports = function(grunt) {
                 files: ['public/js/**/*.js'],
                 tasks: ['jshint', 'concat'],
                 options: {
-                    livereload: true,
+                    livereload: true
+                }
+            },
+            html: {
+                files: ['public/**/*.html'],
+                options: {
+                    livereload: true
                 }
             },
             config: {
