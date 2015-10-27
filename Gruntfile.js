@@ -53,6 +53,12 @@ module.exports = function(grunt) {
             js: {
                 files: ['public/js/**/*.js'],
                 tasks: ['jshint', 'concat']
+            },
+            config: {
+                files: [ 'Gruntfile.js'],
+                options: {
+                    reload: true
+                }
             }
         },
 
