@@ -1,6 +1,6 @@
-app.controller('FairController', function () {
-    this.subjects = [
-        'DAS SS 2016',
-        'SW WS 2015/16'
-    ];
-});
+app.controller('FairController', ['$http', function ($http) {
+    var subjects = this;
+    $http.get('/subjects').success(function (data) {
+        subjects.subjects = data;
+    });
+}]);

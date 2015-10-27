@@ -1,7 +1,5 @@
 module.exports = function(app) {
-
-    //app.get('/', function (req, res) {
-    //    res.render('index');
-    //});
+    var subjectController = require('./controllers/SubjectController');
+    app.get('/subjects', subjectController.get);
 
 };
