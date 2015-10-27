@@ -1,14 +1,13 @@
-var Subject = require('../models/SubjectModel');
+var Subject = require('../models/Subject');
 
 var get = function (req, res) {
     Subject.find(function(err, subjects) {
 
-        // if there is an error retrieving, send the error.
-        // nothing after res.send(err) will execute
-        if (err)
+        if (err) {
             res.send(err);
+        }
 
-        res.json(subjects); // return all nerds in JSON format
+        res.json(subjects);
     });
 };
 
@@ -16,14 +15,13 @@ var create = function(req, res, next) {
     var subject = new Subject(req.body);
     subject.save(function (err, subject) {
         if (err) {
+        	console.log(err);
             return next(err);
         }
         res.json(201,subject);
     });
 };
 
-
-// Define public methods
 module.exports = {
     get: get,
     create: create
