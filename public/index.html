@@ -20,6 +20,11 @@
                 </li>
             </ul>
             <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
+
+            <form ng-submit="fair.create()">
+                <input ng-model="fair.newSubjectName" placeholder="Neues Fach" >
+                <button class="btn btn-primary" type="submit">+</button>
+            </form>
         </section>
     </div>
 
