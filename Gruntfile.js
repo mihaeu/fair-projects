@@ -17,6 +17,13 @@ module.exports = function(grunt) {
             }
         },
 
+        concat: {
+            dist: {
+                src: ['public/js/**/*.js'],
+                dest: 'public/dist/scripts.min.js',
+            },
+        },
+
         // CSS TASKS ===============================================================
         // process the less file to style.css
         //less: {
@@ -45,7 +52,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['public/js/**/*.js'],
-                tasks: ['jshint', 'uglify']
+                tasks: ['jshint', 'concat']
             }
         },
 
@@ -71,9 +78,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('default', ['cssmin', 'jshint', 'uglify', 'concurrent']);
+    grunt.registerTask('default', ['cssmin', 'jshint', 'concat', 'concurrent']);
 
 };
