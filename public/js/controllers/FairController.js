@@ -11,7 +11,10 @@ app.controller('FairController', ['$http', function ($http) {
             .delete('/subjects/' + subject._id)
     		.error(function () {
     			console.log('removed');
-    		});
+    		})
+            .success(function(){
+                subjects.subjects = _.without(subjects.subjects, subject);
+            });
     };
 
     subjects.create = function (){

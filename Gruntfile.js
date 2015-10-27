@@ -19,7 +19,10 @@ module.exports = function(grunt) {
 
         concat: {
             dist: {
-                src: ['public/js/**/*.js'],
+                src: [
+                    'public/bower_components/underscore/underscore-min.js',
+                    'public/js/**/*.js'
+                ],
                 dest: 'public/dist/scripts.min.js',
             },
         },
