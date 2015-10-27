@@ -48,11 +48,17 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['public/styles/**/*.css'],
-                tasks: ['cssmin']
+                tasks: ['cssmin'],
+                options: {
+                    livereload: true,
+                }
             },
             js: {
                 files: ['public/js/**/*.js'],
-                tasks: ['jshint', 'concat']
+                tasks: ['jshint', 'concat'],
+                options: {
+                    livereload: true,
+                }
             },
             config: {
                 files: [ 'Gruntfile.js'],
