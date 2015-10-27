@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         // watch our node server for changes
         nodemon: {
             dev: {
-                script: 'app.js'
+                script: 'server.js'
             }
         },
 
