@@ -15,7 +15,10 @@
         <section ng-controller="FairController as fair">
             <h2>Subjects</h2>
             <ul>
-                <li ng-repeat="subject in fair.subjects">{{ subject.name }}</li>
+                <li ng-repeat="subject in fair.subjects">
+                    {{ subject.name }}
+                    <button ng-click="fair.delete(subject)">X</button>
+                </li>
             </ul>
         </section>
     </div>
