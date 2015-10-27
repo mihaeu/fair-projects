@@ -1,7 +1,8 @@
-module.exports.getAll = function () {
-    return [
-        'DAS SS 2016',
-        'SW WS 2015/16'
-    ];
-}
+// app/models/nerd.js
+// grab the mongoose module
+var mongoose = require('mongoose');
 
+// module.exports allows us to pass this to other files when it is called
+module.exports = mongoose.model('Subject', {
+    name : {type : String, default: ''}
+});

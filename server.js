@@ -1,8 +1,16 @@
 var express = require('express');
 var app = express();
+var db = require('./config/db');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+
+mongoose.connect(db.url);
 
 // static files like html, js, css or images are served from here
 app.use(express.static('public'));
+
+// use json parser
+app.use(bodyParser.json());
 
 // load routes and inject our app
 require('./private/routes')(app);
@@ -13,3 +21,5 @@ var server = app.listen(3000, function () {
 
     console.log('Fair Projects app listening at http://%s:%s', host, port);
 });
+
+exports = module.exports = app;
