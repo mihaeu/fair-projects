@@ -20,6 +20,10 @@ app.controller('FairController', ['$http', function ($http) {
             .post('/subjects', data)
             .error(function(){
                 console.log('post');
+            })
+            .success(function(data){
+                subjects.subjects.push(data);
+                subjects.newSubjectName = "";
             });
     };
 }]);
