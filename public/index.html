@@ -14,9 +14,10 @@
 
         <section ng-controller="FairController as fair">
             <h2>Subjects</h2>
-            <ul>
+            <ul ng-if="0 < fair.subjects.length">
                 <li ng-repeat="subject in fair.subjects">{{ subject.name }}</li>
             </ul>
+            <i ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</i>
         </section>
     </div>
 
