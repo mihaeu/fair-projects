@@ -8,18 +8,17 @@
     <link rel="stylesheet" href="dist/style.min.css"/>
 </head>
 <body>
-
     <div class="container">
         <h1>Fair Projects</h1>
 
         <section ng-controller="FairController as fair">
             <h2>Subjects</h2>
-            <ul>
-                <li ng-repeat="subject in fair.subjects">
-                    {{ subject.name }}
-                    <button ng-click="fair.delete(subject)">X</button>
-                </li>
+
+            <ul ng-if="0 < fair.subjects.length">
+                <li ng-repeat="subject in fair.subjects">{{ subject.name }}</li>
+                <button ng-click="fair.delete(subject)">X</button>
             </ul>
+            <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
         </section>
     </div>
 
