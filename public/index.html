@@ -15,8 +15,9 @@
             <h2>Subjects</h2>
 
             <ul ng-if="0 < fair.subjects.length">
-                <li ng-repeat="subject in fair.subjects">{{ subject.name }}</li>
-                <button ng-click="fair.delete(subject)">X</button>
+                <li ng-repeat="subject in fair.subjects">{{ subject.name }}
+                    <button ng-click="fair.delete(subject)">X</button>
+                </li>
             </ul>
             <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
         </section>
