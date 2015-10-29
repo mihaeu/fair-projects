@@ -86,7 +86,9 @@ module.exports = function(grunt) {
 
         // check your code against coding guidelines
         jscs: {
-            src: 'public/js/*.js'
+            client: 'public/src/**',
+            server: 'private/**',
+            all: '*'
         },
 
         // run watch and nodemon at the same time
