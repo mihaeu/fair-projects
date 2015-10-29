@@ -1,12 +1,12 @@
-app.controller('SubjectController', ['$http','$subject', function ($http, $subject) {
+app.controller('SubjectController', ['$http','subjectService', function ($http, subjectService) {
     var subjectController = this;
     var newSubject = '';
 
-    subjectController.subjects = $subject.getAll();
+    subjectController.subjects = subjectService.getAll();
 
     subjectController.delete = function (subject) {
 
-        $subject.delete(subject, function () {
+        subjectService.delete(subject, function () {
             subjectController.subjects = _.without(subjectController.subjects, subject);
         });
     };
@@ -15,7 +15,7 @@ app.controller('SubjectController', ['$http','$subject', function ($http, $subje
         var data = {
             "name": name
         };
-        $subject.create(data, function(data){
+        subjectService.create(data, function(data){
             subjectController.subjects.push(data);
             subjectController.newSubjectName = "";
         });

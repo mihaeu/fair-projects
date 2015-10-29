@@ -1,4 +1,4 @@
-app.provider('$subject', function(){
+app.provider('subjectService', function(){
     var endpoint = '/subjects';
 
     this.setEndpoint = function ( url ) {
