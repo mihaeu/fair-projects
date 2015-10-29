@@ -1,14 +1,14 @@
-app.provider('subjectService', function(){
+app.provider('subjectService', function() {
     var endpoint = '/subjects';
 
-    this.setEndpoint = function ( url ) {
+    this.setEndpoint = function (url) {
         endpoint = url;
     };
 
-    this.$get = function ( $resource ) {
+    this.$get = function ($resource) {
 
         return $resource (
-            endpoint + "/:_id",
+            endpoint + '/:_id',
             {
                 _id:'@id'
             },

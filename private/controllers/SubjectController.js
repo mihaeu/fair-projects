@@ -1,7 +1,7 @@
 var Subject = require('../models/Subject');
 
-module.exports = function (app){
-    function SubjectController(){};
+module.exports = function (app) {
+    function SubjectController() {}
 
     SubjectController.prototype.get = function (req, res) {
         Subject.find(function (err, subjects) {

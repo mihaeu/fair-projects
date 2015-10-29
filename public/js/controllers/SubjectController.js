@@ -11,13 +11,13 @@ app.controller('SubjectController', ['$http','subjectService', function ($http, 
         });
     };
 
-    subjectController.create = function (name){
+    subjectController.create = function (name) {
         var data = {
-            "name": name
+            'name': name
         };
-        subjectService.create(data, function(data){
+        subjectService.create(data, function(data) {
             subjectController.subjects.push(data);
-            subjectController.newSubjectName = "";
+            subjectController.newSubjectName = '';
         });
     };
 }]);
