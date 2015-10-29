@@ -84,6 +84,11 @@ module.exports = function(grunt) {
             }
         },
 
+        // check your code against coding guidelines
+        jscs: {
+            src: 'public/js/*.js'
+        },
+
         // run watch and nodemon at the same time
         concurrent: {
             options: {
@@ -100,9 +105,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('default', ['cssmin', 'jshint', 'concat', 'concurrent']);
+    grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
 
 };
