@@ -21,7 +21,7 @@
             </ul>
             <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
 
-            <form ng-submit="fair.create()" class="form-inline">
+            <form ng-submit="fair.create(fair.newSubjectName)" class="form-inline">
                 <input ng-model="fair.newSubjectName" placeholder="Neues Fach"  class="form-control" >
                 <button class="btn btn-default" type="submit">+</button>
             </form>
@@ -29,6 +29,7 @@
     </div>
 
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="dist/scripts.min.js"></script>
     <script src="//localhost:35729/livereload.js"></script>
 </body>

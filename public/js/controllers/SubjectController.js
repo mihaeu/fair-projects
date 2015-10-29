@@ -2,24 +2,22 @@ app.controller('SubjectController', ['$http','$subject', function ($http, $subje
     var subjectController = this;
     var newSubject = '';
 
-    $subject.getAll().success(function (subjects) {
-        subjectController.subjects = subjects;
-    });
+    subjectController.subjects = $subject.getAll();
 
     subjectController.delete = function (subject) {
 
-        $subject.delete(subject)
-            .success(function(){
-                subjectController.subjects = _.without(subjectController.subjects, subject);
-            });
+        $subject.delete(subject, function () {
+            subjectController.subjects = _.without(subjectController.subjects, subject);
+        });
     };
 
-    subjectController.create = function (){
-        var data = {"name": subjectController.newSubjectName};
-        $subject.create(data)
-            .success(function(data){
-                subjectController.subjects.push(data);
-                subjectController.newSubjectName = "";
-            });
+    subjectController.create = function (name){
+        var data = {
+            "name": name
+        };
+        $subject.create(data, function(data){
+            subjectController.subjects.push(data);
+            subjectController.newSubjectName = "";
+        });
     };
 }]);

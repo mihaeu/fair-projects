@@ -1,1 +1,1 @@
-var app = angular.module('fairProjects', []);
+var app = angular.module('fairProjects', ['ngResource']);
