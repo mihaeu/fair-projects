@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                 }
             },
             config: {
-                files: [ 'Gruntfile.js'],
+                files: ['Gruntfile.js'],
                 options: {
                     reload: true
                 }
@@ -87,8 +87,9 @@ module.exports = function(grunt) {
         // check your code against coding guidelines
         jscs: {
             client: 'public/src/**',
-            server: 'private/**',
-            all: '*'
+            server: ['private/**', 'server.js'],
+            tests: 'tests/**',
+            config: ['config/**', 'Gruntfile.js', 'conf.js']
         },
 
         // run watch and nodemon at the same time
