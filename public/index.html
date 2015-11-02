@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="fairProjects">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fair Projects</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="dist/style.min.css"/>
-</head>
-<body>
-    <div class="container">
-        <h1>Fair Projects</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Fair Projects</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="dist/style.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Fair Projects</h1>
 
-        <section ng-controller="SubjectController as fair">
-            <h2>Subjects</h2>
+            <section ng-controller="SubjectController as fair">
+                <h2>Fächer</h2>
 
-            <ul ng-if="0 < fair.subjects.length" class="subjects">
-                <li ng-repeat="subject in fair.subjects">{{ subject.name }}
-                    <button ng-click="fair.delete(subject)">X</button>
-                </li>
-            </ul>
-            <em ng-if="0 === fair.subjects.length">-- Keine Fächer angelegt --</em>
+                <ul ng-if="0 < fair.subjects.length" class="subjects list-group">
+                    <li ng-repeat="subject in fair.subjects" class="list-group-item">{{ subject.name}}
+                        <button ng-click="fair.delete(subject)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                    </li>
+                </ul>
+                <div ng-if="fair.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
 
-            <form ng-submit="fair.create(fair.newSubjectName)" class="form-inline">
-                <input ng-model="fair.newSubjectName" placeholder="Neues Fach"  class="form-control" >
-                <button class="btn btn-default" type="submit">+</button>
-            </form>
-        </section>
-    </div>
+                <form ng-submit="fair.create(fair.newSubjectName)" class="form-inline">
+                    <div class="input-group">
+                        <input ng-model="fair.newSubjectName" placeholder="Neues Fach" class="form-control" >
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
 
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="dist/scripts.min.js"></script>
-    <script src="//localhost:35729/livereload.js"></script>
-</body>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="dist/scripts.min.js"></script>
+        <script src="//localhost:35729/livereload.js"></script>
+    </body>
 </html>
