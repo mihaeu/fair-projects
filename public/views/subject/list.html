@@ -1,11 +1,13 @@
 <h2>Fächer</h2>
-<a href="/#/subject/11">Test Subject</a>
 
 <ul ng-if="0 < fair.subjects.length" class="subjects list-group">
-    <li ng-repeat="subject in fair.subjects" class="list-group-item">{{ subject.name}}
-        <button ng-click="fair.delete(subject)" class="btn btn-default">
-            <span class="glyphicon glyphicon-trash"></span>
-        </button>
+    <li ng-repeat="subject in fair.subjects" class="list-group-item clearfix">
+        <a href="/#/subject/{{ subject._id }}">{{ subject.name}}</a>
+        <span class="pull-right">
+            <button ng-click="fair.delete(subject)" class="btn btn-xs">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </span>
     </li>
 </ul>
 <div ng-if="fair.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
