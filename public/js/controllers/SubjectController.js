@@ -3,9 +3,8 @@ app.controller('SubjectController', ['$http', 'subjectService', '$scope',
         $scope.$route = $route;
         $scope.$location = $location;
         $scope.$routeParams = $routeParams;
-        $scope.name = "SubjectController";
+        $scope.name = 'SubjectController';
         var subjectController = this;
-        var newSubject = '';
 
         subjectController.subjects = subjectService.getAll();
 
