@@ -13,7 +13,12 @@
 
             <section ng-controller="SubjectController as fair">
                 <h2>Fächer</h2>
-
+                <a href="/#/about">About us</a>
+                <div ng-view>
+                    <!--
+                       This DIV loads templates depending upon route.
+                    -->
+                </div>
                 <ul ng-if="0 < fair.subjects.length" class="subjects list-group">
                     <li ng-repeat="subject in fair.subjects" class="list-group-item">{{ subject.name}}
                         <button ng-click="fair.delete(subject)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
@@ -36,6 +41,7 @@
 
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="dist/scripts.min.js"></script>
         <script src="//localhost:35729/livereload.js"></script>
     </body>
