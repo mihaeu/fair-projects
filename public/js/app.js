@@ -1,15 +1,15 @@
 var app = angular.module('fairProjects', ['ngResource', 'ngRoute']);
 app.config(function ($routeProvider, $locationProvider) {
-    $routeProvider.
-            when('/', {
-                template: 'test it works',
+    $routeProvider
+            .when('/', {
+                templateUrl: 'views/subject/list.html',
                 controller: 'SubjectController'
-            }).
-            when('/about', {
-                template: '<h1>TODO create country detail view</h1>',
+            })
+            .when('/subject/:id', {
+                templateUrl: 'views/subject/show.html',
                 controller: 'SubjectController'
-            }).
-            otherwise({
+            })
+            .otherwise({
                 redirectTo: '/'
             });
 });

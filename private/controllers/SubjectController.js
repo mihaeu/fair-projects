@@ -3,13 +3,25 @@ var Subject = require('../models/Subject');
 module.exports = function () {
     function SubjectController() {}
 
-    SubjectController.prototype.get = function (req, res) {
+    SubjectController.prototype.getAll = function (req, res) {
 
         Subject.find(function (err, subjects) {
             if (err) {
                 res.send(err);
             }
             res.json(subjects);
+        });
+    };
+
+    SubjectController.prototype.get = function (req, res) {
+        Subject.findOne().exec(function (err, result) {//sort({foundCards: -1})
+            if (err) {
+                res.send(err);
+            }
+            var subject = result;
+            console.log(result);
+            //result._id = null;
+            res.json(subject);
         });
     };
 

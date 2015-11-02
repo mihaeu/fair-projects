@@ -1,4 +1,4 @@
-app.controller('SubjectController', ['$http', 'subjectService', '$scope',
+app.controller('SubjectController', ['$http', 'subjectService', '$scope', '$route', '$routeParams', '$location',
     function ($http, subjectService, $scope, $route, $routeParams, $location) {
         $scope.$route = $route;
         $scope.$location = $location;
@@ -8,12 +8,18 @@ app.controller('SubjectController', ['$http', 'subjectService', '$scope',
 
         subjectController.subjects = subjectService.getAll();
 
-        subjectController.delete = function (subject) {
-
-            subjectService.delete(subject, function () {
-                subjectController.subjects = _.without(subjectController.subjects, subject);
-            });
+        var data = {
+            'id': $routeParams.id
         };
+        subjectController.subject = subjectService.get(data, function (data) {});
+//        subjectController.subject = function () {
+//            var data = {
+//                'id': $routeParams.id
+//            };
+//            subjectService.get(data, function (data) {
+//                subjectController.subject.push(data);
+//            });
+//        };
 
         subjectController.create = function (name) {
             var data = {
@@ -22,6 +28,13 @@ app.controller('SubjectController', ['$http', 'subjectService', '$scope',
             subjectService.create(data, function (data) {
                 subjectController.subjects.push(data);
                 subjectController.newSubjectName = '';
+            });
+        };
+
+        subjectController.delete = function (subject) {
+
+            subjectService.delete(subject, function () {
+                subjectController.subjects = _.without(subjectController.subjects, subject);
             });
         };
     }]);

@@ -12,30 +12,7 @@
             <h1><a href="/">Fair Projects</a></h1>
 
             <section ng-controller="SubjectController as fair">
-                <h2>Fächer</h2>
-                <a href="/#/about">About us</a>
-                <div ng-view>
-                    <!--
-                       This DIV loads templates depending upon route.
-                    -->
-                </div>
-                <ul ng-if="0 < fair.subjects.length" class="subjects list-group">
-                    <li ng-repeat="subject in fair.subjects" class="list-group-item">{{ subject.name}}
-                        <button ng-click="fair.delete(subject)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                    </li>
-                </ul>
-                <div ng-if="fair.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
-
-                <form ng-submit="fair.create(fair.newSubjectName)" class="form-inline">
-                    <div class="input-group">
-                        <input ng-model="fair.newSubjectName" placeholder="Neues Fach" class="form-control" >
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                <div ng-view></div>
             </section>
         </div>
 
