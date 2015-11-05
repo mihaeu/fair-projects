@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Subject', {
-    name : {type : String, default: ''}
+var subjectSchema = new Schema({
+    name : {type : String, default: '', required: true}
 });
+
+var User = mongoose.model('Subject', subjectSchema);
+
+module.exports = User;
+
