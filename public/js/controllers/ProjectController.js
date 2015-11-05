@@ -22,14 +22,16 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
             projectController.project = projectService.get(requestParameterProject);
         };
 
-        projectController.create = function (name) {
+        projectController.create = function () {
             var data = {
                 'subject': projectController.subject._id,
-                'name': name
+                'name': projectController.newProject.name,
+                'description': projectController.newProject.description
             };
             projectService.create(data, function (data) {
                 projectController.projects.push(data);
-                projectController.newProjectName = '';
+                projectController.newProject.name = '';
+                projectController.newProject.description = '';
             });
         };
 

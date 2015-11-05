@@ -21,6 +21,8 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     'public/bower_components/underscore/underscore-min.js',
+                    'public/bower_components/jquery/dist/jquery.min.js',
+                    'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'public/js/**/*.js'
                 ],
                 dest: 'public/dist/scripts.min.js',
