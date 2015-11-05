@@ -11,9 +11,15 @@ app.config(function ($routeProvider, $locationProvider) {
                 controller: 'SubjectController',
                 controllerAs: 'fair'
             })
-            .when('/subject/:id/projects', {
+            .when('/subject/:subjectId/projects', {
                 templateUrl: 'views/project/list.html',
-                controller: 'ProjectController'
+                controller: 'ProjectController',
+                controllerAs:'pc'
+            })
+            .when('/subject/:subjectId/project/:projectId', {
+                templateUrl: 'views/project/show.html',
+                controller: 'ProjectController',
+                controllerAs:'pc'
             })
             .otherwise({
                 redirectTo: '/'
