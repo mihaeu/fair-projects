@@ -1,11 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var subjectSchema = new Schema({
-    name : {type : String, default: '', required: true}
+var projectSchema = new Schema({
+    name : {type : String, default: '', required: true},
+    description : {type : String, default: ''}
 });
 
-var User = mongoose.model('Subject', subjectSchema);
+var subjectSchema = new Schema({
+    name : {type : String, default: '', required: true},
+    projects: [projectSchema]
+});
 
-module.exports = User;
+var Subject = mongoose.model('Subject', subjectSchema);
+
+module.exports = Subject;
 

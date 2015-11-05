@@ -37,7 +37,7 @@ module.exports = function () {
     };
 
     SubjectController.prototype.delete = function (req, res, next) {
-        Subject.remove({_id: req.params.id}, function (err) {
+        Subject.remove({_id: req.params.subjectId}, function (err) {
             if (err) {
                 console.log(err);
                 return handleError(err);
