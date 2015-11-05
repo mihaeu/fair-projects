@@ -3,6 +3,7 @@ var app = express();
 var db = require('./config/db');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var router = require('./private/routes')(app);
 
 mongoose.connect(db.url);
 
@@ -13,7 +14,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // load routes and inject our app
-require('./private/routes')(app);
+app.use('/api/v1', router);
 
 var server = app.listen(3000, function () {
     var host = server.address().address;

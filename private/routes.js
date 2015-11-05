@@ -1,5 +1,10 @@
+var express = require('express');
+
 module.exports = function(app) {
     var subjectRouter = require('./routers/SubjectRouter')(app);
 
-    app.use('/subjects', subjectRouter);
+    var router = express.Router();
+    router.use('/subjects', subjectRouter);
+
+    return router;
 };

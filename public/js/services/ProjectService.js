@@ -1,5 +1,5 @@
 app.provider('projectService', function () {
-    var endpoint = '/subjects';
+    var endpoint = '/api/v1/subjects';
 
     this.setEndpoint = function (url) {
         endpoint = url;
