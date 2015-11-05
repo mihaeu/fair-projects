@@ -9,17 +9,9 @@ app.controller('SubjectController', ['$http', 'subjectService', '$scope', '$rout
         subjectController.subjects = subjectService.getAll();
 
         var data = {
-            'id': $routeParams.id
+            '_id': $routeParams.id
         };
         subjectController.subject = subjectService.get(data, function (data) {});
-//        subjectController.subject = function () {
-//            var data = {
-//                'id': $routeParams.id
-//            };
-//            subjectService.get(data, function (data) {
-//                subjectController.subject.push(data);
-//            });
-//        };
 
         subjectController.create = function (name) {
             var data = {

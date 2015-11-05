@@ -13,14 +13,11 @@ module.exports = function () {
         });
     };
 
-    SubjectController.prototype.get = function (req, res) {
-        Subject.findOne().exec(function (err, result) {//sort({foundCards: -1})
-            if (err) {
-                res.send(err);
+    SubjectController.prototype.get = function (req, res, next) {
+        Subject.findById(req.params.subjectId, function(err, subject) {
+            if (err || typeof subject == 'undefined' || subject === null) {
+                return next(err);
             }
-            var subject = result;
-            console.log(result);
-            //result._id = null;
             res.json(subject);
         });
     };
