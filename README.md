@@ -1,4 +1,4 @@
-# Fair Projects
+![Fair Projects](./public/images/FairProjects.png "FairProjects")
 
 > Fair projects for students from students ...
 
