@@ -1,9 +1,12 @@
 app.controller('SubjectListController', ['subjectService', '$routeParams',
-    function (subjectService, $routeParams) {
+    function (subjectService) {
         var SubjectListController = this;
 
         SubjectListController.subjects = subjectService.getAll();
 
+        /**
+         * @param {String} name
+         */
         SubjectListController.create = function (name) {
             var data = {
                 'name': name
@@ -14,8 +17,10 @@ app.controller('SubjectListController', ['subjectService', '$routeParams',
             });
         };
 
+        /**
+         * @param {Object} subject
+         */
         SubjectListController.delete = function (subject) {
-
             subjectService.delete(subject, function () {
                 SubjectListController.subjects = _.without(SubjectListController.subjects, subject);
             });

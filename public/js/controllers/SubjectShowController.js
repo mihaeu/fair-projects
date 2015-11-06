@@ -6,5 +6,5 @@ app.controller('SubjectShowController', ['subjectService', '$routeParams',
             '_id': $routeParams.id
         };
         SubjectShowController.subject = subjectService.get(data, function (data) {});
-
-    }]);
+    }
+]);

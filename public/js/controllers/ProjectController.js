@@ -6,6 +6,9 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
         $scope.name = 'ProjectController';
         var projectController = this;
 
+        /**
+         * List all projects of a subject.
+         */
         projectController.list = function () {
             var requestParameterProjects = {
                 'subject': projectController.subject._id
@@ -14,6 +17,9 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
 
         };
 
+        /**
+         * Shows a single project.
+         */
         projectController.show = function() {
             var requestParameterProject = {
                 'subject': projectController.subject._id,
@@ -22,6 +28,9 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
             projectController.project = projectService.get(requestParameterProject);
         };
 
+        /**
+         * Creates a new project.
+         */
         projectController.create = function () {
             var data = {
                 'subject': projectController.subject._id,
@@ -35,6 +44,11 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
             });
         };
 
+        /**
+         * Deletes a project.
+         *
+         * @param {Object} project
+         */
         projectController.delete = function (project) {
             var requestParameterProject = {
                 'subject': projectController.subject._id,
@@ -46,6 +60,9 @@ app.controller('ProjectController', ['$http', 'subjectService', 'projectService'
                 });
         };
 
+        /**
+         * Constructor
+         */
         projectController.init = function() {
             var requestParameterSubject = {
                 '_id': $routeParams.subjectId
