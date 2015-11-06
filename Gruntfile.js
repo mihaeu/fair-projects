@@ -8,36 +8,18 @@ module.exports = function(grunt) {
             all: ['public/js/**/*.js']
         },
 
-        // take all the js files and minify them into app.min.js
-        uglify: {
-            build: {
-                files: {
-                    'public/dist/scripts.min.js': ['public/js/**/*.js']
-                }
-            }
-        },
-
         concat: {
             dist: {
                 src: [
                     'public/bower_components/underscore/underscore-min.js',
                     'public/bower_components/jquery/dist/jquery.min.js',
                     'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'public/js/**/*.js'
+                    'public/js/**/*.js',
+                    '!**/*Spec.js'
                 ],
-                dest: 'public/dist/scripts.min.js',
-            },
+                dest: 'public/dist/scripts.min.js'
+            }
         },
-
-        // CSS TASKS ===============================================================
-        // process the less file to style.css
-        //less: {
-        //    build: {
-        //        files: {
-        //            'public/dist/css/style.css': 'public/src/css/style.less'
-        //        }
-        //    }
-        //},
 
         // take the processed style.css file and minify
         cssmin: {
@@ -48,14 +30,13 @@ module.exports = function(grunt) {
             }
         },
 
-        // COOL TASKS ==============================================================
         // watch css and js files and process the above tasks
         watch: {
             css: {
                 files: ['public/styles/**/*.css'],
                 tasks: ['cssmin'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             js: {
@@ -105,8 +86,6 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -115,5 +94,4 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
 
     grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
-
 };
