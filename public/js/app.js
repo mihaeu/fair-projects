@@ -4,12 +4,12 @@ app.config(function ($routeProvider, $locationProvider) {
             .when('/', {
                 templateUrl: 'views/subject/list.html',
                 controller: 'SubjectController',
-                controllerAs: 'fair'
+                controllerAs: 'subjectController'
             })
             .when('/subject/:id', {
                 templateUrl: 'views/subject/show.html',
                 controller: 'SubjectController',
-                controllerAs: 'fair'
+                controllerAs: 'subjectController'
             })
             .when('/subject/:subjectId/projects', {
                 templateUrl: 'views/project/list.html',

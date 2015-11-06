@@ -1,9 +1,5 @@
-app.controller('SubjectController', ['$http', 'subjectService', '$scope', '$route', '$routeParams', '$location',
-    function ($http, subjectService, $scope, $route, $routeParams, $location) {
-        $scope.$route = $route;
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
-        $scope.name = 'SubjectController';
+app.controller('SubjectController', ['subjectService', '$routeParams',
+    function (subjectService, $routeParams) {
         var subjectController = this;
 
         subjectController.subjects = subjectService.getAll();
@@ -29,4 +25,5 @@ app.controller('SubjectController', ['$http', 'subjectService', '$scope', '$rout
                 subjectController.subjects = _.without(subjectController.subjects, subject);
             });
         };
-    }]);
+    }]
+        );

@@ -1,20 +1,20 @@
 <h2>Fächer</h2>
 
-<ul ng-if="0 < fair.subjects.length" class="subjects list-group">
-    <li ng-repeat="subject in fair.subjects" class="list-group-item clearfix">
+<ul ng-if="0 < subjectController.subjects.length" class="subjects list-group">
+    <li ng-repeat="subject in subjectController.subjects" class="list-group-item clearfix">
         <a href="/#/subject/{{ subject._id }}">{{ subject.name}}</a>
         <span class="pull-right">
-            <button ng-click="fair.delete(subject)" class="btn btn-xs">
+            <button ng-click="subjectController.delete(subject)" class="btn btn-xs">
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </span>
     </li>
 </ul>
-<div ng-if="fair.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
+<div ng-if="subjectController.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
 
-<form ng-submit="fair.create(fair.newSubjectName)" class="form-inline">
+<form ng-submit="subjectController.create(subjectController.newSubjectName)" class="form-inline">
     <div class="input-group">
-        <input ng-model="fair.newSubjectName" placeholder="Neues Fach" class="form-control" >
+        <input ng-model="subjectController.newSubjectName" placeholder="Neues Fach" class="form-control" >
         <div class="input-group-btn">
             <button class="btn btn-default" type="submit">
                 <span class="glyphicon glyphicon-plus"></span>
