@@ -17,7 +17,9 @@ module.exports = function (config) {
             'public/bower_components/angular-resource/angular-resource.js',
             'public/bower_components/angular-route/angular-route.js',
             'public/bower_components/angular-mocks/angular-mocks.js',
-            'public/js/**/*.js'
+            'public/bower_components/underscore/underscore.js',
+            'public/js/**/*.js',
+            'tests/unit/client/**/*.js'
         ],
 
         plugins : [
@@ -38,7 +40,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'dots', 'coverage'],
+        reporters: ['progress', 'coverage'],
 
         // web server port
         port: 9876,
