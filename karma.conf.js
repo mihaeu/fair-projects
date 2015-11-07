@@ -22,7 +22,8 @@ module.exports = function (config) {
 
         plugins : [
             'karma-chrome-launcher',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-coverage'
         ],
 
         // list of files to exclude
@@ -30,12 +31,14 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {},
+        preprocessors: {
+            'public/js/**/*.js': 'coverage'
+        },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'dots', 'coverage'],
 
         // web server port
         port: 9876,
@@ -60,6 +63,10 @@ module.exports = function (config) {
 
         // Concurrency level
         // how many browser should be started simultanous
-        concurrency: Infinity
+        concurrency: Infinity,
+
+        coverageReporter: {
+            type : 'text'
+        }
     })
 }
