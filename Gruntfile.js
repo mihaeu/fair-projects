@@ -33,6 +33,12 @@ module.exports = function(grunt) {
         karma: {
             client: {
                 configFile: 'tests/karma.conf.js'
+            },
+            // configs here override those in our existing karma.conf.js
+            travis: {
+                configFile: 'tests/karma.conf.js',
+                singleRun: true,
+                browsers: ['PhantomJS'],
             }
         },
 
@@ -101,4 +107,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
 
     grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
+    grunt.registerTask('test', ['karma:travis']);
 };
