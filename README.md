@@ -1,5 +1,7 @@
 ![Fair Projects](./public/images/FairProjects.png "FairProjects")
 
+[![Build Status](https://travis-ci.org/mihaeu/fair-projects.svg?branch=develop)](https://travis-ci.org/mihaeu/fair-projects)
+
 > Fair projects for students from students ...
 
 Fair Projects is a web app based on the MEAN stack. It's purpose is to help professors and students with managing their projects' assignments.
