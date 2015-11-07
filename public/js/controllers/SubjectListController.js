@@ -1,4 +1,4 @@
-app.controller('SubjectListController', ['subjectService', '$routeParams',
+app.controller('SubjectListController', ['subjectService',
     function (subjectService) {
         var SubjectListController = this;
 

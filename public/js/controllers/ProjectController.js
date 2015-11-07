@@ -1,8 +1,5 @@
 app.controller('ProjectController', ['$http', 'subjectService', 'projectService', '$scope', '$route', '$routeParams', '$location',
     function ($http, subjectService, projectService, $scope, $route, $routeParams, $location) {
-        $scope.$route = $route;
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
         $scope.name = 'ProjectController';
         var projectController = this;
 

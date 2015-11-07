@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 }
             },
             js: {
-                files: ['public/js/**/*.js'],
+                files: ['public/js/**/*.js', '!**/*Spec.js'],
                 tasks: ['jshint', 'concat'],
                 options: {
                     livereload: true

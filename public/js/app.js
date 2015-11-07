@@ -1,5 +1,5 @@
 var app = angular.module('fairProjects', ['ngResource', 'ngRoute']);
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider) {
     $routeProvider
             .when('/', {
                 templateUrl: 'views/subject/list.html',
