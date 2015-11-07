@@ -30,6 +30,12 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            client: {
+                configFile: 'tests/karma.conf.js'
+            }
+        },
+
         // watch css and js files and process the above tasks
         watch: {
             css: {
@@ -90,6 +96,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-jscs');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 

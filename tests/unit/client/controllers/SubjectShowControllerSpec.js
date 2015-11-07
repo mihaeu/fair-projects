@@ -14,8 +14,8 @@ describe('SubjectShowController', function() {
     it('loads the requestes subject', function() {
         spyOn(mockSubjectService, 'get').and.returnValue({id: 1, name: 'test subject'});
         var controller = $controller('SubjectShowController', {
-            subjectService: mockSubjectService}
-        );
+            subjectService: mockSubjectService
+        });
         expect(controller.subject.name).toBe('test subject');
     });
 });

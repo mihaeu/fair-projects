@@ -36,6 +36,7 @@
     "nodemon": "^1.7.3"
   },
   "devDependencies": {
+    "grunt-karma": "^0.12.1",
     "istanbul": "^0.4.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",

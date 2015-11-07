@@ -1,7 +1,7 @@
-app.controller('ProjectController', ['$http', 'subjectService', 'projectService', '$scope', '$route', '$routeParams', '$location',
-    function ($http, subjectService, projectService, $scope, $route, $routeParams, $location) {
-        $scope.name = 'ProjectController';
+app.controller('ProjectController', ['$http', 'subjectService', 'projectService', '$routeParams',
+    function ($http, subjectService, projectService, $routeParams) {
         var projectController = this;
+        projectController.newProject = {};
 
         /**
          * List all projects of a subject.
