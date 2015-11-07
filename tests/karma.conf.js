@@ -13,13 +13,13 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'public/bower_components/angular/angular.js',
-            'public/bower_components/angular-resource/angular-resource.js',
-            'public/bower_components/angular-route/angular-route.js',
-            'public/bower_components/angular-mocks/angular-mocks.js',
-            'public/bower_components/underscore/underscore.js',
-            'public/js/**/*.js',
-            'tests/unit/client/**/*.js'
+            '../public/bower_components/angular/angular.js',
+            '../public/bower_components/angular-resource/angular-resource.js',
+            '../public/bower_components/angular-route/angular-route.js',
+            '../public/bower_components/angular-mocks/angular-mocks.js',
+            '../public/bower_components/underscore/underscore.js',
+            '../public/js/**/*.js',
+            '../tests/unit/client/**/*.js'
         ],
 
         plugins : [
@@ -34,7 +34,7 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'public/js/**/*.js': 'coverage'
+            '../public/js/**/*.js': 'coverage'
         },
 
         // test results reporter to use
