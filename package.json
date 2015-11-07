@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node_modules/nodemon/bin/nodemon.js server.js",
-    "test": "protractor conf.js --verbose",
+    "test": "protractor tests/protractor.conf.js --verbose",
     "postinstall": "node_modules/bower/bin/bower install"
   },
   "repository": {
