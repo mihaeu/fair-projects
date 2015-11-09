@@ -6,7 +6,15 @@
 
 Fair Projects is a web app based on the MEAN stack. It's purpose is to help professors and students with managing their projects' assignments.
 
-## Getting started
+## Table of Contents
+
+1. [Getting Started](#getting-started)
+1. [Tests](#tests)
+1. [Project Structure](#project-structure)
+1. [How to Contribute](#how-to-contribute)
+1. [Contributors](#contributors)
+
+## Getting Started
 
 Make sure you have node installed (preferably 0.12.7, check the [wiki](https://github.com/mihaeu/fair-projects/wiki/Linux-&-OS-X-Node-Installation) for instructions on how to do that):
 
@@ -116,11 +124,15 @@ We found that a lot of Javascript projects have a different project structures, 
     ├── karma.conf.js
     ├── protractor.conf.js
     └── unit
-        ├── client                        # jasmine front-end tests
-        └── server                        # jasmine back-end tests
-
-
+        ├── client                      # jasmine front-end tests
+        └── server                      # jasmine back-end tests
 ```
+
+## How to Contribute
+
+ - stick to the project structure (or tell us why it sucks)
+ - stick to our project and coding guidelines (we're using the brilliant [AirBnB JavaScript Style Guide](https://github.com/airbnb/javascript))
+ - send us a PR
 
 ## Contributors
 
@@ -129,4 +141,4 @@ We found that a lot of Javascript projects have a different project structures, 
  - Marinus Noichl
  - Michael Haeuslmann
 
-**Proudly developed @ University of Applied Sciences Rosenheim**
+**Proudly developed @** [![FH Rosenheim Logo](http://www.fh-rosenheim.de/typo3conf/ext/in2template/Resources/Public/Images/favicon.ico)](http://fh-rosenheim.de) **University of Applied Sciences Rosenheim** 
