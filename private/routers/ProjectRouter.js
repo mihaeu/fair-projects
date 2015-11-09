@@ -1,6 +1,6 @@
 var express = require('express');
 
-module.exports = function(app) {
+module.exports = function() {
     var projectController = require('../controllers/ProjectController')();
     var projectRouter = express.Router({mergeParams: true});
 
