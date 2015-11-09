@@ -19,4 +19,8 @@ npm install
 
 # start app and open browser at localhost:3000
 npm start
+
+# start node server, watch for file changes and run tests automatically
+# see Gruntfile.js for details
+grunt
 ```
