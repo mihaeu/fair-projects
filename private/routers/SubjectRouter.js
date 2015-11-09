@@ -11,7 +11,7 @@ module.exports = function() {
 
     subjectRouter.use('/:subjectId/projects', projectRouter);
 
-    var dicMiddleware = function(req, res, next) {
+    var dicMiddleware = function (req, res, next) {
         req.dic = {
             subject: require('../models/Subject')
         };
@@ -21,6 +21,7 @@ module.exports = function() {
     subjectRouter.get('/:subjectId', dicMiddleware, subjectController.get);
     subjectRouter.get('/', dicMiddleware, subjectController.getAll);
     subjectRouter.post('/', dicMiddleware, subjectController.create);
+    subjectRouter.put('/:subjectId', dicMiddleware, subjectController.update);
     subjectRouter.delete('/:subjectId', dicMiddleware, subjectController.delete);
 
     return subjectRouter;

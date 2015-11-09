@@ -7,7 +7,9 @@ var projectSchema = new Schema({
 });
 
 var subjectSchema = new Schema({
-    name : {type : String, default: '', required: true},
+    name: {type: String, default: '', required: true},
+    creationDate: {type: Date, default: Date.now},
+    description: {type: String, default: ''},
     projects: [projectSchema]
 });
 

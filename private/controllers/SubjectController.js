@@ -32,6 +32,26 @@ SubjectController.prototype.create = function (req, res, next) {
     });
 };
 
+SubjectController.prototype.update = function (req, res, next) {
+    Subject.findByIdAndUpdate(
+            {
+                _id: req.params.subjectId
+            },
+            {
+                name: req.body.name,
+                description: req.body.description
+            },
+            function (err, subject) {
+                console.log(subject);
+                console.log(req.body.name);
+                if (err) {
+                    return next(err);
+                }
+                res.status(201).json(subject);
+            }
+    );
+};
+
 SubjectController.prototype.delete = function (req, res, next) {
     var Subject = req.dic.subject;
     Subject.remove({_id: req.params.subjectId}, function (err) {

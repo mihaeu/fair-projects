@@ -1,5 +1,21 @@
 <h1>Fach: {{SubjectShowController.subject.name}}</h1>
 
+<form ng-submit="SubjectShowController.update()">
+    <div class="form-group">
+        <label>Projektname</label>
+        <input ng-model="SubjectShowController.subject.name" placeholder="Name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Beschreibung</label>
+        <textarea ng-model="SubjectShowController.subject.description" placeholder="Beschreibung"
+                  class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">
+        <span class="glyphicon glyphicon-plus"></span> Speichern
+    </button>
+</form>
+
+
 <p>Hier sollten die details des Fachs + listung aller Projekte erscheinen</p>
 <a href="#/subject/{{SubjectShowController.subject._id}}/projects">Zu den Projekten von {{SubjectShowController.subject.name}}</a><br />
 <a href="#/subjects">Zur Fächerübersicht</a>
