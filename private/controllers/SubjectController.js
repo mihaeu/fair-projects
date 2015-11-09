@@ -33,6 +33,7 @@ SubjectController.prototype.create = function (req, res, next) {
 };
 
 SubjectController.prototype.update = function (req, res, next) {
+    var Subject = req.dic.subject;
     Subject.findByIdAndUpdate(
             {
                 _id: req.params.subjectId
@@ -41,9 +42,10 @@ SubjectController.prototype.update = function (req, res, next) {
                 name: req.body.name,
                 description: req.body.description
             },
+            {
+                new : true
+            },
             function (err, subject) {
-                console.log(subject);
-                console.log(req.body.name);
                 if (err) {
                     return next(err);
                 }
