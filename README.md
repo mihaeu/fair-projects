@@ -25,6 +25,8 @@ npm start
 grunt
 ```
 
+If you're having difficulties finding out where to start editing or adding files for a new feature, refer to [Project Structure](#project-structure)
+
 ## Tests
 
 ### Client-Side Unit Tests
@@ -63,6 +65,61 @@ webdriver-manager start
 
 # execute the tests
 grunt test-e2e
+```
+
+## Project Structure
+We found that a lot of Javascript projects have a different project structures, so we decided to document ours here:
+
+```bash
+.
+├── bower.json                          # front-end dependencies
+├── config
+│   └── db.js                           # db configuration
+├── Gruntfile.js                        # our task runner of choice
+├── node_modules                        # .gitignore
+│   └── ...
+├── package.json                        # project information, back-end dependencies and scripts
+├── private                             # all back-end code
+│   ├── controllers
+│   │   ├── ProjectController.js
+│   │   └── SubjectController.js
+│   ├── models
+│   │   └── Subject.js
+│   ├── routers                         # split routes up where necessary
+│   │   ├── ProjectRouter.js
+│   │   └── SubjectRouter.js
+│   └── routes.js
+├── public                              # this is the root of the server
+│   ├── bower_components                # (Note: these should probably be outside and processed to dist)
+│   │   └── ...
+│   ├── dist                            # front-end dependencies after processing
+│   │   ├── scripts.min.js
+│   │   └── style.min.css
+│   ├── images
+│   │   ├── FairProjectsLogo.png
+│   │   └── FairProjects.png
+│   ├── index.html                      # front-end entry point
+│   ├── js
+│   │   ├── app.js                      # central Angular file
+│   │   ├── controllers                 # Angular controllers
+│   │   └── services                    # Angular services
+│   ├── styles
+│   │   └── style.css
+│   └── views                           # Angular templates
+│       ├── project
+│       └── subject
+├── README.md                           # this file
+├── server.js                           # main bootstrap file, starts db, server, ...
+└── tests
+    ├── e2e                             # protractor tests
+    │   └── spec.js
+    ├── karma.conf.js
+    ├── protractor.conf.js
+    └── unit
+        ├── client                        # jasmine front-end tests
+        └── server                        # jasmine back-end tests
+
+
 ```
 
 ## Contributors
