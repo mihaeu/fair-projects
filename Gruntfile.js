@@ -31,14 +31,30 @@ module.exports = function(grunt) {
         },
 
         karma: {
+            // configs here override those in our existing karma.conf.js
             client: {
+                singleRun: true,
                 configFile: 'tests/karma.conf.js'
             },
-            // configs here override those in our existing karma.conf.js
             travis: {
-                configFile: 'tests/karma.conf.js',
                 singleRun: true,
+                configFile: 'tests/karma.conf.js',
                 browsers: ['PhantomJS'],
+            }
+        },
+
+        shell: {
+            testServer: {
+                command: 'node_modules/jasmine-node/bin/jasmine-node tests/unit/server'
+            }
+        },
+
+        protractor: {
+            dist: {
+                options: {
+                    configFile: 'tests/protractor.conf.js',
+                    webdriverManagerUpdate: true
+                }
             }
         },
 
@@ -103,9 +119,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
     grunt.registerTask('test', ['karma:travis']);
+    grunt.registerTask('test-e2e', ['protractor']);
+    grunt.registerTask('test-client', ['karma:client']);
+    grunt.registerTask('test-server', ['shell:testServer']);
 };

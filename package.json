@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "grunt-karma": "^0.12.1",
+    "grunt-protractor-runner": "^2.1.0",
+    "grunt-shell": "^1.1.2",
     "istanbul": "^0.4.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",
