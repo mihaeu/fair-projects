@@ -1,16 +1,17 @@
 module.exports = function(grunt) {
 
+  var allJsFiles = ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'];
+
   grunt.initConfig({
 
-    // JS TASKS ================================================================
     // check all js files for errors
     jshint: {
-      all: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
+      all: allJsFiles,
     },
 
     // check your code against coding guidelines
     jscs: {
-      all: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
+      all: allJsFiles,
     },
 
     concat: {
@@ -79,7 +80,7 @@ module.exports = function(grunt) {
         },
       },
       qa: {
-        files: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
+        files: allJsFiles,
         tasks: ['jshint', 'jscs'],
       },
       html: {
