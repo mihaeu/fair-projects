@@ -3,7 +3,7 @@ function SubjectController() {
 
 SubjectController.prototype.getAll = function(req, res) {
   var Subject = req.dic.subject;
-  Subject.find(function(err, subjects) {
+  Subject.find().exec().then(function(err, subjects) {
     if (err) {
       res.send(err);
     }
@@ -14,7 +14,7 @@ SubjectController.prototype.getAll = function(req, res) {
 
 SubjectController.prototype.get = function(req, res, next) {
   var Subject = req.dic.subject;
-  Subject.findById(req.params.subjectId, function(err, subject) {
+  Subject.findById(req.params.subjectId).exec().then(function(err, subject) {
     if (err || typeof subject === 'undefined' || subject === null) {
       return next(err);
     }

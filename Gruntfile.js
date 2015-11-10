@@ -5,11 +5,12 @@ module.exports = function(grunt) {
     // JS TASKS ================================================================
     // check all js files for errors
     jshint: {
-      all: [
-        'public/js/**/*.js',
-        'private/**/*.js',
-        'tests/**/*.js',
-      ],
+      all: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
+    },
+
+    // check your code against coding guidelines
+    jscs: {
+      all: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
     },
 
     concat: {
@@ -70,12 +71,16 @@ module.exports = function(grunt) {
           livereload: true,
         },
       },
-      js: {
+      jsConcat: {
         files: ['public/js/**/*.js'],
-        tasks: ['jshint', 'concat'],
+        tasks: ['concat'],
         options: {
           livereload: true,
         },
+      },
+      qa: {
+        files: ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'],
+        tasks: ['jshint', 'jscs'],
       },
       html: {
         files: ['public/**/*.html'],
@@ -98,20 +103,12 @@ module.exports = function(grunt) {
       },
     },
 
-    // check your code against coding guidelines
-    jscs: {
-      client: 'public/src/**',
-      server: ['private/**', 'server.js'],
-      tests: 'tests/**',
-      config: ['config/**', 'Gruntfile.js', 'conf.js'],
-    },
-
     // run watch and nodemon at the same time
     concurrent: {
       options: {
         logConcurrentOutput: true,
       },
-      tasks: ['nodemon', 'watch', 'karma'],
+      tasks: ['nodemon', 'watch', 'karma:client'],
     },
 
   });

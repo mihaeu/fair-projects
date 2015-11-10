@@ -1,28 +1,29 @@
 app.controller('SubjectListController', ['subjectService',
-    function (subjectService) {
-        var SubjectListController = this;
+  function(subjectService) {
+    var _this = this;
 
-        SubjectListController.subjects = subjectService.getAll();
+    _this.subjects = subjectService.getAll();
 
-        /**
-         * @param {String} name
-         */
-        SubjectListController.create = function (name) {
-            var data = {
-                'name': name
-            };
-            subjectService.create(data, function (data) {
-                SubjectListController.subjects.push(data);
-                SubjectListController.newSubjectName = '';
-            });
-        };
+    /**
+     * @param {String} name
+     */
+    _this.create = function(name) {
+      var data = {
+        name: name,
+      };
+      subjectService.create(data, function(data) {
+        _this.subjects.push(data);
+        _this.newSubjectName = '';
+      });
+    };
 
-        /**
-         * @param {Object} subject
-         */
-        SubjectListController.delete = function (subject) {
-            subjectService.delete(subject, function () {
-                SubjectListController.subjects = _.without(SubjectListController.subjects, subject);
-            });
-        };
-    }]);
+    /**
+     * @param {Object} subject
+     */
+    _this.delete = function(subject) {
+      subjectService.delete(subject, function() {
+        _this.subjects = _.without(_this.subjects, subject);
+      });
+    };
+  },
+]);

@@ -79,5 +79,5 @@
   "validateLineBreaks": "LF",
   "validateQuoteMarks": "'",
   "validateIndentation": 2,
-  "maxErrors": 99
+  "maxErrors": 999
 }
