@@ -38,7 +38,6 @@ module.exports = function(grunt) {
     karma: {
       // configs here override those in our existing karma.conf.js
       client: {
-        singleRun: true,
         configFile: 'tests/karma.conf.js',
       },
       travis: {
