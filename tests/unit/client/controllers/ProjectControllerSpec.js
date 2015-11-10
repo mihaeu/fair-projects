@@ -1,45 +1,49 @@
 describe('ProjectController', function() {
 
-    beforeEach(module('fairProjects'));
+  beforeEach(module('fairProjects'));
 
-    var $controller;
-    beforeEach(inject(function(_$controller_) {
-        $controller = _$controller_;
-    }));
+  var $controller;
+  beforeEach(inject(function(_$controller_) {
+    $controller = _$controller_;
+  }));
 
-    var mockSubjectService = {
-        get: function() {}
-    }
-    var mockProjectService = {
-        get: function() {},
-        getAll: function() {},
-        create: function() {},
-        delete: function() {}
-    }
+  var mockSubjectService = {
+    get: function() {},
+  };
 
-    it('loads the requested subject', function() {
+  var mockProjectService = {
+    get: function() {},
 
-        //spyOn(mockSubjectService, 'get').and.returnValue([]);
-        //var controller = $controller('ProjectController', {
-        //    subjectService: mockSubjectService
-        //});
+    getAll: function() {},
 
-        //expect(false).toBe(true);
-    });
+    create: function() {},
 
-    it('lists all projects for a subject', function() {
-        //expect(false).toBe(true);
-    });
+    delete: function() {},
+  };
 
-    it('creates a new project', function() {
-        //expect(false).toBe(true);
-    });
+  it('loads the requested subject', function() {
 
-    it('shows a project', function() {
-        //expect(false).toBe(true);
-    });
+    //spyOn(mockSubjectService, 'get').and.returnValue([]);
+    //var controller = $controller('ProjectController', {
+    //    subjectService: mockSubjectService
+    //});
 
-    it('deletes a project', function() {
-        //expect(false).toBe(true);
-    })
+    //expect(false).toBe(true);
+  });
+
+  it('lists all projects for a subject', function() {
+    //expect(false).toBe(true);
+  });
+
+  it('creates a new project', function() {
+    //expect(false).toBe(true);
+  });
+
+  it('shows a project', function() {
+    //expect(false).toBe(true);
+  });
+
+  it('deletes a project', function() {
+    //expect(false).toBe(true);
+  });
 });

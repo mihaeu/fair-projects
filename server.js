@@ -16,11 +16,11 @@ app.use(bodyParser.json());
 // load routes and inject our app
 app.use('/api/v1', router);
 
-var server = app.listen(3000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+var server = app.listen(3000, function() {
+  var host = server.address().address;
+  var port = server.address().port;
 
-    console.log('Fair Projects app listening at http://%s:%s', host, port);
+  console.log('Fair Projects app listening at http://%s:%s', host, port);
 });
 
 exports = module.exports = app;
