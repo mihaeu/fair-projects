@@ -7,9 +7,9 @@ function MemberController() {
  * @param {type} res
  * @returns {undefined}
  */
-MemberController.prototype.getAll = function (req, res) {
+MemberController.prototype.getAll = function(req, res) {
   var Member = req.dic.member;
-  Member.find(function (err, members) {
+  Member.find(function(err, members) {
     if (err) {
       res.send(err);
     }
@@ -25,7 +25,7 @@ MemberController.prototype.getAll = function (req, res) {
  * @param {type} next
  * @returns {undefined}
  */
-MemberController.prototype.get = function (req, res, next) {
+MemberController.prototype.get = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.findById(req.params.subjectId, function(err, subject) {
     if (err || typeof subject === 'undefined' || subject === null) {
