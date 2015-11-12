@@ -4,8 +4,16 @@ node_js:
 
 before_script:
   - 'npm install -g grunt-cli'
+  - 'npm install -g codeclimate-test-reporter'
+
+after_script:
+  - codeclimate-test-reporter < coverage/mergedLcov.info
 
 notifications:
   email:
     on_success: never
     on_failure: always
+
+addons:
+  code_climate:
+    repo_token: bf6c4de2e366febbe833a148c0d62a59039c9218431a22c05aa1be24f7c42f76

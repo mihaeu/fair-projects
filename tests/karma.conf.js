@@ -69,7 +69,8 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     coverageReporter: {
-      type: 'text',
+      type: 'lcov',
+      dir: '../coverage/karma',
     },
   });
 };

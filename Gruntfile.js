@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
     shell: {
       testServer: {
-        command: 'node_modules/jasmine-node/bin/jasmine-node tests/unit/server',
+        command: 'node_modules/istanbul/lib/cli.js cover --dir ./coverage/jasmine-node node_modules/jasmine-node/bin/jasmine-node -- tests/unit/server',
       },
     },
 
@@ -114,6 +114,13 @@ module.exports = function(grunt) {
       tasks: ['nodemon', 'watch', 'karma:client'],
     },
 
+    lcovMerge: {
+      options: {
+        outputFile: 'coverage/mergedLcov.info',
+      },
+      src: ['coverage/**/*.info'],
+    },
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -125,10 +132,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-lcov-merge');
   grunt.loadNpmTasks('grunt-protractor-runner');
 
   grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
-  grunt.registerTask('test', ['karma:travis']);
+  grunt.registerTask('test', ['karma:travis', 'shell:testServer', 'mergeLcov']);
   grunt.registerTask('test-e2e', ['protractor']);
   grunt.registerTask('test-client', ['karma:client']);
   grunt.registerTask('test-server', ['shell:testServer']);
