@@ -16,11 +16,11 @@ module.exports = function() {
     next();
   };
 
-  subjectRouter.get('/:subjectId', dicMiddleware, subjectController.get);
-  subjectRouter.get('/', dicMiddleware, subjectController.getAll);
-  subjectRouter.post('/', dicMiddleware, subjectController.create);
-  subjectRouter.put('/:subjectId', dicMiddleware, subjectController.update);
-  subjectRouter.delete('/:subjectId', dicMiddleware, subjectController.delete);
+  //subjectRouter.get('/:subjectId', dicMiddleware, subjectController.get);
+  //subjectRouter.get('/', dicMiddleware, subjectController.getAll);
+  //subjectRouter.post('/', dicMiddleware, subjectController.create);
+  //subjectRouter.put('/:subjectId', dicMiddleware, subjectController.update);
+  //subjectRouter.delete('/:subjectId', dicMiddleware, subjectController.delete);
 
   return subjectRouter;
 };
