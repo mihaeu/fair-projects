@@ -1,4 +1,4 @@
-app.controller('ProjectController', ['$http', 'subjectService', 'projectService', '$routeParams',
+app.controller('ProjectShowController', ['$http', 'subjectService', 'projectService', '$routeParams',
   function($http, subjectService, projectService, $routeParams) {
     var _this = this;
     _this.newProject = {};
