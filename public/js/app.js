@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
       controller: 'SubjectListController',
       controllerAs: 'SubjectListController',
     })
-    .when('/subject/:id', {
+    .when('/subject/:subjectId', {
       templateUrl: 'views/subject/show.html',
       controller: 'SubjectShowController',
       controllerAs: 'SubjectShowController',
