@@ -136,7 +136,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
 
   grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
-  grunt.registerTask('test', ['karma:travis', 'shell:testServer', 'mergeLcov']);
+  grunt.registerTask('test', ['karma:travis', 'shell:testServer', 'lcovMerge']);
   grunt.registerTask('test-e2e', ['protractor']);
   grunt.registerTask('test-client', ['karma:client']);
   grunt.registerTask('test-server', ['shell:testServer']);
