@@ -1,6 +1,8 @@
 ![Fair Projects](./public/images/FairProjects.png "FairProjects")
 
 [![Build Status](https://travis-ci.org/mihaeu/fair-projects.svg?branch=develop)](https://travis-ci.org/mihaeu/fair-projects)
+[![Code Climate](https://codeclimate.com/github/mihaeu/fair-projects/badges/gpa.svg)](https://codeclimate.com/github/mihaeu/fair-projects)
+[![Test Coverage](https://codeclimate.com/github/mihaeu/fair-projects/badges/coverage.svg)](https://codeclimate.com/github/mihaeu/fair-projects/coverage)
 
 > Fair projects for students from students ...
 
