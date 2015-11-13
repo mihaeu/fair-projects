@@ -1,7 +1,27 @@
-module.exports = function() {
-  function ProjectController() {
-  }
+/**
+ * Project Controller
+ * @module ProjectController
+ */
 
+/**
+ * Creates a ProjectController
+ * @returns {ProjectController}
+ */
+module.exports = function() {
+
+  /**
+   * Projectcontroller handles project CRUD requests.
+   * @constructor
+   */
+  function ProjectController() {}
+
+  /**
+   * Gets all projects from the subject defined in {req.params.subjectId}.
+   *
+   * @param {http.IncomingMessage} req Express Request Object
+   * @param {http.OutgoingMessage} res Express Response Object
+   * @callback next Callback which calls the next matching route.
+   */
   ProjectController.prototype.getAll = function(req, res, next) {
     var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
@@ -14,6 +34,14 @@ module.exports = function() {
     });
   };
 
+  /**
+   * Gets one project for given subject and project
+   * ({req.params.subjectId} and {req.params.subjectId}).
+   *
+   * @param {http.IncomingMessage} req Express Request Object
+   * @param {http.OutgoingMessage} res Express Response Object
+   * @callback next Callback which calls the next matching route.
+   */
   ProjectController.prototype.get = function(req, res, next) {
     var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
@@ -30,6 +58,16 @@ module.exports = function() {
     });
   };
 
+  /**
+   * Creates a new Project inside the given subject({req.params.subjectId}).
+   *
+   * If operation success the new project is returned to the client.
+   * If subject does not exist a 404 http status is returned to client.
+   *
+   * @param {http.IncomingMessage} req Express Request Object
+   * @param {http.OutgoingMessage} res Express Response Object
+   * @callback next Callback which calls the next matching route.
+   */
   ProjectController.prototype.create = function(req, res, next) {
     var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
@@ -41,7 +79,6 @@ module.exports = function() {
       subject.projects.push(newProject);
       subject.save(function(err, subject) {
         if (err) {
-          console.log(err);
           return next(err);
         }
 
@@ -50,6 +87,13 @@ module.exports = function() {
     });
   };
 
+  /**
+   * Updates an given project and returns the updated object.
+   *
+   * @param {http.IncomingMessage} req Express Request Object
+   * @param {http.OutgoingMessage} res Express Response Object
+   * @callback next Callback which calls the next matching route.
+   */
   ProjectController.prototype.update = function(req, res, next) {
     var Subject = req.dic.subject;
     Subject.update(
@@ -65,8 +109,7 @@ module.exports = function() {
       },
       function(err, project) {
         if (err) {
-          console.log(err);
-          return handleError(err);
+          return next(err);
         }
 
         res.status(200).json(project);
@@ -74,6 +117,14 @@ module.exports = function() {
     );
   };
 
+  /**
+   * Deletes a project for given project and subject id.
+   * ({req.params.subjectId} and {req.params.subjectId})
+   *
+   * @param {http.IncomingMessage} req Express Request Object
+   * @param {http.OutgoingMessage} res Express Response Object
+   * @callback next Callback which calls the next matching route.
+   */
   ProjectController.prototype.delete = function(req, res, next) {
     Subject.findById(req.params.subjectId, function(err, subject) {
       if (err || typeof subject === 'undefined' || subject === null) {
@@ -88,8 +139,7 @@ module.exports = function() {
       project.remove();
       subject.save(function(err, subject) {
         if (err) {
-          console.log(err);
-          return handleError(err);
+          return next(err);
         }
 
         res.status(204).json();
