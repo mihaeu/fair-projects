@@ -1,6 +1,12 @@
 function SubjectController() {
 }
 
+/**
+ * Returns all subjects as JSON
+ *
+ * @param {http.IncomingMessage} req Express Request Object
+ * @param {http.OutgoingMessage} res Express Response Object
+ */
 SubjectController.prototype.getAll = function(req, res) {
   var Subject = req.dic.subject;
   Subject.find().exec().then(function(err, subjects) {
@@ -12,6 +18,13 @@ SubjectController.prototype.getAll = function(req, res) {
   });
 };
 
+/**
+ * Returns a single Subject from subjectID
+ *
+ * @param {http.IncomingMessage} req Express Request Object
+ * @param {http.OutgoingMessage} res Express Response Object
+ * @callback next Callback which calls the next matching route.
+ */
 SubjectController.prototype.get = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.findById(req.params.subjectId, function(err, subject) {
@@ -23,12 +36,18 @@ SubjectController.prototype.get = function(req, res, next) {
   });
 };
 
+/**
+ * Creates a new Subject
+ *
+ * @param {http.IncomingMessage} req Express Request Object
+ * @param {http.OutgoingMessage} res Express Response Object
+ * @callback next Callback which calls the next matching route.
+ */
 SubjectController.prototype.create = function(req, res, next) {
   var Subject = req.dic.subject;
   var subject = new Subject(req.body);
   subject.save(function(err, subject) {
     if (err) {
-      console.log(err);
       return next(err);
     }
 
@@ -36,6 +55,13 @@ SubjectController.prototype.create = function(req, res, next) {
   });
 };
 
+/**
+ * Updates an given subject and returns the updated object.
+ *
+ * @param {http.IncomingMessage} req Express Request Object
+ * @param {http.OutgoingMessage} res Express Response Object
+ * @callback next Callback which calls the next matching route.
+ */
 SubjectController.prototype.update = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.findByIdAndUpdate(
@@ -59,6 +85,13 @@ SubjectController.prototype.update = function(req, res, next) {
   );
 };
 
+/**
+ * Deletes a subject with the given {req.params.subjectId})
+ *
+ * @param {http.IncomingMessage} req Express Request Object
+ * @param {http.OutgoingMessage} res Express Response Object
+ * @callback next Callback which calls the next matching route.
+ */
 SubjectController.prototype.delete = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.remove({_id: req.params.subjectId}, function(err) {
