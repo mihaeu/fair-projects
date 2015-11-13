@@ -111,7 +111,8 @@ module.exports = function(grunt) {
       options: {
         logConcurrentOutput: true,
       },
-      tasks: ['nodemon', 'watch', 'karma:client'],
+      dev: ['nodemon', 'watch', 'karma:client'],
+      travis: ['nodemon'],
     },
 
     lcovMerge: {
@@ -135,7 +136,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-lcov-merge');
   grunt.loadNpmTasks('grunt-protractor-runner');
 
-  grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent']);
+  grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent:dev']);
   grunt.registerTask('test', ['karma:travis', 'shell:testServer', 'lcovMerge']);
   grunt.registerTask('test-e2e', ['protractor']);
   grunt.registerTask('test-client', ['karma:client']);
