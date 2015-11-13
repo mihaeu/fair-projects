@@ -7,6 +7,5 @@ var projectSchema = new Schema({
 });
 
 module.exports = {
-  model: mongoose.model('Project', projectSchema),
   schema: projectSchema,
 };
