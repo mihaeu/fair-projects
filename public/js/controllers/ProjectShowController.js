@@ -1,61 +1,6 @@
 app.controller('ProjectShowController', ['$http', 'subjectService', 'projectService', '$routeParams',
   function($http, subjectService, projectService, $routeParams) {
     var _this = this;
-    _this.newProject = {};
-
-    /**
-     * List all projects of a subject.
-     */
-    _this.list = function() {
-      var requestParameterProjects = {
-        subject: _this.subject._id,
-      };
-      _this.projects = projectService.getAll(requestParameterProjects);
-
-    };
-
-    /**
-     * Shows a single project.
-     */
-    _this.show = function() {
-      var requestParameterProject = {
-        subject: _this.subject._id,
-        id: $routeParams.projectId,
-      };
-      _this.project = projectService.get(requestParameterProject);
-    };
-
-    /**
-     * Creates a new project.
-     */
-    _this.create = function() {
-      var data = {
-        subject: _this.subject._id,
-        name: _this.newProject.name,
-        description: _this.newProject.description,
-      };
-      projectService.create(data, function(data) {
-        _this.projects.push(data);
-        _this.newProject.name = '';
-        _this.newProject.description = '';
-      });
-    };
-
-    /**
-     * Deletes a project.
-     *
-     * @param {Object} project
-     */
-    _this.delete = function(project) {
-      var requestParameterProject = {
-        subject: _this.subject._id,
-        id: project._id,
-      };
-      projectService.delete(requestParameterProject)
-        .$promise.then(function() {
-        _this.projects = _.without(_this.projects, project);
-      });
-    };
 
     /**
      * Constructor
@@ -64,15 +9,28 @@ app.controller('ProjectShowController', ['$http', 'subjectService', 'projectServ
       var requestParameterSubject = {
         _id: $routeParams.subjectId,
       };
-      subjectService.get(requestParameterSubject).$promise.then(function(subject) {
-        _this.subject = subject;
+      _this.subject = subjectService.get(requestParameterSubject);
 
-        if (typeof $routeParams.projectId === 'undefined') {
-          _this.list();
-        } else {
-          _this.show();
-        }
-      });
+      var requestParameterProject = {
+        subject: $routeParams.subjectId,
+        id: $routeParams.projectId,
+      };
+      _this.project = projectService.get(requestParameterProject);
+    };
+
+    /**
+     * Updates the current project
+     */
+    _this.update = function() {
+      var where = {
+        subject: _this.subject._id,
+        id: _this.project._id,
+      };
+      var updateData = {
+        name: _this.project.name,
+        description: _this.project.description,
+      };
+      projectService.update(where, updateData);
     };
 
     _this.init();

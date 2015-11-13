@@ -34,6 +34,12 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
       });
     };
 
+    /**
+     * Creates a project within the current subject.
+     * Creates the project on the server and pushes it on success immediately to the project list.
+     *
+     * @param {Object} newProject
+     */
     _this.createProject = function(newProject) {
       var data = {
         subject: _this.subject._id,

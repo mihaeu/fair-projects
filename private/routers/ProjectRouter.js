@@ -7,6 +7,7 @@ module.exports = function() {
   projectRouter.get('/:projectId', projectController.get);
   projectRouter.get('/', projectController.getAll);
   projectRouter.post('/', projectController.create);
+  projectRouter.put('/:projectId', projectController.update);
   projectRouter.delete('/:projectId', projectController.delete);
 
   return projectRouter;

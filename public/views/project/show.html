@@ -1,8 +1,28 @@
 <h1>Projekt: {{ProjectShowController.project.name}}</h1>
 
-<div class="well">
-	<p>{{ProjectShowController.project.description}}</p>
+<div class="panel panel-default projectDetailPanel">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Details
+		</h3>
+	</div>
+	<div class="panel-body">
+		<form ng-submit="ProjectShowController.update()">
+			<div class="form-group">
+				<label>Projektname</label>
+				<input ng-model="ProjectShowController.project.name" placeholder="Name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Beschreibung</label>
+        		<textarea ng-model="ProjectShowController.project.description"
+						  placeholder="Beschreibung"
+						  class="form-control"></textarea>
+			</div>
+			<button class="btn btn-primary" type="submit">
+				<span class="glyphicon glyphicon-plus"></span> Speichern
+			</button>
+		</form>
+	</div>
 </div>
 
-<p>Hier sollten die details des Projekts + Listung aller Teilnehmer erscheinen</p>
 <a href="#/subject/{{ProjectShowController.subject._id}}">Zurück</a>

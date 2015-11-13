@@ -1,7 +1,8 @@
 var Subject = require('../models/Subject');
 
 module.exports = function() {
-  function ProjectController() {}
+  function ProjectController() {
+  }
 
   ProjectController.prototype.getAll = function(req, res, next) {
     Subject.findById(req.params.subjectId, function(err, subject) {
@@ -46,6 +47,29 @@ module.exports = function() {
         res.status(201).json(newProject);
       });
     });
+  };
+
+  ProjectController.prototype.update = function(req, res, next) {
+    Subject.update(
+      {
+        _id: req.params.subjectId,
+        'projects._id': req.params.projectId,
+      },
+      {
+        $set: {
+          'projects.$.name': req.body.name,
+          'projects.$.description': req.body.description,
+        },
+      },
+      function(err, project) {
+        if (err) {
+          console.log(err);
+          return handleError(err);
+        }
+
+        res.status(200).json(project);
+      }
+    );
   };
 
   ProjectController.prototype.delete = function(req, res, next) {
