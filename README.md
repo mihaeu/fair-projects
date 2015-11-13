@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/mihaeu/fair-projects.svg?branch=develop)](https://travis-ci.org/mihaeu/fair-projects)
 [![Code Climate](https://codeclimate.com/github/mihaeu/fair-projects/badges/gpa.svg)](https://codeclimate.com/github/mihaeu/fair-projects)
 [![Test Coverage](https://codeclimate.com/github/mihaeu/fair-projects/badges/coverage.svg)](https://codeclimate.com/github/mihaeu/fair-projects/coverage)
+[![Join the chat at https://gitter.im/mihaeu/fair-projects](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mihaeu/fair-projects?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Fair projects for students from students ...
 
@@ -10,7 +11,6 @@ Fair Projects is a web app based on the MEAN stack. It's purpose is to help prof
 
 ## Table of Contents
 
-[![Join the chat at https://gitter.im/mihaeu/fair-projects](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mihaeu/fair-projects?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 1. [Getting Started](#getting-started)
 1. [Tests](#tests)
@@ -145,4 +145,4 @@ We found that a lot of Javascript projects have a different project structures, 
  - Marinus Noichl
  - Michael Haeuslmann
 
-**Proudly developed @** [![FH Rosenheim Logo](http://www.fh-rosenheim.de/typo3conf/ext/in2template/Resources/Public/Images/favicon.ico)](http://fh-rosenheim.de) **University of Applied Sciences Rosenheim** 
+**Proudly developed @** [![FH Rosenheim Logo](http://www.fh-rosenheim.de/typo3conf/ext/in2template/Resources/Public/Images/favicon.ico)](http://fh-rosenheim.de) **University of Applied Sciences Rosenheim**
