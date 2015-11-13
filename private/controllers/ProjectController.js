@@ -1,10 +1,9 @@
-var Subject = require('../models/Subject');
-
 module.exports = function() {
   function ProjectController() {
   }
 
   ProjectController.prototype.getAll = function(req, res, next) {
+    var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
 
       if (err || typeof subject === 'undefined' || subject === null) {
@@ -16,6 +15,7 @@ module.exports = function() {
   };
 
   ProjectController.prototype.get = function(req, res, next) {
+    var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
       if (err || typeof subject === 'undefined' || subject === null) {
         return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
@@ -31,6 +31,7 @@ module.exports = function() {
   };
 
   ProjectController.prototype.create = function(req, res, next) {
+    var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
       if (err || typeof subject === 'undefined' || subject === null) {
         return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
@@ -50,6 +51,7 @@ module.exports = function() {
   };
 
   ProjectController.prototype.update = function(req, res, next) {
+    var Subject = req.dic.subject;
     Subject.update(
       {
         _id: req.params.subjectId,
