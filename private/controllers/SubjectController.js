@@ -16,7 +16,7 @@ SubjectController.prototype.get = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.findById(req.params.subjectId, function(err, subject) {
     if (err || typeof subject === 'undefined' || subject === null) {
-      return next(err);
+      return res.status(404).send('Subject does not exist');
     }
 
     res.json(subject);
@@ -63,7 +63,6 @@ SubjectController.prototype.delete = function(req, res, next) {
   var Subject = req.dic.subject;
   Subject.remove({_id: req.params.subjectId}, function(err) {
     if (err) {
-      console.log(err);
       return handleError(err);
     }
 
