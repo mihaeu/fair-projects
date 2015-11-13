@@ -28,7 +28,15 @@ notifications:
   email:
     on_success: never
     on_failure: always
+  webhooks:
+    urls:
+     - https://webhooks.gitter.im/e/56c02f9664fa4fb67c46
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
 
 addons:
   code_climate:
     repo_token: bf6c4de2e366febbe833a148c0d62a59039c9218431a22c05aa1be24f7c42f76
+
+
