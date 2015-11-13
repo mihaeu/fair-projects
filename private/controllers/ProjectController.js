@@ -126,6 +126,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.delete = function(req, res, next) {
+    var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
       if (err || typeof subject === 'undefined' || subject === null) {
         return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
