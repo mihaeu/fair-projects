@@ -10,6 +10,8 @@ Fair Projects is a web app based on the MEAN stack. It's purpose is to help prof
 
 ## Table of Contents
 
+[![Join the chat at https://gitter.im/mihaeu/fair-projects](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mihaeu/fair-projects?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 1. [Getting Started](#getting-started)
 1. [Tests](#tests)
 1. [Project Structure](#project-structure)
