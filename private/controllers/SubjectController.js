@@ -68,6 +68,7 @@ module.exports = function() {
       if (err) {
         return next(err);
       }
+
       res.status(201).json(subject);
     });
   };
@@ -113,12 +114,16 @@ module.exports = function() {
    */
   SubjectController.prototype.delete = function(req, res, next) {
     var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository.delete(req.params.subjectId).then(function(err) {
-      if (err) {
-        return next(err);
-      }
-      res.status(204).send();
-    });
+    subjectRepository
+      .delete(req.params.subjectId)
+      .then(function() {
+          res.status(204).send();
+        }, function(err) {
+          if (err) {
+            return next(err);
+          }
+        }
+      );
   };
 
   return new SubjectController();

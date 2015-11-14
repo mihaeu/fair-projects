@@ -35,7 +35,7 @@ module.exports = function() {
 
   /**
    * @param {Object} subject
-   * @returns {Model|*|Aggregate}
+   * @returns {Subject}
    */
   SubjectRepository.prototype.create = function(subject) {
     return new this.model(subject);
@@ -47,7 +47,7 @@ module.exports = function() {
    */
   SubjectRepository.prototype.delete = function(id) {
     return this.model.remove({_id: id}).exec();
-  }
+  };
 
   return new SubjectRepository();
 

@@ -1,11 +1,13 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+module.exports = (function() {
 
-var participantSchema = new Schema({
-  name: {type: String, default: '', required: true},
-});
+  'use strict';
 
-module.exports = {
-  model: mongoose.model('Participant', participantSchema),
-  schema: participantSchema,
-};
+  var mongoose = require('mongoose');
+  var Schema = mongoose.Schema;
+
+  var participantSchema = new Schema({
+    name: {type: String, default: '', required: true},
+  });
+
+  return participantSchema;
+})();

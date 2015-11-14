@@ -1,6 +1,8 @@
-var express = require('express');
-
 module.exports = function() {
+
+  'use strict';
+
+  var express = require('express');
   var ParticipantModel = require('../models/Participant');
   var ParticipantController = new (require('../controllers/ParticipantController'))();
 
