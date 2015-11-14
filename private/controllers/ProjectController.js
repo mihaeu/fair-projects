@@ -91,26 +91,21 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.update = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.update(
-      {
-        _id: req.params.subjectId,
-        'projects._id': req.params.projectId,
-      },
-      {
-        $set: {
-          'projects.$.name': req.body.name,
-          'projects.$.description': req.body.description,
-        },
-      },
-      function(err, project) {
-        if (err) {
-          return next(err);
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+        for (var i = 0; i < subject.projects.length; ++i) {
+          if (subject.projects[i]._id.toString() === req.params.projectId) {
+            subject.projects[i].name = req.body.name;
+            subject.projects[i].description = req.body.description;
+            subject.save();
+            res.status(200).json(subject.project[i]);
+            break;
+          }
         }
-
-        res.status(200).json(project);
-      }
-    );
+      }, function(err) {
+        return res.status(404).send('Subject does not exist.' + err);
+      });
   };
 
   /**
@@ -122,26 +117,22 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.delete = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findById(req.params.subjectId, function(err, subject) {
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
-      }
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+          var project = subject.projects.id(req.params.projectId);
+          if (project === null) {
+            return next();
+          }
 
-      var project = subject.projects.id(req.params.projectId);
-      if (project === null) {
-        return next(err);
-      }
-
-      project.remove();
-      subject.save(function(err, subject) {
-        if (err) {
-          return next(err);
+          project.remove();
+          subject.save(function() {
+            res.status(204).json();
+          });
+        }, function(err) {
+          return res.status(404).send('Subject does not exist.' + err);
         }
-
-        res.status(204).json();
-      });
-    });
+    );
   };
 
   return new ProjectController();
