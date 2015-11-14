@@ -1,5 +1,8 @@
 app.controller('SubjectShowController', ['subjectService', 'projectService', '$routeParams',
   function(subjectService, projectService, $routeParams) {
+
+    'use strict';
+
     var _this = this;
 
     /**

@@ -1,4 +1,7 @@
 app.provider('subjectService', function() {
+
+  'use strict';
+
   var endpoint = '/api/v1/subjects';
 
   this.setEndpoint = function(url) {
@@ -6,7 +9,6 @@ app.provider('subjectService', function() {
   };
 
   this.$get = function($resource) {
-
     return $resource(
       endpoint + '/:_id',
       {
@@ -20,6 +22,5 @@ app.provider('subjectService', function() {
         update: {method: 'PUT'},
       }
     );
-
   };
 });

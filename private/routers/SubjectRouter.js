@@ -1,8 +1,9 @@
 var express = require('express');
 
 module.exports = function() {
-  var SubjectModel = require('../models/Subject');
-  var subjectController = new (require('../controllers/SubjectController'))(SubjectModel);
+  'use strict';
+
+  var subjectController = new (require('../controllers/SubjectController'))();
   var subjectRouter = express.Router();
   var projectRouter = require('./ProjectRouter')();
 

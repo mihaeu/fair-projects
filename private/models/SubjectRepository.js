@@ -23,7 +23,7 @@ module.exports = function() {
    * @returns {Promise}
    */
   SubjectRepository.prototype.getById = function(id) {
-    return this.model.find({id: id}).exec();
+    return this.model.findById(id).exec();
   };
 
   /**
@@ -38,8 +38,16 @@ module.exports = function() {
    * @returns {Model|*|Aggregate}
    */
   SubjectRepository.prototype.create = function(subject) {
-    return new this.model();
+    return new this.model(subject);
   };
+
+  /**
+   * @param {Integer} id
+   * @returns {Promise}
+   */
+  SubjectRepository.prototype.delete = function(id) {
+    return this.model.remove({_id: id}).exec();
+  }
 
   return new SubjectRepository();
 

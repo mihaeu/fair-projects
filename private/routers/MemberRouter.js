@@ -1,6 +1,8 @@
 var express = require('express');
 
 module.exports = function() {
+  'use strict';
+
   var MemberModel = require('../models/Member');
   var MemberController = new (require('../controllers/MemberController'))();
 
