@@ -1,11 +1,11 @@
-var express = require('express');
-
 module.exports = function() {
+
   'use strict';
 
-  var subjectController = new (require('../controllers/SubjectController'))();
+  var express = require('express');
   var subjectRouter = express.Router();
   var projectRouter = require('./ProjectRouter')();
+  var subjectController = new require('../controllers/SubjectController')();
 
   // Register Middleware
   var dicMiddleware = function(req, res, next) {

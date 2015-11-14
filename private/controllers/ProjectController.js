@@ -25,15 +25,13 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.getAll = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findById(req.params.subjectId, function(err, subject) {
-
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
-      }
-
-      res.json(subject.projects);
-    });
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+        res.json(subject.projects);
+      }, function(err) {
+        return res.status(404).send('Subject does not exist.' + err);
+      });
   };
 
   /**
@@ -45,19 +43,19 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.get = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findById(req.params.subjectId, function(err, subject) {
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
-      }
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+          var project = subject.projects.id(req.params.projectId);
+          if (project === null) {
+            return next();
+          }
 
-      var project = subject.projects.id(req.params.projectId);
-      if (project === null) {
-        return next();
-      }
-
-      res.json(project);
-    });
+          res.json(project);
+        }, function(err) {
+          return res.status(404).send('Subject does not exist.' + err);
+        }
+      );
   };
 
   /**
@@ -71,22 +69,18 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.create = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findById(req.params.subjectId, function(err, subject) {
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return res.status(404).send('Subject does not exist'); //TODO: introduce error codes!
-      }
-
-      var newProject = subject.projects.create(req.body);
-      subject.projects.push(newProject);
-      subject.save(function(err, subject) {
-        if (err) {
-          return next(err);
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+          var newProject = subject.projects.create(req.body);
+          subject.projects.push(newProject);
+          subject.save(function() {
+            res.status(201).json(newProject);
+          });
+        }, function(err) {
+          return res.status(404).send('Subject does not exist.' + err);
         }
-
-        res.status(201).json(newProject);
-      });
-    });
+      );
   };
 
   /**
