@@ -30,6 +30,7 @@ module.exports = function() {
       .then(function(subject) {
         res.json(subject.projects);
       }, function(err) {
+
         return res.status(404).send('Subject does not exist.' + err);
       });
   };
@@ -46,16 +47,17 @@ module.exports = function() {
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
-          var project = subject.projects.id(req.params.projectId);
-          if (project === null) {
-            return next();
-          }
-
-          res.json(project);
-        }, function(err) {
-          return res.status(404).send('Subject does not exist.' + err);
+        var project = subject.projects.id(req.params.projectId);
+        if (project === null) {
+          return next();
         }
-      );
+
+        res.json(project);
+      }, function(err) {
+
+        return res.status(404).send('Subject does not exist.' + err);
+      }
+    );
   };
 
   /**
@@ -78,6 +80,7 @@ module.exports = function() {
             res.status(201).json(newProject);
           });
         }, function(err) {
+
           return res.status(404).send('Subject does not exist.' + err);
         }
       );
@@ -104,6 +107,7 @@ module.exports = function() {
           }
         }
       }, function(err) {
+
         return res.status(404).send('Subject does not exist.' + err);
       });
   };
@@ -130,6 +134,7 @@ module.exports = function() {
             res.status(204).json();
           });
         }, function(err) {
+
           return res.status(404).send('Subject does not exist.' + err);
         }
     );

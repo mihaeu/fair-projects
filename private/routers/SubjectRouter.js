@@ -5,7 +5,7 @@ module.exports = function() {
   var express = require('express');
   var subjectRouter = express.Router();
   var projectRouter = require('./ProjectRouter')();
-  var subjectController = new require('../controllers/SubjectController')();
+  var subjectController = new (require('../controllers/SubjectController'))();
 
   // Register Middleware
   var dicMiddleware = function(req, res, next) {

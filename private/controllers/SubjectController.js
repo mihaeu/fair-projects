@@ -28,6 +28,7 @@ module.exports = function() {
       .then(function(subjects) {
         res.json(subjects);
       }, function(err) {
+
         res.send(err);
       });
   };
@@ -43,10 +44,12 @@ module.exports = function() {
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
-          res.json(subject);
-        }, function(err) {
-          return res.status(404).send('Subject does not exist' + err.body);
-      });
+        res.json(subject);
+      }, function(err) {
+
+        return res.status(404).send('Subject does not exist' + err.body);
+      }
+    );
   };
 
   /**
@@ -85,6 +88,7 @@ module.exports = function() {
         return subject.save().exec();
       })
       .then(function(subject) {
+
         res.status(201).json(subject);
       });
   };
@@ -103,9 +107,8 @@ module.exports = function() {
       .then(function() {
           res.status(204).send();
         }, function(err) {
-          if (err) {
-            return next(err);
-          }
+
+          return next(err);
         }
       );
   };
