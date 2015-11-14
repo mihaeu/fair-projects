@@ -24,13 +24,11 @@ module.exports = function() {
    */
   SubjectController.prototype.getAll = function(req, res) {
     var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository.getAll().then(function(err, subjects) {
-      if (err) {
+    subjectRepository.getAll().then(function(subjects) {
+        res.json(subjects);
+      }, function(err) {
         res.send(err);
-      }
-
-      res.json(subjects);
-    });
+      });
   };
 
   /**
@@ -80,26 +78,18 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.update = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findByIdAndUpdate(
-      {
-        _id: req.params.subjectId,
-      },
-      {
-        name: req.body.name,
-        description: req.body.description,
-      },
-      {
-        new: true,
-      },
-      function(err, subject) {
-        if (err) {
-          return next(err);
-        }
+    var subjectRepository = new req.dic.subjectRepository();
+    subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+        subject.name = req.body.name;
+        subject.description = req.body.description;
 
+        return subject.save().exec();
+      })
+      .then(function(subject) {
         res.status(201).json(subject);
-      }
-    );
+      });
   };
 
   /**
