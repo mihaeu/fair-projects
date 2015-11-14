@@ -25,4 +25,52 @@
 	</div>
 </div>
 
+<div class="panel panel-default projectListPanel">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Teilnehmer
+		</h3>
+	</div>
+	<div class="panel-body">
+		<ul ng-if="0 < ProjectShowController.members.length" class="projects list-group">
+			<li ng-repeat="member in ProjectShowController.members" class="list-group-item clearfix">
+				<a href="/#/subject/{{ ProjectShowController.subject._id }}/project/{{project._id}}">{{ member.name}}</a>
+                <span class="pull-right">
+                    <button ng-click="ProjectShowController.deleteMember(member)" class="btn btn-xs">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+                </span>
+			</li>
+		</ul>
+		<div ng-if="ProjectShowController.members.length === 0" class="alert alert-info" role="alert">Keine Anmeldungen</div>
+
+		<div class="panel panel-default addProjectPanel">
+			<div class="panel-heading" id="addProjectPanelHeading">
+				<h3 class="panel-title">
+					<a role="button"
+					   data-toggle="collapse"
+					   data-parent=".addProjectPanel"
+					   data-target="#addProjectPanelBody"
+					   aria-expanded="true"
+					   aria-controls="addProjectPanelBody">Anmeldung</a>
+				</h3>
+			</div>
+			<div class="panel-collapse collapse" role="tabpanel" aria-labelledby="addProjectPanelHeading" id="addProjectPanelBody">
+				<div class="panel-body">
+
+					<form ng-submit="ProjectShowController.createMember(newMember)">
+						<div class="form-group">
+							<label>Name</label>
+							<input ng-model="newMember.name" placeholder="Name" class="form-control">
+						</div>
+						<button class="btn btn-primary" type="submit">
+							<span class="glyphicon glyphicon-plus"></span> Anmelden
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <a href="#/subject/{{ProjectShowController.subject._id}}">Zurück</a>
