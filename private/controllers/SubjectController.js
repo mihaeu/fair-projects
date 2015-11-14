@@ -23,8 +23,8 @@ module.exports = function() {
    * @param {http.OutgoingMessage} res Express Response Object
    */
   SubjectController.prototype.getAll = function(req, res) {
-    var Subject = new req.dic.subjectRepository();
-    Subject.getAll().then(function(err, subjects) {
+    var subjectRepository = new req.dic.subjectRepository();
+    subjectRepository.getAll().then(function(err, subjects) {
       if (err) {
         res.send(err);
       }
