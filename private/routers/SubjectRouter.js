@@ -10,7 +10,6 @@ module.exports = function() {
   // Register Middleware
   var dicMiddleware = function(req, res, next) {
     req.dic = {
-      subject: require('../models/Subject'),
       subjectRepository: require('../models/SubjectRepository'),
     };
     next();

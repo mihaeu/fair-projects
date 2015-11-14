@@ -3,7 +3,7 @@ module.exports = function() {
   'use strict';
 
   var express = require('express');
-  var ParticipantModel = require('../models/Participant');
+  var ParticipantModel = require('../models/ParticipantSchema');
   var ParticipantController = new (require('../controllers/ParticipantController'))();
 
   var subjectRouter = express.Router();

@@ -14,7 +14,7 @@ module.exports = (function() {
    */
   function SubjectRepository() {
     var mongoose = require('mongoose');
-    var subjectSchema = require('./Subject');
+    var subjectSchema = require('./SubjectSchema');
     this.model = mongoose.model('Subject', subjectSchema);
   }
 
