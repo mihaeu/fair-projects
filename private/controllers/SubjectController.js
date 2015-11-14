@@ -23,8 +23,9 @@ module.exports = function() {
    * @param {http.OutgoingMessage} res Express Response Object
    */
   SubjectController.prototype.getAll = function(req, res) {
-    var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository.getAll().then(function(subjects) {
+    req.dic.subjectRepository
+      .getAll()
+      .then(function(subjects) {
         res.json(subjects);
       }, function(err) {
         res.send(err);
@@ -39,8 +40,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.get = function(req, res, next) {
-    var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository
+    req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
           res.json(subject);
@@ -57,9 +57,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.create = function(req, res, next) {
-    //var subject = new req.dic.subject(req.body);
-    var subjectRepository = new req.dic.subjectRepository();
-    var subject = subjectRepository.create(req.body);
+    var subject = req.dic.subjectRepository.create(req.body);
     subject.save(function(err, subject) {
       if (err) {
         return next(err);
@@ -78,8 +76,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.update = function(req, res, next) {
-    var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository
+    req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
         subject.name = req.body.name;
@@ -101,8 +98,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.delete = function(req, res, next) {
-    var subjectRepository = new req.dic.subjectRepository();
-    subjectRepository
+    req.dic.subjectRepository
       .delete(req.params.subjectId)
       .then(function() {
           res.status(204).send();

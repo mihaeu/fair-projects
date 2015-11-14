@@ -5,7 +5,7 @@
 /**
  * @returns {SubjectRepository}
  */
-module.exports = function() {
+module.exports = (function() {
 
   'use strict';
 
@@ -51,4 +51,4 @@ module.exports = function() {
 
   return new SubjectRepository();
 
-};
+})();
