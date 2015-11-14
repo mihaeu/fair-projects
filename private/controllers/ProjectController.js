@@ -1,5 +1,5 @@
 /**
- * Project Controller
+ * ProjectController
  * @module ProjectController
  */
 
@@ -9,8 +9,10 @@
  */
 module.exports = function() {
 
+  'use strict';
+
   /**
-   * Projectcontroller handles project CRUD requests.
+   * ProjectController handles project CRUD requests.
    * @constructor
    */
   function ProjectController() {}
