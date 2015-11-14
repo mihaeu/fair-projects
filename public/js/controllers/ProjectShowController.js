@@ -1,5 +1,5 @@
-app.controller('ProjectShowController', ['$http', 'subjectService', 'projectService', '$routeParams',
-  function($http, subjectService, projectService, $routeParams) {
+app.controller('ProjectShowController', ['$http', 'subjectService', 'projectService', 'participantService', '$routeParams',
+  function($http, subjectService, projectService, participantService, $routeParams) {
     var _this = this;
 
     /**

@@ -1,5 +1,5 @@
-app.provider('memberService', function() {
-  var endpoint = '/api/v1/members';
+app.provider('participantService', function() {
+  var endpoint = '/api/v1/participants';
 
   this.setEndpoint = function(url) {
     endpoint = url;
