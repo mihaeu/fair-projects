@@ -32,17 +32,17 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-		<ul ng-if="0 < ProjectShowController.members.length" class="projects list-group">
-			<li ng-repeat="member in ProjectShowController.members" class="list-group-item clearfix">
-				<a href="/#/subject/{{ ProjectShowController.subject._id }}/project/{{project._id}}">{{ member.name}}</a>
+		<ul ng-if="0 < ProjectShowController.participants.length" class="projects list-group">
+			<li ng-repeat="participant in ProjectShowController.participants" class="list-group-item clearfix">
+				<a href="/#/subject/{{ ProjectShowController.subject._id }}/project/{{project._id}}">{{ participant.name}}</a>
                 <span class="pull-right">
-                    <button ng-click="ProjectShowController.deleteMember(member)" class="btn btn-xs">
+                    <button ng-click="ProjectShowController.deleteParticipant(participant)" class="btn btn-xs">
 						<span class="glyphicon glyphicon-trash"></span>
 					</button>
                 </span>
 			</li>
 		</ul>
-		<div ng-if="ProjectShowController.members.length === 0" class="alert alert-info" role="alert">Keine Anmeldungen</div>
+		<div ng-if="ProjectShowController.participants.length === 0" class="alert alert-info" role="alert">Keine Anmeldungen</div>
 
 		<div class="panel panel-default addProjectPanel">
 			<div class="panel-heading" id="addProjectPanelHeading">
@@ -58,10 +58,10 @@
 			<div class="panel-collapse collapse" role="tabpanel" aria-labelledby="addProjectPanelHeading" id="addProjectPanelBody">
 				<div class="panel-body">
 
-					<form ng-submit="ProjectShowController.createMember(newMember)">
+					<form ng-submit="ProjectShowController.createParticipant(newParticipant)">
 						<div class="form-group">
 							<label>Name</label>
-							<input ng-model="newMember.name" placeholder="Name" class="form-control">
+							<input ng-model="newParticipant.name" placeholder="Name" class="form-control">
 						</div>
 						<button class="btn btn-primary" type="submit">
 							<span class="glyphicon glyphicon-plus"></span> Anmelden

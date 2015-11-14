@@ -1,45 +1,45 @@
 /**
- * MemberController
- * @module MemberController
+ * ParticipantController
+ * @module ParticipantController
  */
 
 /**
- * Creates a MemberController
- * @returns {MemberController}
+ * Creates a ParticipantController
+ * @returns {ParticipantController}
  */
 module.exports = function() {
 
   'use strict';
 
   /** @constructor */
-  function MemberController() {}
+  function ParticipantController() {}
 
   /**
-   * Adds all members of a project to the JSON respone.
+   * Adds all participants of a project to the JSON response.
    *
    * @param {http.IncomingMessage} req - Express request object
    * @param {http.OutgoingMessage} res - Express result object
    */
-  MemberController.prototype.getAll = function(req, res) {
-    var Member = req.dic.member;
-    Member.find(function(err, members) {
+  ParticipantController.prototype.getAll = function(req, res) {
+    var Participant = req.dic.participant;
+    Participant.find(function(err, participants) {
       if (err) {
         res.send(err);
       }
 
-      res.json(members);
+      res.json(participants);
     });
   };
 
   /**
-   * Adds a single member of a project to the JSON response.
+   * Adds a single participant of a project to the JSON response.
    *
    * @todo Refactor
    * @param {http.IncomingMessage} req - Express request object
    * @param {http.OutgoingMessage} res - Express result object
    * @param {type} next
    */
-  MemberController.prototype.get = function(req, res, next) {
+  ParticipantController.prototype.get = function(req, res, next) {
     var Subject = req.dic.subject;
     Subject.findById(req.params.subjectId, function(err, subject) {
       if (err || typeof subject === 'undefined' || subject === null) {
