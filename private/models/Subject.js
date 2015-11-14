@@ -1,15 +1,16 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var projectSchema = require('../models/Project.js');
+module.exports = function() {
+  'use strict';
 
-var subjectSchema = new Schema({
-  name: {type: String, default: '', required: true},
-  creationDate: {type: Date, default: Date.now},
-  description: {type: String, default: ''},
-  projects: [projectSchema.schema],
-});
+  var mongoose = require('mongoose');
+  var Schema = mongoose.Schema;
+  var projectSchema = require('../models/Project.js');
 
-var Subject = mongoose.model('Subject', subjectSchema);
+  var subjectSchema = new Schema({
+    name: {type: String, default: '', required: true},
+    creationDate: {type: Date, default: Date.now},
+    description: {type: String, default: ''},
+    projects: [projectSchema.schema],
+  });
 
-module.exports = Subject;
-
+  return subjectSchema;
+}();

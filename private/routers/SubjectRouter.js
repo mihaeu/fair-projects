@@ -10,6 +10,7 @@ module.exports = function() {
   var dicMiddleware = function(req, res, next) {
     req.dic = {
       subject: require('../models/Subject'),
+      subjectRepository: require('../models/SubjectRepository'),
     };
     next();
   };
@@ -19,7 +20,7 @@ module.exports = function() {
   // Register SubRouter
   subjectRouter.use('/:subjectId/projects', projectRouter);
 
-  // Regsiter Controller
+  // Register Controller
   subjectRouter.get('/:subjectId', subjectController.get);
   subjectRouter.get('/', subjectController.getAll);
   subjectRouter.post('/', subjectController.create);
