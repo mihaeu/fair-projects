@@ -44,13 +44,11 @@ module.exports = function() {
     var subjectRepository = new req.dic.subjectRepository();
     subjectRepository
       .getById(req.params.subjectId)
-      .then(function(err, subject) {
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return res.status(404).send('Subject does not exist');
-      }
-
-      res.json(subject);
-    });
+      .then(function(subject) {
+          res.json(subject);
+        }, function(err) {
+          return res.status(404).send('Subject does not exist' + err.body);
+      });
   };
 
   /**
