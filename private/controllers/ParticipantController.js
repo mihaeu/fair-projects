@@ -24,7 +24,7 @@ module.exports = function() {
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
-        var project = subject.projects.id(req.params.projectId);
+      var project = subject.projects.id(req.params.projectId);
         res.json(project.participants);
       }, function(err) {
 
@@ -41,9 +41,10 @@ module.exports = function() {
    * @param {type} next
    */
   ParticipantController.prototype.get = function(req, res, next) {
-    req.dic.projectRepository
+    req.dic.subjectRepository
         .getById(req.params.projectId)
-        .then(function(project) {
+        .then(function(subject) {
+          var project = subject.projects.id(req.params.projectId);
           var participant = project.participants.id(req.params.participantId);
           if (project === null) {
             return next();
@@ -64,7 +65,7 @@ module.exports = function() {
           var project = subject.projects.id(req.params.projectId);
           var newParticipant = project.participants.create(req.body);
           project.participants.push(newParticipant);
-          project.save(function() {
+          subject.save(function() {
             res.status(201).json(newParticipant);
           });
         }, function(err) {
@@ -75,10 +76,11 @@ module.exports = function() {
   };
 
   ParticipantController.prototype.delete = function(req, res, next) {
-    req.dic.projectRepository
-      .getById(req.params.projectId)
-      .then(function(project) {
-          var project = project.participants.id(req.params.participantId);
+    req.dic.subjectRepository
+      .getById(req.params.subjectId)
+      .then(function(subject) {
+          var p = subject.projects.id(req.params.projectId);
+          var project = p.participants.id(req.params.participantId);
           if (project === null) {
             return next();
           }
