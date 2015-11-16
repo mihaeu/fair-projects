@@ -1,5 +1,5 @@
 app.provider('participantService', function() {
-  var endpoint = '/api/v1/participants';
+  var endpoint = '/api/v1/subjects';
 
   this.setEndpoint = function(url) {
     endpoint = url;
@@ -8,8 +8,10 @@ app.provider('participantService', function() {
   this.$get = function($resource) {
 
     return $resource(
-      endpoint + '/:_id',
+      endpoint + '/:subject/projects/:project/participants/:id',
       {
+        subject: '@subject',
+        project: '@project',
         _id: '@id',
       },
       {
