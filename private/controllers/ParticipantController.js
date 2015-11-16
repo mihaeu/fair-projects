@@ -20,15 +20,16 @@ module.exports = function() {
    * @param {http.IncomingMessage} req - Express request object
    * @param {http.OutgoingMessage} res - Express result object
    */
-  ParticipantController.prototype.getAll = function(req, res) {
-    var Participant = req.dic.participant;
-    Participant.find(function(err, participants) {
-      if (err) {
-        res.send(err);
-      }
+  ParticipantController.prototype.getAll = function(req, res, next) {
+    req.dic.subjectRepository
+        .getById(req.params.subjectId)
+        .then(function(subject) {
+            var project = subject.projects.id(req.params.projectId);
+          res.json(project.participants);
+        }, function(err) {
 
-      res.json(participants);
-    });
+          return res.status(404).send('Project does not exist.' + err);
+        });
   };
 
   /**
@@ -40,14 +41,58 @@ module.exports = function() {
    * @param {type} next
    */
   ParticipantController.prototype.get = function(req, res, next) {
-    var Subject = req.dic.subject;
-    Subject.findById(req.params.subjectId, function(err, subject) {
-      if (err || typeof subject === 'undefined' || subject === null) {
-        return next(err);
-      }
+    req.dic.projectRepository
+        .getById(req.params.projectId)
+        .then(function(project) {
+          var participant = project.participants.id(req.params.participantId);
+          if (project === null) {
+            return next();
+          }
 
-      res.json(subject);
-    });
+          res.json(participant);
+        }, function(err) {
+
+          return res.status(404).send('Project does not exist.' + err);
+        }
+    );
   };
 
+    ParticipantController.prototype.create = function(req, res, next) {
+        req.dic.subjectRepository
+            .getById(req.params.subjectId)
+            .then(function(subject) {
+                var project = subject.projects.id(req.params.projectId);
+                var newParticipant = project.participants.create(req.body);
+                project.participants.push(newParticipant);
+                project.save(function() {
+                    res.status(201).json(newParticipant);
+                });
+            }, function(err) {
+
+                return res.status(404).send('Project does not exist.' + err);
+            }
+        );
+    };
+
+    ParticipantController.prototype.delete = function(req, res, next) {
+        req.dic.projectRepository
+            .getById(req.params.projectId)
+            .then(function(project) {
+                var project = project.participants.id(req.params.participantId);
+                if (project === null) {
+                    return next();
+                }
+
+                project.remove();
+                subject.save(function() {
+                    res.status(204).json();
+                });
+            }, function(err) {
+
+                return res.status(404).send('Project does not exist.' + err);
+            }
+        );
+    };
+
+    return new ParticipantController();
 };

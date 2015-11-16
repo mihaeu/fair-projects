@@ -3,26 +3,22 @@ module.exports = function() {
   'use strict';
 
   var express = require('express');
-  var ParticipantModel = require('../models/ParticipantSchema');
-  var ParticipantController = new (require('../controllers/ParticipantController'))();
-
-  var subjectRouter = express.Router();
-  var projectRouter = require('./ProjectRouter')();
-
-  subjectRouter.use('/:subjectId/projects', projectRouter);
+  var participantRouter = express.Router({mergeParams: true});
+  var participantController = require('../controllers/ParticipantController')();
 
   var dicMiddleware = function(req, res, next) {
     req.dic = {
-      subject: require('../models/Subject'),
+      subjectRepository: require('../models/SubjectRepository'),
     };
     next();
   };
 
-  //participantRouter.get('/:subjectId', dicMiddleware, ParticipantController.get);
-  //participantRouter.get('/', dicMiddleware, ParticipantController.getAll);
-  //participantRouter.post('/', dicMiddleware, ParticipantController.create);
-  //participantRouter.put('/:subjectId', dicMiddleware, ParticipantController.update);
-  //participantRouter.delete('/:subjectId', dicMiddleware, ParticipantController.delete);
+  participantRouter.use('/', dicMiddleware);
 
-  return subjectRouter;
+  participantRouter.get('/:participantId', participantController.get);
+  participantRouter.get('/', participantController.getAll);
+  participantRouter.post('/', participantController.create);
+  participantRouter.delete('/:participantId', participantController.delete);
+
+  return participantRouter;
 };
