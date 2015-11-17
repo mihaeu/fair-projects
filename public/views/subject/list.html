@@ -1,10 +1,10 @@
 <h2>Fächer</h2>
 
 <ul ng-if="0 < SubjectListController.subjects.length" class="subjects list-group">
-    <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix">
+    <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix subject">
         <a href="/#/subject/{{ subject._id }}">{{ subject.name}}</a>
         <span class="pull-right">
-            <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs">
+            <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs subject-delete">
                 <span class="glyphicon glyphicon-trash"></span>
             </button>
         </span>
@@ -16,7 +16,7 @@
     <div class="input-group">
         <input ng-model="SubjectListController.newSubjectName" placeholder="Neues Fach" class="form-control" >
         <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
+            <button class="btn btn-default" id="subject-add" type="submit">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </div>
