@@ -8,6 +8,7 @@ module.exports = (function() {
 
   var projectSchema = new Schema({
     name: {type: String, default: '', required: true},
+    creationDate: {type: Date, default: Date.now},
     description: {type: String, default: ''},
     participants: [participantSchema],
   });
