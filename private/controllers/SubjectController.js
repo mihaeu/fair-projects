@@ -84,11 +84,9 @@ module.exports = function() {
       .then(function(subject) {
         subject.name = req.body.name;
         subject.description = req.body.description;
-
-        return subject.save().exec();
+        return subject.save();
       })
       .then(function(subject) {
-
         res.status(201).json(subject);
       });
   };
