@@ -2,62 +2,47 @@ describe('SubjectController', function() {
 
   'use strict';
 
-  it('gets all existing subjects', function() {
+  var Promise = require('bluebird');
 
-    var Promise = require("bluebird");
+  it('gets all existing subjects', function(done) {
 
-    var subjectController = new (require('../../../private/controllers/SubjectController'))();
-    expect(subjectController).toBeDefined();
-
+    // -------------------------------------
+    // subjectRepository Mock
     var subjectRepository = {
       getAll: function() {},
     };
-    var subjectPromise = Promise.resolve([
+    var testSubjects = [
       {name: 'test'},
       {name: 'test2'},
-    ]);
+    ];
+    var subjectPromise = Promise.resolve(testSubjects);
     spyOn(subjectRepository, 'getAll').andReturn(subjectPromise);
 
+    // -------------------------------------
+    // request mock
     var req = {
       dic: {
         subjectRepository: subjectRepository,
       },
     };
 
+    // -------------------------------------
+    // response mock
     var res = {
       json: function() {},
       send: function() {},
     };
-
     spyOn(res, 'json');
-    subjectController.getAll(req, res);
 
+    // -------------------------------------
+    // actual test
+    var subjectController = new (require('../../../private/controllers/SubjectController'))();
+    subjectController.getAll(req, res).then(function() {
+      expect(res.json).toHaveBeenCalledWith(testSubjects);
+    }).finally(done);
     expect(subjectRepository.getAll).toHaveBeenCalled();
 
-    //while (true) {
-    //  if (subjectPromise.isPending()) {
-    //    expect(res.json).toHaveBeenCalled();
-    //  }
-    //}
-
-    //spyOn(subjectController, 'getAll');
-    //var req = {
-    //  dic: {
-    //    subjectModel: require('../../../private/models/Subject'),
-    //  },
-    //};
-    //var res = {
-    //  send: function() {},
-    //
-    //  json: function() {},
-    //};
-    //spyOn(req, 'dic');
-    //spyOn(res, 'json');
-    //subjectController.getAll(req, res);
-
-    // need to implement promises so that we can tell when the call has finished
-
-    //expect(subjectController.getAll).toHaveBeenCalled();
-    //expect(res.json).toHaveBeenCalled();
+    // this fails
+    // expect(res.json).toHaveBeenCalled();
   });
 });

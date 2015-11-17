@@ -23,7 +23,7 @@ module.exports = function() {
    * @param {http.OutgoingMessage} res Express Response Object
    */
   SubjectController.prototype.getAll = function(req, res) {
-    req.dic.subjectRepository
+    return req.dic.subjectRepository
       .getAll()
       .then(function(subjects) {
         res.json(subjects);
