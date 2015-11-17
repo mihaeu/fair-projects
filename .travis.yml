@@ -9,17 +9,17 @@ install:
   - 'npm install -g grunt-cli'
   - 'npm install -g codeclimate-test-reporter'
   - npm install
-  - node_modules/protractor/bin/webdriver-manager update
+#  - node_modules/protractor/bin/webdriver-manager update
 
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - nohup bash -c "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
-  - grunt nodemon:dev &
+#before_script:
+#  - export DISPLAY=:99.0
+#  - sh -e /etc/init.d/xvfb start
+#  - nohup bash -c "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
+#  - grunt nodemon:dev &
 
 script:
   - npm test
-  - grunt test-e2e
+#  - grunt test-e2e
 
 after_script:
   - codeclimate-test-reporter < coverage/mergedLcov.info
