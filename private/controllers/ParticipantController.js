@@ -24,7 +24,7 @@ module.exports = function() {
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
-      var project = subject.projects.id(req.params.projectId);
+        var project = subject.projects.id(req.params.projectId);
         res.json(project.participants);
       }, function(err) {
 
