@@ -1,7 +1,17 @@
 module.exports = function(grunt) {
 
-  var allJsFiles = ['public/js/**/*.js', 'test/**/*.js', 'config/**/*.js', 'Gruntfile.js', 'private/**/*.js', 'server.js'];
+  'use strict';
 
+  var allJsFiles = [
+    'public/js/**/*.js',
+    'test/**/*.js',
+    'config/**/*.js',
+    'Gruntfile.js',
+    'private/**/*.js',
+    'server.js',
+  ];
+
+  require('jit-grunt')(grunt);
   grunt.initConfig({
 
     // check all js files for errors
@@ -50,6 +60,9 @@ module.exports = function(grunt) {
     shell: {
       testServer: {
         command: 'node_modules/istanbul/lib/cli.js cover --dir ./coverage/jasmine-node node_modules/jasmine-node/bin/jasmine-node -- tests/unit/server',
+      },
+      test: {
+        command: 'node_modules/jasmine-node/bin/jasmine-node tests/unit/server',
       },
     },
 
@@ -124,21 +137,9 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-jscs');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-lcov-merge');
-  grunt.loadNpmTasks('grunt-protractor-runner');
-
   grunt.registerTask('default', ['cssmin', 'jshint', 'jscs', 'concat', 'concurrent:dev']);
   grunt.registerTask('test', ['karma:travis', 'shell:testServer', 'lcovMerge']);
   grunt.registerTask('test-e2e', ['protractor']);
   grunt.registerTask('test-client', ['karma:client']);
-  grunt.registerTask('test-server', ['shell:testServer']);
+  grunt.registerTask('test-server', ['shell:test']);
 };
