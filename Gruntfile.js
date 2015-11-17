@@ -11,7 +11,9 @@ module.exports = function(grunt) {
     'server.js',
   ];
 
-  require('jit-grunt')(grunt);
+  require('jit-grunt')(grunt, {
+    protractor: 'grunt-protractor-runner',
+  });
   grunt.initConfig({
 
     // check all js files for errors
