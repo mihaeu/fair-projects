@@ -50,7 +50,7 @@ Client side unit tests and have been written with [Jasmine](jasmine.github.io) a
 grunt
 
 # if all you want is a single run
-grunt test-client
+grunt test:client
 ```
 
 To execute tests with Travis we're using PhantomJS instead of Chrome. Check out the `grunt karma:travis` task if you're interested.
@@ -60,7 +60,7 @@ To execute tests with Travis we're using PhantomJS instead of Chrome. Check out 
 Server side unit tests have been written with [Jasmine](jasmine.github.io) and are executed via [jasmine-node](https://github.com/mhevery/jasmine-node):
 
 ```
-grunt test-server
+grunt test:server
 ```
 
 ### E2E Tests
@@ -75,8 +75,11 @@ webdriver-manager update
 # (shouldn't be necessary, but Grunt plugin is broken)
 webdriver-manager start
 
+# start server (in separate window or with & in the background)
+grunt nodemon:dev
+
 # execute the tests
-grunt test-e2e
+grunt test:e2e
 ```
 
 ## Project Structure
