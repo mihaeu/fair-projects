@@ -25,7 +25,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.getAll = function(req, res, next) {
-    req.dic.subjectRepository
+    return req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
         res.json(subject.projects);
@@ -44,7 +44,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.get = function(req, res, next) {
-    req.dic.subjectRepository
+    return req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
         var project = subject.projects.id(req.params.projectId);
