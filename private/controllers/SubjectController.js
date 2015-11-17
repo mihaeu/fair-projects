@@ -41,7 +41,7 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   SubjectController.prototype.get = function(req, res, next) {
-    req.dic.subjectRepository
+    return req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
         res.json(subject);
