@@ -34,7 +34,7 @@
 	<div class="panel-body">
 		<ul ng-if="0 < ProjectShowController.participants.length" class="projects list-group">
 			<li ng-repeat="participant in ProjectShowController.participants" class="list-group-item clearfix">
-				<a href="/#/subject/{{ ProjectShowController.subject._id }}/project/{{project._id}}">{{ participant.name}}</a>
+				{{ participant.name}}
                 <span class="pull-right">
                     <button ng-click="ProjectShowController.deleteParticipant(participant)" class="btn btn-xs">
 						<span class="glyphicon glyphicon-trash"></span>
