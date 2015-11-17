@@ -6,6 +6,13 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
     var _this = this;
 
     /**
+     * State of edit mode.
+     *
+     * @var boolean
+     */
+    _this.isEditMode = false;
+
+    /**
      * Initializes the controller.
      */
     _this.init = function() {
@@ -23,6 +30,13 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
     _this.init();
 
     /**
+     * Enables the edit mode.
+     */
+    _this.edit = function() {
+      _this.isEditMode = true;
+    };
+
+    /**
      * Updates the current subject
      */
     _this.update = function() {
@@ -34,6 +48,7 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
       subjectService.update(data, function(data) {
         _this.subject.name = data.name;
         _this.subject.description = data.description;
+        _this.isEditMode = false;
       });
     };
 
