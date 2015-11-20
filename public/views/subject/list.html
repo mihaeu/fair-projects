@@ -2,7 +2,7 @@
 
 <ul ng-if="0 < SubjectListController.subjects.length" class="subjects list-group">
     <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix subject">
-        <a href="/#/subject/{{ subject._id }}">{{ subject.name}}</a>
+        <a href="/#/subject/{{ subject._id}}">{{ subject.name}}</a>
         <span class="pull-right">
             <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs subject-delete">
                 <span class="glyphicon glyphicon-trash"></span>
@@ -11,14 +11,34 @@
     </li>
 </ul>
 <div ng-if="SubjectListController.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
-
-<form ng-submit="SubjectListController.create(SubjectListController.newSubjectName)" class="form-inline">
-    <div class="input-group">
-        <input ng-model="SubjectListController.newSubjectName" placeholder="Neues Fach" class="form-control" >
-        <div class="input-group-btn">
-            <button class="btn btn-default" id="subject-add" type="submit">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-        </div>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Fach hinzufügen</h3>
     </div>
-</form>
+    <div class="panel-body">
+        <form ng-submit="SubjectListController.create(newSubject)" class="form-horizontal">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputName" class="control-label col-xs-3">Name</label>
+                    <div class="col-xs-9">
+                        <input id="inputName" ng-model="newSubject.name" placeholder="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
+                    <div class="col-xs-9">
+                        <textarea id="inputDescription" ng-model="newSubject.description" placeholder="Beschreibung" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-9">
+                        <button class="btn btn-primary" id="subject-add" type="submit">
+                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Hinzufügen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,15 +5,17 @@ app.controller('SubjectListController', ['subjectService',
     _this.subjects = subjectService.getAll();
 
     /**
-     * @param {String} name
+     * @param {Object} newSubject
      */
-    _this.create = function(name) {
+    _this.create = function (newSubject) {
       var data = {
-        name: name,
+        name: newSubject.name,
+        description: newSubject.description,
       };
-      subjectService.create(data, function(data) {
+      subjectService.create(data, function (data) {
         _this.subjects.push(data);
-        _this.newSubjectName = '';
+        newSubject.name = '';
+        newSubject.description = '';
       });
     };
 
