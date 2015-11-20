@@ -10,7 +10,9 @@
         </span>
     </li>
 </ul>
-<div ng-if="SubjectListController.subjects.length === 0" class="alert alert-info" role="alert">Keine Fächer angelegt</div>
+<div ng-if="SubjectListController.subjects.length === 0" class="alert alert-info" role="alert">
+    Keine Fächer angelegt
+</div>
 <br />
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -22,13 +24,19 @@
                 <div class="form-group">
                     <label for="inputName" class="control-label col-xs-3">Name</label>
                     <div class="col-xs-9">
-                        <input id="inputName" ng-model="newSubject.name" placeholder="Name" class="form-control">
+                        <input id="inputName"
+                               ng-model="newSubject.name"
+                               placeholder="Name"
+                               class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
                     <div class="col-xs-9">
-                        <textarea id="inputDescription" ng-model="newSubject.description" placeholder="Beschreibung" class="form-control"></textarea>
+                        <textarea id="inputDescription"
+                                  ng-model="newSubject.description"
+                                  placeholder="Beschreibung"
+                                  class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
