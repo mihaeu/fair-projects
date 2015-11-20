@@ -1,47 +1,47 @@
-<h1>Fach: {{SubjectShowController.subject.name}}</h1>
-
 <form ng-submit="SubjectShowController.update()">
-<div class="panel panel-default subjectDetailPanel">
+    <div class="panel panel-default subjectDetailPanel">
         <div class="panel-heading">
-            <h3 class="panel-title">
-                Details
-                <div class="pull-right">
-                    <button class="btn btn-xs"
-                            ng-click="SubjectShowController.edit()"
-                            ng-if="SubjectShowController.isEditMode == false">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button ng-if="SubjectShowController.isEditMode == true"
-                            class="btn btn-xs"
-                            type="submit">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </button>
-                </div>
-            </h3>
-        </div>
-        <div class="panel-body">
-            <div class="form-group">
-                <label>Fachname</label>
+            <h1 class="panel-title">
                 <input ng-model="SubjectShowController.subject.name"
-                       ng-if="SubjectShowController.isEditMode == true"
+                       ng-if="SubjectShowController.isEditMode === true"
                        placeholder="Name"
                        class="form-control" />
-                <p ng-if="SubjectShowController.isEditMode == false"
-                   class="form-control-static">{{SubjectShowController.subject.name}}</p>
-            </div>
-            <div class="form-group">
-                <label>Beschreibung</label>
-                <textarea ng-model="SubjectShowController.subject.description"
-                          ng-if="SubjectShowController.isEditMode == true"
-                          placeholder="Beschreibung"
-                          class="form-control"></textarea>
-                <p ng-if="SubjectShowController.isEditMode == false"
-                   class="form-control-static">{{SubjectShowController.subject.description}}</p>
+                <span ng-if="SubjectShowController.isEditMode === false"
+                      class="form-control-static">{{SubjectShowController.subject.name}}</span>
+                <button class="btn btn-xs pull-right"
+                        ng-click="SubjectShowController.edit()"
+                        ng-if="SubjectShowController.isEditMode === false">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </h1>
+        </div>
+        <div class="panel-body">
+            <span ng-if="SubjectShowController.isEditMode === false"
+               class="form-control-static">{{SubjectShowController.subject.description}}</span>
+            <div class="form-horizontal" ng-if="SubjectShowController.isEditMode === true">
+                <div class="form-group">
+                    <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
+                    <div class="col-xs-9">
+                        <textarea id="inputDescription"
+                                  ng-model="SubjectShowController.subject.description"
+                                  placeholder="Beschreibung"
+                                  class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-9">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp;Speichern
+                        </button>
+                        <button class="btn" ng-click="SubjectShowController.editAbort()">
+                            <span class="glyphicon glyphicon-remove"></span>&nbsp;Abbrechen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
+    </div>
 </form>
-
 
 <div class="panel panel-default projectListPanel">
     <div class="panel-heading">

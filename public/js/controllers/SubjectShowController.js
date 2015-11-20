@@ -6,14 +6,14 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
     var _this = this;
 
     /**
-     * State of edit mode.
+     * State of edit mode
      *
      * @var boolean
      */
     _this.isEditMode = false;
 
     /**
-     * Initializes the controller.
+     * Initializes the controller
      */
     _this.init = function() {
       var requestParameterSubjects = {
@@ -30,10 +30,18 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
     _this.init();
 
     /**
-     * Enables the edit mode.
+     * Enables the edit mode
      */
     _this.edit = function() {
       _this.isEditMode = true;
+    };
+
+    /**
+     * Disables the edit mode and resets it
+     */
+    _this.editAbort = function() {
+      _this.init();
+      _this.isEditMode = false;
     };
 
     /**
