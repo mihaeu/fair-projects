@@ -7,12 +7,12 @@ app.controller('SubjectListController', ['subjectService',
     /**
      * @param {Object} newSubject
      */
-    _this.create = function (newSubject) {
+    _this.create = function(newSubject) {
       var data = {
         name: newSubject.name,
         description: newSubject.description,
       };
-      subjectService.create(data, function (data) {
+      subjectService.create(data, function(data) {
         _this.subjects.push(data);
         newSubject.name = '';
         newSubject.description = '';
