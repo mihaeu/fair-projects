@@ -1,22 +1,27 @@
-<h2>Fächer</h2>
-
-<ul ng-if="0 < SubjectListController.subjects.length" class="subjects list-group">
-    <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix subject">
-        <a href="/#/subject/{{ subject._id}}">{{ subject.name}}</a>
-        <span class="pull-right">
-            <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs subject-delete">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-        </span>
-    </li>
-</ul>
-<div ng-if="SubjectListController.subjects.length === 0" class="alert alert-info" role="alert">
-    Keine Fächer angelegt
-</div>
-<br />
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Fach hinzufügen</h3>
+        <h1 class="panel-title">Fächer</h1>
+    </div>
+    <ul ng-if="0 < SubjectListController.subjects.length" class="subjects list-group">
+        <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix subject">
+            <a href="/#/subject/{{ subject._id}}">{{ subject.name}}</a>
+            <span class="pull-right">
+                <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs subject-delete">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </span>
+        </li>
+    </ul>
+    <div ng-if="SubjectListController.subjects.length === 0"
+         class="alert alert-info"
+         role="alert"
+         style="margin-bottom: 0;">
+        Keine Fächer angelegt
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Fach hinzufügen</h2>
     </div>
     <div class="panel-body">
         <form ng-submit="SubjectListController.create(newSubject)">
