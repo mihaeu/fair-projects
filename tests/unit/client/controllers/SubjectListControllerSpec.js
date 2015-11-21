@@ -31,9 +31,10 @@ describe('SubjectListController', function() {
 
     expect(controller.subjects).toBeDefined();
     expect(controller.subjects.length).toBe(0);
-    controller.create('test subject');
+    controller.create({name: 'test subject', description: 'teest'});
     expect(controller.subjects.length).toBe(1);
     expect(controller.subjects[0].name).toBe('test subject');
+    expect(controller.subjects[0].description).toBe('teest');
 
     expect(mockSubjectService.getAll).toHaveBeenCalled();
     expect(mockSubjectService.create).toHaveBeenCalled();
