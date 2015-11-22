@@ -1,12 +1,19 @@
-app.controller('ProjectShowController', ['$http', 'subjectService', 'projectService', 'participantService', '$routeParams',
-  function($http, subjectService, projectService, participantService, $routeParams) {
+app.controller('ProjectShowController', ['subjectService', 'projectService', 'participantService', '$routeParams',
+  function(subjectService, projectService, participantService, $routeParams) {
 
     'use strict';
 
     var _this = this;
 
     /**
-     * Constructor
+     * State of edit mode
+     *
+     * @var boolean
+     */
+    _this.isEditMode = false;
+
+    /**
+     * Initializes the controller
      */
     _this.init = function() {
       var requestParameterSubject = {
@@ -30,6 +37,21 @@ app.controller('ProjectShowController', ['$http', 'subjectService', 'projectServ
     _this.init();
 
     /**
+     * Enables the edit mode
+     */
+    _this.edit = function() {
+      _this.isEditMode = true;
+    };
+
+    /**
+     * Disables the edit mode and resets it
+     */
+    _this.editAbort = function() {
+      _this.init();
+      _this.isEditMode = false;
+    };
+
+    /**
      * Updates the current project
      */
     _this.update = function() {
@@ -42,6 +64,7 @@ app.controller('ProjectShowController', ['$http', 'subjectService', 'projectServ
         description: _this.project.description,
       };
       projectService.update(where, updateData);
+      _this.isEditMode = false;
     };
 
     /**
