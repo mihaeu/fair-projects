@@ -49,14 +49,19 @@
     </div>
     <ul ng-if="0 < SubjectShowController.projects.length" class="projects list-group">
         <li ng-repeat="project in SubjectShowController.projects" class="list-group-item clearfix">
-            <a href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
-                <span class="badge">{{ project.participants.length }}</span> {{ project.name}}
-            </a>
-            <span class="pull-right">
+            <div class="pull-left">
+                <span class="badge">{{ project.participants.length }}</span> {{ project.name }}
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-xs">
+                    <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </button>
                 <button ng-click="SubjectShowController.deleteProject(project)" class="btn btn-xs">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
-            </span>
+            </div>
         </li>
     </ul>
     <div ng-if="SubjectShowController.projects.length === 0"
