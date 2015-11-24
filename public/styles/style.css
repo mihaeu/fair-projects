@@ -6,3 +6,7 @@
 .navbar-brand img{
 	height: 30px;
 }
+
+.pre-wrap{
+	white-space: pre-wrap;
+}

@@ -17,8 +17,7 @@
         </div>
         <div class="panel-body">
             <span ng-if="ProjectShowController.isEditMode === false"
-                  class="form-control-static"
-                  style="white-space: pre-wrap;">{{ProjectShowController.project.description}}</span>
+                  class="form-control-static pre-wrap">{{ProjectShowController.project.description}}</span>
             <div class="form-horizontal" ng-if="ProjectShowController.isEditMode === true">
                 <div class="form-group">
                     <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
@@ -91,4 +90,5 @@
         </form>
     </div>
 </div>
+<strong>DEBUG:</strong> Ansicht Student
 <a href="#/subject/{{ProjectShowController.subject._id}}">Zurück zur Beschreibung des Fachs</a>

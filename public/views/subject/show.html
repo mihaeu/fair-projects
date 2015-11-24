@@ -17,8 +17,7 @@
         </div>
         <div class="panel-body">
             <span ng-if="SubjectShowController.isEditMode === false"
-                  class="form-control-static"
-                  style="white-space: pre-wrap;">{{SubjectShowController.subject.description}}</span>
+                  class="form-control-static pre-wrap">{{SubjectShowController.subject.description}}</span>
             <div class="form-horizontal" ng-if="SubjectShowController.isEditMode === true">
                 <div class="form-group">
                     <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
@@ -101,4 +100,5 @@
         </form>
     </div>
 </div>
+<strong>DEBUG:</strong> Ansicht Prof
 <a href="#/subjects">Zurück zur Fächerübersicht</a>
