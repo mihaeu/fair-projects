@@ -16,8 +16,8 @@
             </h1>
         </div>
         <div class="panel-body">
-            <span ng-if="SubjectShowController.isEditMode === false"
-                  class="form-control-static pre-wrap">{{SubjectShowController.subject.description}}</span>
+            <span ng-if="SubjectShowController.isEditMode === false" class="form-control-static pre-wrap"
+                >{{SubjectShowController.subject.description || 'Keine Beschreibung'}}</span>
             <div class="form-horizontal" ng-if="SubjectShowController.isEditMode === true">
                 <div class="form-group">
                     <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
