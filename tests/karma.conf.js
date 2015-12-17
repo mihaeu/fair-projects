@@ -16,6 +16,7 @@ module.exports = function(config) {
       '../public/bower_components/angular/angular.js',
       '../public/bower_components/angular-resource/angular-resource.js',
       '../public/bower_components/angular-route/angular-route.js',
+      '../public/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js',
       '../public/bower_components/angular-mocks/angular-mocks.js',
       '../public/bower_components/underscore/underscore.js',
       '../public/js/**/*.js',
