@@ -1,0 +1,40 @@
+<div class="panel panel-default subjectDetailPanel">
+    <div class="panel-heading">
+        <h1 class="panel-title">            
+            <span class="form-control-static">{{SubjectVoteController.subject.name}}</span>            
+        </h1>
+    </div>
+    <div class="panel-body">
+        <span class="form-control-static pre-wrap">{{SubjectVoteController.subject.description || 'Keine Beschreibung'}}</span>        
+    </div>
+</div>
+
+
+<div class="panel panel-default projectListPanel">
+    <div class="panel-heading">
+        <h2 class="panel-title">Projekte</h2>
+    </div>
+    <ul ng-if="0 < SubjectVoteController.projects.length" class="projects list-group">
+        <li ng-repeat="project in SubjectVoteController.projects" class="list-group-item clearfix">
+            <div class="pull-left">
+                <span class="badge">{{ project.participants.length }}</span> {{ project.name }}
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-xs">
+                    <a ng-href="/#/subject/{{ SubjectVoteController.subject._id }}/project/{{project._id}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </button>
+                <button ng-click="SubjectVoteController.deleteProject(project)" class="btn btn-xs">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </li>
+    </ul>
+    <div ng-if="SubjectVoteController.projects.length === 0"
+         class="alert alert-info"
+         role="alert"
+         style="margin-bottom: 0px;">Keine Projekte angelegt</div>
+</div>
+<strong>DEBUG:</strong> Ansicht Stud
+<a href="#/subjects">Zurück zur Fächerübersicht</a>

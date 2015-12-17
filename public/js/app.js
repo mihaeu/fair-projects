@@ -19,6 +19,11 @@ app.config(function($routeProvider) {
       controller: 'ProjectShowController',
       controllerAs: 'ProjectShowController',
     })
+    .when('/vote/:subjectId', {
+      templateUrl: 'views/subject/vote.html',
+      controller: 'SubjectVoteController',
+      controllerAs: 'SubjectVoteController',
+    })
     .otherwise({
       redirectTo: '/',
     });
