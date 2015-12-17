@@ -1,4 +1,4 @@
-var app = angular.module('fairProjects', ['ngResource', 'ngRoute']);
+var app = angular.module('fairProjects', ['ngResource', 'ngRoute', 'ui.tree']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/', {

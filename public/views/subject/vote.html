@@ -8,7 +8,26 @@
         <span class="form-control-static pre-wrap">{{SubjectVoteController.subject.description || 'Keine Beschreibung'}}</span>        
     </div>
 </div>
-
+--
+{{SubjectVoteController.data}}--
+{{SubjectVoteController.subject.name}}
+<div ui-tree>
+  <ol ui-tree-nodes="" ng-model="SubjectVoteController.data">
+    <li ng-repeat="item in SubjectVoteController.data" ui-tree-node>
+      <div ui-tree-handle>
+        {{item.title}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="item.items">
+        <li ng-repeat="subItem in item.items" ui-tree-node>
+          <div ui-tree-handle>
+            {{subItem.title}}
+          </div>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+--
 <div class="panel panel-default projectListPanel">
     <div class="panel-heading">
         <h2 class="panel-title">Projekte</h2>
