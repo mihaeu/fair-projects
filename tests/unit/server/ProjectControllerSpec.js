@@ -29,7 +29,7 @@ describe('ProjectController', function() {
     projectController = new (require('../../../private/controllers/ProjectController'))();
   });
 
-  it('get a project', function(done) {
+  it('gets a project', function(done) {
     var testSubject = {
       projects: {
         id: function() {
@@ -43,6 +43,22 @@ describe('ProjectController', function() {
     req.params = {subjectId: 42};
     projectController.get(req, res).then(function() {
       expect(res.json).toHaveBeenCalledWith({name: 'test'});
+    }).finally(done);
+  });
+
+  it('gets all projects', function(done) {
+    var testSubject = {
+      projects: [
+        {name: 'test1'},
+        {name: 'test2'},
+      ],
+    };
+    var subjectPromise = Promise.resolve(testSubject);
+    spyOn(subjectRepository, 'getById').andReturn(subjectPromise);
+
+    req.params = {subjectId: 42};
+    projectController.getAll(req, res).then(function() {
+      expect(res.json).toHaveBeenCalledWith(testSubject.projects);
     }).finally(done);
   });
 });
