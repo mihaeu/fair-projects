@@ -53,7 +53,7 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get(endpoint.logout)
+      $http.post(endpoint.logout, {})
 
         // handle success
         .success(function(data) {

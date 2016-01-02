@@ -16,7 +16,9 @@
                     <a class="navbar-brand" href="/#/">
                         <img alt="FairProjects" src="images/FairProjects.png">
                     </a>
-                    <a href="#/logout">Logout</a>
+                    <div ng-controller="LogoutController as logoutController">
+                        <a ng-click="logoutController.logout()">Logout</a>
+                    </div>
                 </div>
             </nav>
             <section>
