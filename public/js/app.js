@@ -1,6 +1,15 @@
 var app = angular.module('fairProjects', ['ngResource', 'ngRoute', 'ui.tree']);
 app.config(function($routeProvider) {
   $routeProvider
+    .when('/login', {
+      templateUrl: 'views/authentication/login.html',
+      controller: 'LoginController',
+      controllerAs: 'LoginController',
+    })
+    .when('/logout', {
+      controller: 'LogoutController',
+      controllerAs: 'LogoutController',
+    })
     .when('/', {
       templateUrl: 'views/subject/list.html',
       controller: 'SubjectListController',

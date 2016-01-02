@@ -46,7 +46,7 @@ module.exports = function(app) {
     }
   );
 
-  authenticationRouter.post(
+  authenticationRouter.get(
     '/logout',
     function(req, res) {
       req.logout();
