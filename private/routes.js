@@ -5,7 +5,7 @@ module.exports = function(app) {
   var authenticationRouter = require('./routers/AuthenticationRouter')(app);
   var subjectRouter = require('./routers/SubjectRouter')(app);
   var participantRouter = require('./routers/ParticipantRouter')(app);
-  router.use('/auth', authenticationRouter);
+  router.use('/', authenticationRouter);
   router.use('/subjects', subjectRouter);
   router.use('/participants', participantRouter);
 

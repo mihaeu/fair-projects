@@ -9,7 +9,8 @@ module.exports = function(app) {
   var LocalStrategy = require('passport-local').Strategy;
 
   passport.use(new LocalStrategy(
-    function (username, password, done) {
+    function(username, password, done) {
+
       if (username !== 'test') {
         return done(null, false, {message: 'Incorrect username.'});
       }
@@ -18,24 +19,51 @@ module.exports = function(app) {
         return done(null, false, {message: 'Incorrect password.'});
       }
 
-      return done(null, {username: username, password: password});
+      return done(null, {id: 1, username: username, password: password});
     }
   ));
 
   var session = require('express-session');
   var cookieParser = require('cookie-parser');
   app.use(cookieParser());
-  app.use(session({secret: 'asd87a9d87a98d72d798wd9a7sd'}));
+  app.use(session({secret: 'asd87a9d87a98d72d798wd9a7sd', saveUninitialized: true, resave: true}));
   app.use(passport.initialize());
   app.use(passport.session());
 
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    done(null, {id: 1, username: 'test', password: 'pw'});
+  });
+
   authenticationRouter.post(
-    '/test',
-    passport.authenticate('local', {session: false}),
-    function (req, res) {
-      return res.json({user: 1});
+    '/login',
+    passport.authenticate('local', {session: true}),
+    function(req, res) {
+      return res.json();
     }
   );
+
+  authenticationRouter.post(
+    '/logout',
+    function(req, res) {
+      req.logout();
+      return res.json();
+    }
+  );
+
+  var isAuthenticated = function(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+
+    res.status(401).end();
+  };
+
+  // require authentication for all API methods
+  authenticationRouter.use('/', isAuthenticated);
 
   return authenticationRouter;
 };
