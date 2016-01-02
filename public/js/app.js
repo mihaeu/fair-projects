@@ -1,4 +1,4 @@
-var app = angular.module('fairProjects', ['ngResource', 'ngRoute', 'ui.tree']);
+var app = angular.module('fairProjects', ['ngResource', 'ngRoute', 'ui.tree', 'ngCookies']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/login', {
@@ -36,4 +36,12 @@ app.config(function($routeProvider) {
     .otherwise({
       redirectTo: '/',
     });
+});
+
+app.run(function($rootScope, $location, $route, AuthenticationService) {
+  $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    if (AuthenticationService.isLoggedIn() === false) {
+      $location.path('/login');
+    }
+  });
 });

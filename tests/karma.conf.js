@@ -1,5 +1,4 @@
 // Karma configuration
-// Generated on Fri Nov 06 2015 11:18:09 GMT+0100 (CET)
 
 module.exports = function(config) {
   config.set({
@@ -18,6 +17,7 @@ module.exports = function(config) {
       '../public/bower_components/angular-route/angular-route.js',
       '../public/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js',
       '../public/bower_components/angular-mocks/angular-mocks.js',
+      '../public/bower_components/angular-cookies/angular-cookies.js',
       '../public/bower_components/underscore/underscore.js',
       '../public/js/**/*.js',
       '../tests/unit/client/**/*.js',

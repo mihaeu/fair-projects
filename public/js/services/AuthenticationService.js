@@ -1,13 +1,12 @@
-app.factory('AuthenticationService', ['$q', '$timeout', '$http',
-  function($q, $timeout, $http) {
+app.factory('AuthenticationService', ['$q', '$timeout', '$http', '$cookies',
+  function($q, $timeout, $http, $cookies) {
     var endpoint = {
       login: '/api/v1/login',
       logout: '/api/v1/logout',
     };
-    var user = null;
 
     function isLoggedIn() {
-      if (user) {
+      if ($cookies.get('user')) {
         return true;
       } else {
         return false;
@@ -15,7 +14,7 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http',
     }
 
     function getUserStatus() {
-      return user;
+      return $cookies.get('user');
     }
 
     function login(username, password) {
@@ -29,17 +28,17 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http',
         // handle success
         .success(function(data, status) {
           if (status === 200) {
-            user = true;
+            $cookies.put('user', true);
             deferred.resolve();
           } else {
-            user = false;
+            $cookies.put('user', false);
             deferred.reject();
           }
         })
 
         // handle error
         .error(function(data) {
-          user = false;
+          $cookies.put('user', false);
           deferred.reject();
         });
 
@@ -57,13 +56,13 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http',
 
         // handle success
         .success(function(data) {
-          user = false;
+          $cookies.put('user', false);
           deferred.resolve();
         })
 
         // handle error
         .error(function(data) {
-          user = false;
+          $cookies.put('user', false);
           deferred.reject();
         });
 
