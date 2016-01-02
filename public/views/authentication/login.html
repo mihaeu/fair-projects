@@ -1,0 +1,20 @@
+<div>
+	<h1>Login</h1>
+
+	<div ng-show="LoginController.error" class="alert alert-danger">{{LoginController.errorMessage}}</div>
+	<form class="form" ng-submit="LoginController.login()">
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" name="username" ng-model="LoginController.loginForm.username"
+				   required>
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password" ng-model="LoginController.loginForm.password"
+				   required>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-default" ng-disabled="disabled">Login</button>
+		</div>
+	</form>
+</div>
