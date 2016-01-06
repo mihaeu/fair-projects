@@ -40,7 +40,6 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope, $location, $route, AuthenticationService) {
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    console.log(AuthenticationService.isLoggedIn(), 'is logged in?');
     if (AuthenticationService.isLoggedIn() === false) {
       $location.path('/login');
     }

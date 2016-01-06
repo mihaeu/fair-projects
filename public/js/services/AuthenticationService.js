@@ -6,7 +6,6 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http', '$cookies',
     };
 
     function isLoggedIn() {
-      console.log($cookies.get('user'), 'cookie');
       return $cookies.get('user') === 'true';
     }
 
