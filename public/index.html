@@ -16,9 +16,11 @@
                     <a class="navbar-brand" href="/#/">
                         <img alt="FairProjects" src="images/FairProjects.png">
                     </a>
-                    <div ng-controller="LogoutController as logoutController">
-                        <a ng-if="logoutController.isLoggedIn()" ng-click="logoutController.logout()">Logout</a>
-                    </div>
+                </div>
+                <div class="pull-right" ng-controller="LogoutController as logoutController">
+                    <a ng-if="logoutController.isLoggedIn()" ng-click="logoutController.logout()">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout</span>
+                    </a>
                 </div>
             </nav>
             <section>
