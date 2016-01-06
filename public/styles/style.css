@@ -13,5 +13,12 @@
 
 .angular-ui-tree-node{
     padding: 10px 15px;
+}
 
+.shorten{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 400px;
+    display: inline-block;
+    white-space: nowrap;
 }
