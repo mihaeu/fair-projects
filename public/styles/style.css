@@ -10,3 +10,8 @@
 .pre-wrap{
 	white-space: pre-wrap;
 }
+
+.angular-ui-tree-node{
+    padding: 10px 15px;
+
+}
