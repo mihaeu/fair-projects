@@ -15,5 +15,9 @@ app.controller('LogoutController',
 
       };
 
+      _this.isLoggedIn = function() {
+        return AuthenticationService.isLoggedIn();
+      };
+
     },
   ]);
