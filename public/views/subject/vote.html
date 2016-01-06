@@ -25,17 +25,6 @@
                     <span class="badge">{{ project.participants.length }}</span>
                     <span class="shorten">{{ project.name }}</span>
                 </div>
-
-                <div class="pull-right">
-                    <button class="btn btn-xs">
-                        <a ng-href="/#/subject/{{ SubjectVoteController.subject._id }}/project/{{project._id}}">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                    </button>
-                    <button ng-click="SubjectVoteController.deleteProject(project)" class="btn btn-xs">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </div>
             </li>
         </ol>
     </div>
