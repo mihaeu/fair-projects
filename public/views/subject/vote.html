@@ -1,27 +1,20 @@
 <div class="panel panel-default subjectDetailPanel">
     <div class="panel-heading">
-        <h1 class="panel-title">            
-            <span class="form-control-static">{{SubjectVoteController.subject.name}}</span>            
+        <h1 class="panel-title">
+            <span class="form-control-static">{{SubjectVoteController.subject.name}}</span>
         </h1>
     </div>
     <div class="panel-body">
-        <span class="form-control-static pre-wrap">{{SubjectVoteController.subject.description || 'Keine Beschreibung'}}</span>        
+        <span class="form-control-static pre-wrap">{{SubjectVoteController.subject.description || 'Keine Beschreibung'}}</span>
     </div>
 </div>
 --
 <div ui-tree>
-  <ol ui-tree-nodes="" ng-model="SubjectVoteController.data">
-    <li ng-repeat="item in SubjectVoteController.data" ui-tree-node>
+  <ol ui-tree-nodes="" ng-model="SubjectVoteController.projects">
+    <li ng-repeat="project in SubjectVoteController.projects" ui-tree-node>
       <div ui-tree-handle>
-        {{item.title}}
+        {{project.name}}
       </div>
-      <ol ui-tree-nodes="" ng-model="item.items">
-        <li ng-repeat="subItem in item.items" ui-tree-node>
-          <div ui-tree-handle>
-            {{subItem.title}}
-          </div>
-        </li>
-      </ol>
     </li>
   </ol>
 </div>
