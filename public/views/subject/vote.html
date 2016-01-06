@@ -16,7 +16,9 @@
         <h2 class="panel-title">Projekte</h2>
     </div>
     <div ui-tree ng-if="0 < SubjectVoteController.projects.length">
-        <ol ui-tree-nodes="" ng-model="SubjectVoteController.projects" class="projects list-group">
+        <ol ui-tree-nodes=""
+            ng-model="SubjectVoteController.projects"
+            class="projects list-group">
             <li ng-repeat="project in SubjectVoteController.projects"
                 class="list-group-item clearfix"
                 ui-tree-node
@@ -27,6 +29,11 @@
                 <span class="shorten">{{ project.name }}</span>
             </li>
         </ol>
+        <button class="btn btn-primary"
+                id="subject-add"
+                ng-click="SubjectVoteController.update(SubjectVoteController.projects)">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;Hinzufügen
+        </button>
     </div>
     <div ng-if="SubjectVoteController.projects.length === 0"
          class="alert alert-info"

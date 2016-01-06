@@ -21,5 +21,12 @@ app.controller('SubjectVoteController', ['subjectService', 'projectService', '$r
 
     _this.init();
 
+    _this.update = function(projects) {
+      var data = {
+        id: $routeParams.subjectId,
+      };
+      subjectService.update(data, function(data) {
+      });
+    };
   },
 ]);
