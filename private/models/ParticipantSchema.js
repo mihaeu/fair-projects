@@ -7,6 +7,7 @@ module.exports = (function() {
 
   var participantSchema = new Schema({
     name: {type: String, default: '', required: true},
+    vote: {type: Number, default: 0},
   });
 
   return participantSchema;
