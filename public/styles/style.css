@@ -18,7 +18,7 @@
 .shorten{
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 400px;
+    width: 300px;
     display: inline-block;
     white-space: nowrap;
 }
