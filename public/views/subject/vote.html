@@ -5,7 +5,9 @@
         </h1>
     </div>
     <div class="panel-body">
-        <span class="form-control-static pre-wrap">{{SubjectVoteController.subject.description || 'Keine Beschreibung'}}</span>
+        <span class="form-control-static pre-wrap">{{
+            SubjectVoteController.subject.description || 'Keine Beschreibung'
+        }}</span>
     </div>
 </div>
 
@@ -15,7 +17,10 @@
     </div>
     <div ui-tree ng-if="0 < SubjectVoteController.projects.length">
         <ol ui-tree-nodes="" ng-model="SubjectVoteController.projects" class="projects list-group">
-            <li ng-repeat="project in SubjectVoteController.projects" class="list-group-item clearfix" ui-tree-node ui-tree-handle>
+            <li ng-repeat="project in SubjectVoteController.projects"
+                class="list-group-item clearfix"
+                ui-tree-node
+                ui-tree-handle>
                 {{project.name}}
                 <div class="pull-left">
                     <span class="badge">{{ project.participants.length }}</span> {{ project.name }}
