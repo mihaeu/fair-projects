@@ -21,4 +21,5 @@
     width: 300px;
     display: inline-block;
     white-space: nowrap;
+    margin-left: 10px;
 }
