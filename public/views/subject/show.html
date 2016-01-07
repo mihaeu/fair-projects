@@ -50,7 +50,7 @@
     <ul ng-if="0 < SubjectShowController.projects.length" class="projects list-group">
         <li ng-repeat="project in SubjectShowController.projects" class="list-group-item clearfix">
             <div class="pull-left">
-                <span class="badge">{{ project.participants.length }}</span>
+                <span class="badge">{{ project.votes[1] }} / {{ project.votes[2] }} / {{ project.votes[3] }}</span>
             </div>
             <span class="shorten">{{ project.name }}</span>
             <div class="pull-right">

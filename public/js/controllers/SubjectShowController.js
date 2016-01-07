@@ -24,7 +24,21 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
       var requestParameterProjects = {
         subject: $routeParams.subjectId,
       };
-      _this.projects = projectService.getAll(requestParameterProjects);
+      _this.projects = projectService.getAll(requestParameterProjects).$promise.then(function(projects) {
+        for (var i in projects) {
+          projects[i].votes = [0, 0, 0, 0];
+          for (var j in projects[i].participants) {
+            var vote = projects[i].participants[j].vote;
+            if (projects[i].votes[vote] === undefined) {
+              projects[i].votes[vote] = 0;
+            }
+
+            projects[i].votes[vote]++;
+          }
+        }
+
+        _this.projects = projects;
+      });
     };
 
     _this.init();
