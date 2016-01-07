@@ -54,11 +54,11 @@
             </div>
             <span class="shorten">{{ project.name }}</span>
             <div class="pull-right">
-                <button class="btn btn-xs">
-                    <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
+                <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
+                    <button class="btn btn-xs">
                         <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                </button>
+                    </button>
+                </a>
                 <button ng-click="SubjectShowController.deleteProject(project)" class="btn btn-xs">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
@@ -87,9 +87,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription" class="control-label col-xs-3">Beschreibung</label>
+                    <label for="projectInputDescription" class="control-label col-xs-3">Beschreibung</label>
                     <div class="col-xs-9">
-                        <textarea id="inputDescription"
+                        <textarea id="projectInputDescription"
                                   ng-model="newProject.description"
                                   placeholder="Beschreibung"
                                   class="form-control"></textarea>
