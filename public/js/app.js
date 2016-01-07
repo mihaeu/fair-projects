@@ -1,5 +1,5 @@
 var app = angular.module('fairProjects', ['ngResource', 'ngRoute', 'ui.tree', 'ngCookies']);
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/login', {
       templateUrl: 'views/authentication/login.html',
@@ -36,6 +36,20 @@ app.config(function($routeProvider) {
     .otherwise({
       redirectTo: '/',
     });
+
+  $httpProvider.interceptors.push(function($q, $rootScope) {
+    return {
+      responseError: function(response) {
+        if (response.status === 401) {
+          // Handle 401 error code
+          $rootScope.$broadcast('authorizationError');
+        }
+
+        // Always reject (or resolve) the deferred you're given
+        return $q.reject(response);
+      },
+    };
+  });
 });
 
 app.run(function($rootScope, $location, $route, AuthenticationService) {

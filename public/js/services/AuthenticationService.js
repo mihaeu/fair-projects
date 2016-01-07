@@ -1,9 +1,15 @@
-app.factory('AuthenticationService', ['$q', '$timeout', '$http', '$cookies',
-  function($q, $timeout, $http, $cookies) {
+app.factory('AuthenticationService', ['$q', '$timeout', '$http', '$cookies', '$rootScope', '$location',
+  function($q, $timeout, $http, $cookies, $rootScope, $location) {
     var endpoint = {
       login: '/api/v1/login',
       logout: '/api/v1/logout',
     };
+
+    function init() {
+      $rootScope.$on('authorizationError', handleAuthorizationError);
+    }
+
+    init();
 
     function isLoggedIn() {
       return $cookies.get('user') === 'true';
@@ -67,12 +73,16 @@ app.factory('AuthenticationService', ['$q', '$timeout', '$http', '$cookies',
 
     }
 
+    function handleAuthorizationError(event, data) {
+      logout();
+      $location.path('/login');
+    }
+
     return ({
       isLoggedIn: isLoggedIn,
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
     });
-
   },
 ]);
