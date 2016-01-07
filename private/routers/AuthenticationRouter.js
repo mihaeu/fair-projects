@@ -28,7 +28,7 @@ module.exports = function(app) {
         return done(null, user);
       }, function(err) {
 
-        done(err, null);
+        return done(err, null);
       });
     }
   ));
@@ -38,16 +38,25 @@ module.exports = function(app) {
     {passReqToCallback: true},
     function(req, username, password, done) {
       var createUser = function() {
-        var newUser = userRepository.create({
-          username: username,
-          password: createHash(password),
-        });
-        newUser.save(function(err, user) {
-          if (err) {
-            done(err, null);
+        userRepository.getByUsername(username).then(function(user) {
+          if (user) {
+            // user exists already
+            return done(null, false);
           }
 
-          done(null, user);
+          var newUser = userRepository.create({
+            username: username,
+            password: createHash(password),
+          });
+          newUser.save(function(err, user) {
+            if (err) {
+              // error on save
+              return done(err, null);
+            }
+
+            //success
+            return done(null, user);
+          });
         });
       };
 
