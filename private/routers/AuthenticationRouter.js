@@ -8,21 +8,54 @@ module.exports = function(app) {
   var passport = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
 
+  var userRepository = require('../models/UserRepository');
+
+  var bCrypt = require('bcrypt-nodejs');
+
+  // Login
   passport.use(new LocalStrategy(
     function(username, password, done) {
+      userRepository.getByUsername(username).then(function(user) {
 
-      if (username !== 'test') {
-        return done(null, false, {message: 'Incorrect username.'});
-      }
+        if (!user) {
+          return done(null, false);
+        }
 
-      if (password !== 'pw') {
-        return done(null, false, {message: 'Incorrect password.'});
-      }
+        if (!isValidPassword(user, password)) {
+          return done(null, false);
+        }
 
-      return done(null, {id: 1, username: username, password: password});
+        return done(null, user);
+      }, function(err) {
+
+        done(err, null);
+      });
     }
   ));
 
+  // SignUp
+  passport.use('signup', new LocalStrategy(
+    {passReqToCallback: true},
+    function(req, username, password, done) {
+      var createUser = function() {
+        var newUser = userRepository.create({
+          username: username,
+          password: createHash(password),
+        });
+        newUser.save(function(err, user) {
+          if (err) {
+            done(err, null);
+          }
+
+          done(null, user);
+        });
+      };
+
+      process.nextTick(createUser);
+    }
+  ));
+
+  // Init Passport
   var session = require('express-session');
   var cookieParser = require('cookie-parser');
   app.use(cookieParser());
@@ -31,13 +64,21 @@ module.exports = function(app) {
   app.use(passport.session());
 
   passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user._id);
   });
 
+  // User Handling
   passport.deserializeUser(function(id, done) {
-    done(null, {id: 1, username: 'test', password: 'pw'});
+    userRepository.getById(id)
+      .then(function(user) {
+        done(null, user);
+      }, function(err) {
+
+        done(err, null);
+      });
   });
 
+  // Routing
   authenticationRouter.post(
     '/login',
     passport.authenticate('local', {session: true}),
@@ -54,12 +95,29 @@ module.exports = function(app) {
     }
   );
 
+  authenticationRouter.post(
+    '/signup',
+    passport.authenticate('signup'),
+    function(req, res) {
+      return res.json();
+    }
+  );
+
+  // Helper
   var isAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
 
     res.status(401).end();
+  };
+
+  var isValidPassword = function(user, password) {
+    return bCrypt.compareSync(password, user.password);
+  };
+
+  var createHash = function(password) {
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
   };
 
   // require authentication for all API methods
