@@ -29,11 +29,15 @@
                 <span class="shorten">{{ project.name }}</span>
             </li>
         </ol>
-        <button class="btn btn-primary"
-                id="subject-add"
-                ng-click="SubjectVoteController.update(SubjectVoteController.projects)">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;Hinzufügen
-        </button>
+
+        <div class="col-xs-offset-3 col-xs-9">
+            <button class="btn btn-primary"
+                    id="subject-add"
+                    ng-click="SubjectVoteController.update(SubjectVoteController.projects)">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;Speichern
+            </button>
+        </div>
+
     </div>
     <div ng-if="SubjectVoteController.projects.length === 0"
          class="alert alert-info"

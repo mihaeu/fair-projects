@@ -49,6 +49,29 @@ module.exports = (function() {
     return this.model.remove({_id: id}).exec();
   };
 
+  SubjectRepository.prototype.updateProjectVotes = function(projects, user) {
+    for (var voteIndex = 0; voteIndex < projects.length; ++voteIndex) {
+      var project = projects[voteIndex];
+      var voted = false;
+      for (var participantIndex in project.participants) {
+        var participant = project.participants[participantIndex];
+
+        // if the user has already voted just update
+        if (participant.userId === user._id) {
+          projects[voteIndex].participants[participantIndex].vote = voteIndex + 1;
+          voted = true;
+        }
+      }
+
+      // user has never voted before, add new participant
+      if (voted === false) {
+        projects[voteIndex].participants.push({userId: user._id, vote: voteIndex + 1});
+      }
+    }
+
+    return projects;
+  };
+
   return new SubjectRepository();
 
 })();

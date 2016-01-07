@@ -6,8 +6,8 @@ module.exports = (function() {
   var Schema = mongoose.Schema;
 
   var participantSchema = new Schema({
-    name: {type: String, default: '', required: true},
-    vote: {type: Number, default: 0},
+    userId: {type: Schema.ObjectId, required: true},
+    vote: {type: Number, required: true, default: 0},
   });
 
   return participantSchema;
