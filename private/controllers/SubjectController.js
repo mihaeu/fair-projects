@@ -82,8 +82,39 @@ module.exports = function() {
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
-        subject.name = req.body.name;
-        subject.description = req.body.description;
+        if (req.body.name !== undefined) {
+          subject.name = req.body.name;
+          subject.description = req.body.description;
+        } else {
+          for (var i = 0; i < req.body.projects.length; ++i) {
+            for (var j = 0; j < subject.projects.length; ++j) {
+              if (req.body.projects[i].name === subject.projects[j].name) {
+                for (var k = 0; i < subject.projects[j].participants.length; ++k) {
+                  if (req.user.username === subject.projects[j].participants[k].name) {
+                    subject.projects[j].participants[k].vote = i + 1;
+                    break;
+                  } else if (k + 1 === subject.projects[j].participants.length) {
+                    subject.projects[j].participants[k + 1] = {
+                      name: req.user.username,
+                      vote: i + 1,
+                    };
+                  }
+                }
+
+                if (subject.projects[j].participants.length === 0) {
+                  subject.projects[j].participants = [{
+                    name: req.user.username,
+                    vote: i + 1,
+                  },
+                  ];
+                }
+
+                break;
+              }
+            }
+          }
+        }
+
         return subject.save();
       })
       .then(function(subject) {
