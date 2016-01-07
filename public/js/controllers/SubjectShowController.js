@@ -25,7 +25,7 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
         subject: $routeParams.subjectId,
       };
       _this.projects = projectService.getAll(requestParameterProjects).$promise.then(function(projects) {
-        for (var i in projects) {
+        for (var i = 0; i < projects.length; ++i) {
           projects[i].votes = [0, 0, 0, 0];
           for (var j in projects[i].participants) {
             var vote = projects[i].participants[j].vote;
