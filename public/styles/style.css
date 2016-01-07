@@ -27,3 +27,10 @@
     white-space: nowrap;
     margin-left: 10px;
 }
+
+#logout{
+    line-height: 50px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}

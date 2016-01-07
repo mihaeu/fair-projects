@@ -69,23 +69,6 @@ app.controller('ProjectShowController',
       };
 
       /**
-       * Creates a participant
-       *
-       * @param {Object} newParticipant
-       */
-      _this.createParticipant = function(newParticipant) {
-        var data = {
-          subject: _this.subject._id,
-          project: _this.project._id,
-          name: newParticipant.name,
-        };
-        participantService.create(data, function(data) {
-          _this.participants.push(data);
-          newParticipant.name = '';
-        });
-      };
-
-      /**
        * Deletes a participant
        *
        * @param {Object} participant
