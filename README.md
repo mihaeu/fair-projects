@@ -29,9 +29,6 @@ cd fair-projects
 # install dependencies (invokes both npm and bower)
 npm install
 
-# start app and open browser at localhost:3000
-npm start
-
 # for convenience we'd recommend you to install grunt-cli
 npm install --global grunt-cli
 
