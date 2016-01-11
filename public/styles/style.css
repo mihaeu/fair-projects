@@ -22,7 +22,7 @@
 .shorten{
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 300px;
+    width: calc(100% - 150px);
     display: inline-block;
     white-space: nowrap;
     margin-left: 10px;
