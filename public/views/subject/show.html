@@ -50,9 +50,9 @@
     <ul ng-if="0 < SubjectShowController.projects.length" class="projects list-group">
         <li ng-repeat="project in SubjectShowController.projects" class="list-group-item clearfix">
             <div class="pull-left">
-                <span class="badge" title="Priorität 1">{{ project.votes[1] || 0}}</span>
-                <span class="badge" title="Priorität 2">{{ project.votes[2] || 0}}</span>
-                <span class="badge" title="Priorität 3">{{ project.votes[3] || 0}}</span>
+                <span class="badge prio1" title="Priorität 1">{{ project.votes[1] || 0}}</span>
+                <span class="badge prio2" title="Priorität 2">{{ project.votes[2] || 0}}</span>
+                <span class="badge prio3" title="Priorität 3">{{ project.votes[3] || 0}}</span>
             </div>
             <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
                 <span class="shorten">{{ project.name }}</span>

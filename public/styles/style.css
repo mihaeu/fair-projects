@@ -39,3 +39,15 @@
     top: 0;
     right: 10px;
 }
+
+.prio1{
+    background-color: #3B4C99;
+}
+
+.prio2{
+    background-color: #19286E;
+}
+
+.prio3{
+    background-color: #0A1752;
+}
