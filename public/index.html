@@ -18,8 +18,8 @@
                         <img alt="FairProjects" src="images/FairProjects.png">
                     </a>
                 </div>
-                <div class="pull-right" id="logout" ng-controller="LogoutController as logoutController">
-                    <a ng-if="logoutController.isLoggedIn()" ng-click="logoutController.logout()">
+                <div class="pull-right " id="logout" ng-controller="LogoutController as logoutController">
+                    <a class="btn btn-xs btn-primary" ng-if="logoutController.isLoggedIn()" ng-click="logoutController.logout()">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                         Logout
                     </a>
