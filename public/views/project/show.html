@@ -49,7 +49,7 @@
     </div>
     <ul ng-if="0 < ProjectShowController.participants.length" class="projects list-group">
         <li ng-repeat="participant in ProjectShowController.participants" class="list-group-item clearfix">
-            {{ participant.username }} (Priorität: {{ participant.vote }})
+            <strong>{{ participant.username }}</strong> (Priorität: {{ participant.vote }})
             <span class="pull-right">
                 <button ng-click="ProjectShowController.deleteParticipant(participant)" class="btn btn-xs">
                     <span class="glyphicon glyphicon-trash"></span>
@@ -63,4 +63,4 @@
          style="margin-bottom: 0px">Keine Anmeldungen</div>
 </div>
 
-<a href="#/subject/{{ProjectShowController.subject._id}}">Zurück zur Beschreibung des Fachs</a>
+<a href="/#/subject/{{ProjectShowController.subject._id}}">Zurück zur Beschreibung des Fachs</a>
