@@ -21,9 +21,10 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
       };
       _this.subject = subjectService.get(requestParameterSubjects);
 
+      _this.updateProjects();
       $interval(function() {
         _this.updateProjects();
-      }, 1000);
+      }, 200);
     };
 
     _this.updateProjects = function() {
@@ -31,7 +32,7 @@ app.controller('SubjectShowController', ['subjectService', 'projectService', '$r
         subject: $routeParams.subjectId,
       };
 
-      _this.projects = projectService.getAll(requestParameterProjects).$promise.then(function(projects) {
+      projectService.getAll(requestParameterProjects).$promise.then(function(projects) {
         for (var i = 0; i < projects.length; ++i) {
           projects[i].votes = [0, 0, 0, 0];
           for (var j in projects[i].participants) {
