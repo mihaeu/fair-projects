@@ -10,14 +10,16 @@
         }}</span>
     </div>
 </div>
-
+<div ng-if="SubjectVoteController.saved === true"
+     class="alert alert-success"
+     role="alert">Projektpriorisierung wurde erfolgreich gespeichert!</div>
 <div class="panel panel-default projectListPanel">
     <div class="panel-heading">
         <div class="pull-left"><h2 class="panel-title">Projekte priorisieren</h2></div>
         &nbsp;
         <div class="pull-right">
             <button class="btn btn-xs btn-primary"
-                    id="subject-add"
+                    id="subject-vote"
                     ng-click="SubjectVoteController.update(SubjectVoteController.projects)">
                     <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Speichern
             </button>

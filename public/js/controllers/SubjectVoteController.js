@@ -17,6 +17,8 @@ app.controller('SubjectVoteController', ['subjectService', 'projectService', '$r
         subject: $routeParams.subjectId,
       };
       _this.projects = projectService.getAll(requestParameterProjects);
+
+      _this.saved = false;
     };
 
     _this.init();
@@ -27,6 +29,7 @@ app.controller('SubjectVoteController', ['subjectService', 'projectService', '$r
         projects: projects,
       };
       subjectService.update(data, function(data) {
+        _this.saved = true;
       });
     };
   },
