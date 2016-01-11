@@ -71,6 +71,10 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.create = function(req, res, next) {
+    if (validateName(req.body.name)) {
+      return res.status(400).json({message: 'Bad request: name is too short'});
+    }
+
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
@@ -94,6 +98,10 @@ module.exports = function() {
    * @callback next Callback which calls the next matching route.
    */
   ProjectController.prototype.update = function(req, res, next) {
+    if (validateName(req.body.name)) {
+      return res.status(400).json({message: 'Bad request: name is too short'});
+    }
+
     req.dic.subjectRepository
       .getById(req.params.subjectId)
       .then(function(subject) {
@@ -138,6 +146,10 @@ module.exports = function() {
           return res.status(404).send('Subject does not exist.' + err);
         }
     );
+  };
+
+  var validateName = function(name) {
+    return name.length < 5;
   };
 
   return new ProjectController();
