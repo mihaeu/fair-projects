@@ -35,6 +35,9 @@ npm install --global grunt-cli
 # start node server, watch for file changes and run tests automatically
 # see Gruntfile.js for details
 grunt
+
+# or for production simple start using node
+node server.js
 ```
 
 If you're having difficulties finding out where to start editing or adding files for a new feature, refer to [Project Structure](#project-structure)
