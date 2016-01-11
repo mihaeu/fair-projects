@@ -65,7 +65,11 @@ module.exports = (function() {
 
       // user has never voted before, add new participant
       if (voted === false) {
-        projects[voteIndex].participants.push({userId: user._id, vote: voteIndex + 1});
+        projects[voteIndex].participants.push({
+          userId: user._id,
+          username: user.username,
+          vote: voteIndex + 1,
+        });
       }
     }
 

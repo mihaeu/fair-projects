@@ -8,6 +8,7 @@ module.exports = (function() {
   var participantSchema = new Schema({
     userId: {type: Schema.ObjectId, required: true},
     vote: {type: Number, required: true, default: 0},
+    username: {type: String, required: true},
   });
 
   return participantSchema;

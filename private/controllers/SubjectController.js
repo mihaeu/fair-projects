@@ -86,7 +86,8 @@ module.exports = function() {
           subject.name = req.body.name;
           subject.description = req.body.description;
         } else {
-          subject.projects = req.dic.subjectRepository.updateProjectVotes(req.body.projects, req.user);
+          subject.projects = req.dic.subjectRepository
+            .updateProjectVotes(req.body.projects, req.user);
         }
 
         return subject.save();

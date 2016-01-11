@@ -49,7 +49,7 @@
     </div>
     <ul ng-if="0 < ProjectShowController.participants.length" class="projects list-group">
         <li ng-repeat="participant in ProjectShowController.participants" class="list-group-item clearfix">
-            {{ participant.name}}
+            {{ participant.username }} (Priorität: {{ participant.vote }})
             <span class="pull-right">
                 <button ng-click="ProjectShowController.deleteParticipant(participant)" class="btn btn-xs">
                     <span class="glyphicon glyphicon-trash"></span>
