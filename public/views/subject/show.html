@@ -54,13 +54,10 @@
                 <span class="badge" title="Priorität 2">{{ project.votes[2] || 0}}</span>
                 <span class="badge" title="Priorität 3">{{ project.votes[3] || 0}}</span>
             </div>
-            <span class="shorten">{{ project.name }}</span>
+            <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
+                <span class="shorten">{{ project.name }}</span>
+            </a>
             <div class="pull-right">
-                <a ng-href="/#/subject/{{ SubjectShowController.subject._id }}/project/{{project._id}}">
-                    <button class="btn btn-xs">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                </a>
                 <button ng-click="SubjectShowController.deleteProject(project)" class="btn btn-xs">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
