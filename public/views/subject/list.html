@@ -6,7 +6,7 @@
         <li ng-repeat="subject in SubjectListController.subjects" class="list-group-item clearfix subject">
             <a href="/#/subject/{{ subject._id}}">{{ subject.name}}</a>
             <span class="pull-right">
-                <a href="/#/vote/{{ subject._id}}">Vote</a>
+                <a  class="btn btn-xs btn-primary" href="/#/vote/{{ subject._id}}">Vote</a>
                 <button ng-click="SubjectListController.delete(subject)" class="btn btn-xs subject-delete">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
