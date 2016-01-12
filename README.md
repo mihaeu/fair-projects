@@ -14,6 +14,7 @@ Fair Projects is a web app based on the MEAN stack. It's purpose is to help prof
 
 1. [Getting Started](#getting-started)
 1. [Tests](#tests)
+1. [API](#api)
 1. [Project Structure](#project-structure)
 1. [How to Contribute](#how-to-contribute)
 1. [Contributors](#contributors)
@@ -84,6 +85,113 @@ grunt nodemon:dev
 # execute the tests
 grunt test:e2e
 ```
+
+## API
+
+Base URL
+
+`HOST:PORT/api/v1`
+
+### Authentication
+
+#### POST /signup
+
+ - username: String
+ - password: String
+
+#### POST /login
+
+ - username: String
+ - password: String
+
+#### POST /logout
+
+### Subjects
+
+#### GET /subjects/
+
+Gets all subjects
+
+#### GET /subjects/:id
+
+Gets a single subject by id
+
+#### POST /subjects/
+
+Create a new subject
+
+ - name: String
+ - description: String
+
+#### PUT /subjects/:id
+
+Updates a subject by id
+
+ - name: String
+ - description: String
+
+#### DELETE /subjects/:id
+
+Deletes a subject by id
+
+### Projects
+
+#### GET /:subject-id/projects/
+
+Gets all projects
+
+#### GET /:subject-id/projects/:project-id
+
+Get a single project by id
+
+#### POST /:subject-id/projects/
+
+Creates a new project
+
+ - name: String
+ - description: String
+
+#### PUT /:subject-id/projects/:project-id
+
+Updates a project by id
+
+#### DELETE /:subject-id/projects/:project-id
+
+Delete a project by id
+
+### Participants
+
+#### GET /:subject-id/projects/:project-id/participants/
+
+Get all participants
+
+#### GET /:subject-id/projects/:project-id/participants/:participant-id
+
+Gets a single participant by id
+
+#### POST /:subject-id/projects/:project-id/participants/
+
+Create a new participant
+
+```json
+{
+	projects: [
+		...,
+		participants: [
+		    {
+		    	userId: ObjectId,
+		        username: String,
+		        vote: Number
+		    },
+		    ...
+		]
+	]
+}
+```
+
+#### DELETE /:subject-id/projects/:project-id/participants/:participant-id
+
+Deletes a participant by id
 
 ## Project Structure
 We found that a lot of Javascript projects have a different project structures, so we decided to document ours here:
