@@ -6,6 +6,21 @@ app.controller('LoginController',
 
       var _this = this;
 
+      function ensureUserNotLoggedIn() {
+        if (AuthenticationService.isLoggedIn()) {
+          $location.path('/');
+        }
+      }
+
+      /**
+       * Initializes the controller
+       */
+      _this.init = function() {
+        ensureUserNotLoggedIn();
+      };
+
+      _this.init();
+
       _this.login = function() {
 
         _this.error = false;
