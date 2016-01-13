@@ -26,29 +26,25 @@ Erweiterungen keine oder nur unzureichende Testabdeckung.
 
 \subsubsection{Frontend Unit Tests}\label{frontend-unit-tests}
 
-AngularJS unterstützt das Testframework
-\href{http://jasmine.github.io/}{Jasmine} und die meisten anderen
+AngularJS unterstützt das Testframework Jasmine\cite{jasmine} und die meisten anderen
 bekannten Javascript Testframeworks über 3rd-Party Erweiterungen. Wir
-haben uns auf Grund der mangelnden Dokumentation für das offiziell
+haben uns auf Grund der mangelnden Unterstützung, für das offiziell
 unterstützte Jasmine entschieden.
 
-In der Dokumentation von AngularJS befindet sich ein Kapitel zu Unit und
-E2E Testing und damit war es relativ einfach Tests zu schreiben.
-Vermutlich auf Grund der Unterstützung vieler verschiedener
+In der Dokumentation von AngularJS befindet sich je ein Kapitel zu Unit und
+E2E Testing. Die Dokumentation erklärt auch wie man Controller, Services usw.
+testet, aber liefert dies nicht im Code. Vermutlich auf Grund der Unterstützung vieler verschiedener
 Testframeworks muss man für das Testen der verschiedenen Komponenten
 (Controller, Services usw.) immer den Bootstrap Code von Hand schreiben.
-Dies ist nicht nur aufwändig, sondern auch fehlerträchtiger, als wenn
+Dies ist allerdings nicht nur aufwändig, sondern auch fehlerträchtiger, als wenn
 AngularJS nur ein Testframework unterstützen würde und die
 Funktionalität für das Testen ihrer Komponenten vorgeben.
 
 Da die Tests abhängig von der jeweiligen Browserumgebung sind, müssen
 die Tests in verschiedenen Browsern ausgeführt werden (das Kapitel
 \url{Testautomatisierung} beschriebt Alternativen). Fair Projects
-verwendet \href{http://karma-runner.github.io/0.13/index.html}{Karma} um
+verwendet Karma\cite{karma} um
 die Tests automatisiert auf verschiedenen Browsern auszuführen.
-
-TODO evtl. hier noch auf Mockproblematik mit Jasmine verweisen oder auf
-das nächste Kapitel verweisen
 
 \subsubsection{Backend Unit Tests}\label{backend-unit-tests}
 
