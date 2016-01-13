@@ -3,12 +3,12 @@
 \textbf{Grobschrift, da muss noch viel geändert und zitiert werden.}
 
 Express ist der de-facto Standard für Node.js Webframeworks. Es gibt
-sehr viele Alternativen (\href{http://koajs.com/}{koa},
-\href{http://hapijs.com/}{hapi},
-\href{https://github.com/totaljs/framework}{total.js}), jedoch gibt es
+sehr viele Alternativen (koa\cite{koa}, hapi\cite{hapi}, total.js\cite{totaljs}), jedoch gibt es
 kein anderes Framework, das so viele Benutzer und Mitwirker hat.
 
-Verglichen mit Webframeworks die sich in anderen Sprachen etabliert
+% hier Vergleich der verschiedenen Stars etc. machen und in den Anhang
+
+Verglichen mit Webframeworks, die sich in anderen Sprachen etabliert
 haben, ist Express leichtgewichtig und liefert wenig Funktionalität.
 Frameworks aus Programmiersprachen wie z.B.
 
@@ -26,15 +26,14 @@ Frameworks aus Programmiersprachen wie z.B.
 liefern Funktionalität für typische Webanwendungen (Sessions, Cookies,
 Authentifizierung, Form Handling, Templating, \ldots{}).
 
-Eine Ursache hierfür ist vermutlich, dass es für Express bisher wenig
-professionelle Unterstützung gibt.
-\href{https://strongloop.com/node-js/training/}{Strongloog}, die Firma
-hinter Express, bietet inzwischen Training für Node.js und API
+Strongloop\cite{strongloop}, die Firma hinter Express, bietet inzwischen Training für Node.js und API
 Entwicklung an.
 
 Erweiterte Funktionalität muss bei Express über 3rd-Party Erweiterungen
 hinzugefügt werden. Die Wartung dieser Erweiterungen wird dabei nicht
 kontrolliert oder von den Entwicklern von Express beeinflusst.
+
+Die Probleme die sich hieraus enwickeln können, werden in den nächsten Kapiteln diskutiert.
 
 \section{Installation und
 Versionierung}\label{installation-und-versionierung}
@@ -60,23 +59,27 @@ Die Kernfunktionalität von Express ist, wie bereits erwähnt wurde, sehr
 beschränkt. Im Prinzip übernimmt Express lediglich das Routing der
 Requests auf, vom Entwickler definierte, Callbacks.
 
+Einige Funktionen wie z.B. das Parsing einer Anfrage oder senden von Cookies
+sind eigentlich Kern einer jeder Webanwendung. Express benötigt jedoch sogar für
+diese Funktionen Erweiterungen.
+
 Erweiterte Funktionalität wird über Middlewares ermöglicht. Middlewares
 können das Request und Response Objekt verändern und weiter- bzw.
 umleiten oder terminieren (z.B. falls keine Zugriffsrechte bestehen).
 
 \section{Anwendung}\label{anwendung}
 
-Da Javascript eine Prototyp-basierte Sprache ist, die zumindest vor dem
-ES6 Standard kein Klassenkonzept kennt und auf Grund der Art wie Express
-die Routes verarbeitet, ist es nicht möglich Controller als Klassen wie
+Da Javascript ist eine Prototyp-basierte Sprache, die zumindest vor dem
+ES6 Standard kein Klassenkonzept kennt. Deshalb und auf Grund der Art wie Express
+die Routes (URI Endpunkte einer Anwendung) verarbeitet, ist es nicht möglich Controller als Klassen wie
 in einer typischen MVC (Model View Controller) Architektur umzusetzen.
 
 Aus Gründen der Übersichtlichkeit und um die Funktionalität zu kapseln
-und damit ggf. wiederverwendbar zu machen, haben wir die Controller in
-eine Controller ähnliche Struktur gebracht. Die jeweiligen Funktionen
+und damit ggf. wiederverwendbar zu machen, haben wir die Callbacks der Routes in
+eine Controller-ähnliche Struktur gebracht. Die jeweiligen Funktionen
 auf den Controllern entsprechen dabei statischen Funktionen anderer
-Programmiersprachen (wie bereits erwähnt ermöglich Express nicht
-Methoden auf instaziierten Controllern aufzurufen).
+Programmiersprachen\footnote{wie bereits erwähnt ist es in Express nicht möglich
+Methoden auf instanziierten Controllern aufzurufen}.
 
 \begin{verbatim}
 /**
@@ -104,31 +107,28 @@ module.exports = function() {
 \lstset{basicstyle=\footnotesize\ttfamily, language=JavaScript, showspaces=false }
 \section{Dependency Injection}\label{dependency-injection}
 
-Da die Funktionalität in Express üblicherweise (vgl.
-\href{http://expressjs.com/en/starter/basic-routing.html}{Dokumentation})
+Da die Funktionalität in Express üblicherweise\cite{express-routing}
 via Callbacks realisiert wird, ist es nicht möglich Abhängigkeiten
 separat zu verwalten. Die Callbacks von Express kennen lediglich die
 Parameter \texttt{req}, \texttt{res} und \texttt{next}. Express
-unterstützt Dependency Injection nicht.
+unterstützt Dependency Injection nicht als Kernfunktionalität.
 
 Dies hat zur Folge, dass die Erstellung von Objekten vielfach dupliziert
 wird und außerdem schlecht testbar ist. Die Abhängigkeiten werden
 typischerweise im Callback instanziiert und können somit nicht durch
 Mockobjekte ausgetauscht werden.
 
-Es gibt 3rd-Party Erweiterungen wie z.B.
-\href{https://github.com/luin/express-di}{express-di} oder
-\href{https://github.com/floatdrop/express-dinja}{express-dinja}, diese
+Es existieren 3rd-Party Erweiterungen wie z.B. express-di\cite{express-di} oder
+express-dinja\cite{express-dinja}, diese
 waren aber entweder nicht mit unserer Version von Express kompatibel
 oder konnten nicht mit unserem Controller-Konzept vereinbart werden.
 
-Eine eigene minimale Implementierung (die von den genannten
-Erweiterungen ähnlich implementiert wird) wurde via Middlewares
+Eine eigene minimale Implementierung \footnote{die von den genannten
+Erweiterungen ähnlich implementiert wird} wurde via Middlewares
 realisiert. Ein Dependency Injection Container wird dabei an das Request
 Objekt \texttt{req} angehängt. Diese Lösung ist nicht optimal und
 verletzt u.a. das Single Responsibility Principle
-\href{http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod}{vgl.
-The Principles of OOD von Uncle Bob}. Express verhindert jedoch eine
+\cite{srp}. Express verhindert jedoch eine
 andere Implementierungsweise.
 
 \begin{figure}[t]

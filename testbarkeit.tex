@@ -49,8 +49,8 @@ die Tests automatisiert auf verschiedenen Browsern auszuführen.
 \subsubsection{Backend Unit Tests}\label{backend-unit-tests}
 
 In der Dokumentation von Express wird der Testvorgang oder generell
-Testbarkeit nicht behandelt. Wie bereits im Kapitel zu Express genannt,
-ist es mit der eigentlichen Architektur von Express auch nur sehr schwer
+Testbarkeit nicht behandelt\cite{express-no-tests}. Wie bereits im Kapitel zu Express genannt,
+ist es mit der eigentlichen Architektur von Express auch nur schwer
 möglich Unit Tests zu schreiben, da Callbacks verwendet werden und keine
 Dependency Injection mitgeliefert wird.
 
@@ -62,11 +62,11 @@ Controller zu testen.
 Auf der Suche nach empfohlenen Praktiken hat sich herausgestellt, dass
 im Backend selten ausreichend getestet wird. Die vermeintlich schnelle
 Entwicklung mit Javascript führt damit zu ungetestem Code, welcher
-vermutlich zu Wartungsproblemen führt.
+wiederum zu Wartungsproblemen führt und damit die Gesamtzeit für die Entwicklung erhöht.
 
-Wie auch bereits für die Frontend Unit Tests, benutzen wir Jasmine als
+Wie auch bereits für die Frontend Unit Tests, benutzten wir Jasmine als
 Testframework. Es gibt andere bekannte Testframeworks wie z.B.
-\href{https://mochajs.org/}{mocha}, aber da Jasmine der Standard für
+mocha\cite{mocha}, aber da Jasmine der Standard für
 AngularJS ist, macht es Sinn dieses auch für das Backend zu verwenden um
 keine weitere unnötige Abhängigkeit in das Projekt einzuführen.
 
