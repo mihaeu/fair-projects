@@ -1,0 +1,209 @@
+\subsubsection{Node.js (Marinus)}\label{node.js-marinus}
+
+\paragraph{Entstehung}\label{entstehung}
+
+Ryan Dahl stellte 2009 Node.js als serverseitige Plattform für
+Netzwerkanwendungen vor. Anfangs nur für Linux Betriebssysteme geeignet,
+wurde in den folgenden Jahren auch die Kompatibilität zu Mac und Windows
+hergestellt. Stetig anwachsende Entwicklerzahlen
+(https://github.com/nodejs/node/graphs/contributors) sowie Suchanfragen
+(https://www.google.de/trends/explore\#q=nodejs) lassen auf die
+wachsende Bedeutung schließen. Im Januar 2014 wurde Node.js von
+Thoughtworks Technologie Radar erstmals für den Unternehmenseinsatz
+geeignet eingestuft
+(https://www.thoughtworks.com/radar/platforms/node-js).
+
+\paragraph{Konzepte}\label{konzepte-1}
+
+Node.js ist quelloffen nach MIT lizenziert. Es ist somit möglich den
+Quellcode einzusehen, sowie aktiv an der Entwicklung von Node.js
+mitzuwirken. Als Basis wird Googles Java-Script-Implementierung V8
+verwendet. V8 wurde ursprünglich für den Internet-Browser Chrome
+entwickelt und stellt eine Just-in-time-Kompilierung des JavaScript-Code
+in nativen Maschinen-Code zur Verfügung. Erst diese Technologie
+ermöglicht den performanten serverseitigen Einsatz von JavaScript.
+
+Zentrales Konzept ist die asynchrone, nicht blockierende Verarbeitung
+von Ein- und Ausgabe mittels des ``Event-Loop'' Konzepts. Im Gegensatz
+zum weiterverbreiteten Ansatz für jede Verbindung einen eigenen Thread
+zu erstellen, werden dabei alle Verbindungen über einen einzigen Thread
+verwaltet. Um dennoch mehrere Verbindungen (nahezu) gleichzeitig
+abarbeiten zu können, muss die Abarbeitung einzelner Anfragen asynchron
+beziehungsweise nicht blockierend erfolgen. Teure Operationen, wie
+beispielsweise I/O Zugriffe, werden (bei sinnvoller Umsetzung) dabei
+nicht wartend ausgeführt. Ist eine Operation abgeschlossen wird ein
+Signal abgegeben und die Event-Loop führt im nächst möglichen Schritt
+die Ergebnis Abarbeitung durch (Callback).
+
+Node.js ist modularisiert aufgebaut. Neben der Möglichkeit Erweiterungen
+durch eigene Module, beziehungsweise Module von Dritten hinzuzufügen,
+ist auch der komplette Kern von Node.js in Module gegliedert. Einige
+dieser Module werden aus Performanz Gründen in binär-Code für die
+jeweiligen Plattformen zur Verfügung gestellt. Seit 2011 steht mit
+``npm'' ein Tool zur Verwaltung der Pakete bereit. Mit npm können Pakete
+installiert sowie verteilt werden, wobei auch Abhängigkeiten aufgelöst
+werden.
+
+Basierend auf diesen Erkenntnissen werden im folgenden die Vor- und
+Nachteile der eingesetzten Konzepte vorgestellt.
+
+\paragraph{Stärken}\label{stuxe4rken}
+
+Als stärkstes Verkaufsargument ist bei Node.js eindeutig der
+Ressourcen-schonende Umgang mit Webverbindungen hervorzuheben. Durch das
+Verwenden eines einzigen Threads entfällt der sonst notwendige Overhead
+der für jede Verbindung nötig wäre. Dadurch ist es Möglich eine hohen
+Anzahl von Verbindungen gleichzeitig zu halten. Anwendungen deren
+Hauptaufgabe die Ein- und Ausgabe von Daten ist, profitieren hiervon
+besonders.
+
+Noch intensiver schlägt sich dies beim Einsatz von Websockets nieder. Da
+bei Websockets die Verbindungen dauerhaft aufgebaut bleiben und nicht
+mit Absenden der Antwort freigegeben werden können, ergibt sich die
+Notwendigkeit viele Verbindungen gleichzeitig halten zu können.
+
+Heutzutage setzten viele Anwendungen auf eine REST-basierte
+Schnittstelle die Daten im JSON-Format verarbeitet. Auch FairProjects
+ist nach diesem Prinzip aufgebaut. Node.js kann hier durch die
+sprachliche Unterstützung von JSON durch JavaScript profitieren. JSON
+Daten können dadurch einfach und effizient verarbeitet werden.
+
+Die große Community um JavaScript und Node.js ermöglicht es einerseits
+zu vielen Themen Diskussionen und Informationen zu finden anderseits
+aber auch auf viele bestehende Lösungen zurückzugreifen. Über den
+Paketmanager npm ist es Möglich eine Vielzahl von freien Erweiterungen
+zurückzugreifen (\textgreater{}220 000, Stand: Januar 2015).
+
+Gerade dies bringt jedoch auch Nachteile mit sich, worauf im Folgenden
+eingegangen wird.
+
+\paragraph{Schwächen}\label{schwuxe4chen}
+
+Wie im vorherigen Absatz erwähnt, gibt es viele freie Erweiterungen,
+problematisch ist hierbei jedoch, dass die meisten dieser Erweiterungen
+nur über einen kurzen Zeitraum weiterentwickelt und gepflegt werden.
+Wenn Module dann noch Abhängigkeiten zu bestimmten Versionen von anderen
+Modulen haben, wird dies zum Problem. Dies verhindert oftmals die
+Möglichkeit Module auf deren neuesten Stand zu bringen da gleichzeitig
+verschiedene Versionen eines Moduls benötigt werden. Schlechte Wart- und
+Erweiterbarkeit sind dann die Folgen.
+
+Ähnlich verhält es sich mit Code-Beispielen sowie Anleitungen durch die
+Community. Es gibt hierzu zwar reichlich Informationen, jedoch nur sehr
+wenige behandeln Szenarien die über einfache Beispiele hinausgehen.
+
+Aus technischer Sichtweise kann unter den Nachteilen die schlechte
+horizontale Skalierbarkeit aufgeführt werden. Durch den Single-Thread
+Ansatz kann nicht durch hinzunehmen weiterer Prozessoren skaliert
+werden.
+
+\paragraph{Callback}\label{callback}
+
+Callbacks sind in Node.js ein so zentrales Element dass hierfür ein
+eigener Absatz gewidmet wird. Um Node.js zu beherrschen zu können ist es
+wichtig die Konzepte und Schwierigkeiten von Callbacks zu verstehen.
+Callbacks sind dabei keine Erfindung von Node.js sondern ein Teil von
+JavaScript.
+
+Callbacks sind im wesentlichen Funktionen die asynchron oder zu einem
+späteren Zeitpunkt ausgeführt werden. Dies ermöglicht es, auf das
+Ergebnis einer anderen Funktion zu warten, ohne dabei blockierend zu
+arbeiten.
+
+\begin{verbatim}
+var filesystem = require('fs');
+
+filesystem.readFile('test.txt', function handleFile(error, fileContents) {
+  doSomething();
+});
+
+otherFunction();
+\end{verbatim}
+
+In diesem Codebeispiel wird eine Datei eingelesen um aus dieser etwas
+auszulesen. Um nicht auf den Zugriff auf das Dateisystem blockierend
+warten zu müssen, wird hier \texttt{handleFile} als Callback verwendet.
+Die Funktion wird aufgerufen sobald die Datei geladen wurde. Da der
+Zugriff auf das Dateisystem ein sehr zeitintensiver Vorgang ist, wird
+wahrscheinlich die Funktion \texttt{otherFunction} noch vor
+\texttt{handleFile} ausgeführt.
+
+Welche Schwierigkeiten ergeben sich dadurch? Zum einen muss beim lesen
+von Code darauf geachtet werden, dass nicht wie beim prozeduralen
+Vorgehen Zeile für Zeile nacheinander ausgeführt wird. Der Kontrollfluss
+ist dadurch schwieriger Nachzuvollziehen. Des Weiteren entstehen so
+leicht tiefe Verschachtelungen.
+
+\begin{verbatim}
+doFirstThing(function() {
+  doSecondThing(function() {
+    doThirdThing();
+  });
+}); 
+\end{verbatim}
+
+Dies wäre eine naive Implementierung bei der drei Funktionen
+hintereinander ausgeführt werden. Es braucht nicht viel
+Vorstellungskraft dass bei etwas mehr auszuführenden Schritten
+(beispielsweise Fehlerbehandlung) so schnell unübersichtlicher Code
+entsteht. Dieses Problem wird auch als ``Callback-Hell'' bezeichnet und
+vor allem von Anfängern oft begangen.
+
+Welche Möglichkeiten gibt es diese tiefen Verschachtelungen zu umgehen?
+Im nachfolgenden werden zwei Ansätze vorgestellt um der
+``Callback-Hell'' zu umgehen.
+
+\emph{Sprechende Funktionen}
+
+Um den Code leserlich zu gestalten werden bei diesem Ansatz die Callback
+Funktionen nicht wie im obrigen Beispiel anonym definiert, sondern in
+einer Variable mit aussagekräftiger Bezeichnung zugewiesen. Für das
+bisherige Beispiel würde dies folgendermaßen umgesetzt werden:
+
+\begin{verbatim}
+doFirstThing(afterFirstThing);
+
+function afterFirstThing() {
+  doSecondThing(afterSecondThing);
+}
+
+function afterSecondThing() {
+  doThirdThing();
+}
+\end{verbatim}
+
+So können die tiefen Versdchachtelungs-Ebenen verhindert werden. Jedoch
+wird bei komplexeren Szenarien mit mehreren Verzweigungen der
+Programmablauf nur schwer erkennbar und unübersichtlich.
+
+\emph{Promises}
+
+Um hier ein lesbareres Konzept zu haben, werden Promises verwendet. Eine
+ausführliche Erklärung dieses Konzept würde an dieser Stelle zu weit
+gehen, jedoch wird im Folgenden kurz der Aufruf von Funktionen die ein
+solches ``Promise-Objekt'' zurückgeben erläutert.
+
+Durch aneinander gekettete Aufrufe von Funktionen (Chaining) können für
+verschiedene Ereignisse auszuführende Funktionen Registriert werden. So
+kann mit der Funktion \texttt{.then()} ähnlich eines Callbacks eine
+Funktion registriert werden, die nach erfolgreichem Beenden ausgeführt
+wird. Im Unterschied dazu kann jedoch die Fehlerbehandlung in einer
+eigenen Funktion abgehandelt werden (\texttt{.catch()}). Mit diesem
+Konzept können Abläufe lesbar programmiert werden. Für vorheriges
+Beispiel ergibt sich folgender Code:
+
+\begin{verbatim}
+doFirstThing()
+.then(function doSecondThing() {
+  //Code here
+  }
+).then(function doThirdThing() {
+  // Code here
+  }
+);
+\end{verbatim}
+
+Um dies zu ermöglichen muss eine Funktion jedoch ein Promise Objekt
+zurückgeben. Die Details hierzu werden nicht behandelt, jedoch ist
+anzumerken dass viele Module dieses Konzept nicht anbieten. In diesem
+Fall kann das Konzept der Promises nicht benutzt werden.

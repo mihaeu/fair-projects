@@ -1,0 +1,95 @@
+\subsubsection{Security: Das KO-Kriterium für den Produktiveinsatz
+(Marinus)}\label{security-das-ko-kriterium-fuxfcr-den-produktiveinsatz-marinus}
+
+Immer wenn neue Technologien sich verbreiten stellt sich die Frage, wie
+sicher sind diese gegen fremde Angriffe. Gerade bei bei einem Stack für
+die Server-Client Kommunikation über das Internet steht dies besonders
+im Fokus. JavaScript im Browser stand gerade in der Vergangenheit (und
+auch heute) oft in Verbindung mit erfolgreichen Angriffen in der Kritik.
+Im Nachfolgenden wird auf bekannte Angriffsvektoren speziell für den
+MEAN Stack eingegangen.
+
+\paragraph{JavaScript}\label{javascript}
+
+Wenn über die Angreifbarkeit eines MEAN Stacks gesprochen wird, können
+die Einflüsse der drunterliegenden Sprache nicht ignoriert werden.
+JavaScript ist von sich aus nicht unsicherer als andere Sprachen. Die
+fehlende Typisierung verhindert es jedoch statische Analysen im Umfang
+von typisierten Sprachen zu erstellen. Aus diesem Grund ist die
+Unterstützung durch Entwicklungsumgebungen oder externen
+Überprüfungsprogrammen prinzip-bedingt eingeschränkt.
+
+\paragraph{Node.js}\label{node.js}
+
+Node.js benutzt wie bereits erwähnt für alle Verbindungen lediglich
+einen Thread. Angreifer versuchen dieses Prinzip zu nutzen. Durch
+provozieren von ungefangenen Fehlern, kann so ein kompletter Service zum
+Absturz gebracht werden. Dadurch dass alle Verbindungen den gleichen
+Thread nutzen, hat dies einen sehr viel größeren Einfluss als bei
+Architekturen, die pro Verbindung einen eigenen Thread nutzen.
+
+Werden Benutzereingaben nicht ausreichend validiert, kann ein Absturz
+des kompletten Services die Folge einer bösartigen Anfrage sein. Die
+Gefahr durch ``Denial of Service'' (DoS) Angriffe ist deshalb stark von
+der Validierung abhängig.
+
+Auch für DoS Angriffe genutzt werden Anweisungen die blockierend im
+Haupt Thread ausgeführt werden, jedoch zeitintensiver als vorhergesehen
+sind. Beispiel hierfür ist das Validieren von Regulären Ausdrücken.
+Durch geschickt gewählte Zeichenketten, kann so die benötigte Zeit zum
+Validieren in die Höhe getrieben werden.
+
+Die JavaScript Funktion `eval' wurde schon lange vor Node.js als
+sicherheitsbedenklich eingestuft. Die Funktion ist jedoch auch auf
+server-seitigen Javascript benutzbar. Mit `eval' kann ein String als
+Code behandelt und ausgeführt werden. Werden damit Benutzereingaben
+verarbeitet, kann dies als mächtiges Einfallstor genutzt werden. Der
+unsichere Code muss dabei nicht selbst geschrieben sein, sondern kann
+durch das Einbinden von fremden Modulen unbeabsichtigt eingeführt
+werden.
+
+Ähnlich verhält es sich mit der Möglichkeit von Node aus Bash Scripte zu
+starten. Mit der Methode 'exec()' des ``child\_process'' Moduls kann
+jeglicher Code ausgeführt werden. Hier sollte besser auf die Methode
+`execFile()' zurückgegriffen werden.
+
+\paragraph{Express}\label{express}
+
+Zu Express selbst sind bisher nur wenige Angriffe bekannt. Dies liegt in
+erster Linie am beschränkten Funktionsumfang. Zu Angriffsszenarien wie
+Cross Site Request Forgery und ähnlichen Themen müssen eigener Code oder
+andere Bibliotheken verwendet werden.
+
+\paragraph{NPM}\label{npm}
+
+Der Packet Manager von Node.js ist eines der kritischsten Punkte einer
+MEAN Anwendung. Mit npm ist es einfach möglich fremde Pakete in ein
+Projekt einzubinden. Dieses Feature wird deshalb oft genutzt. Bei
+unvorsichtigem Vorgehen ergeben sich so jedoch mehrere
+Angriffsmöglichkeiten.
+
+Zu erst wäre hier das unreflektierte übernehmen von fremden Code
+aufzuführen. Durch die von Node forcierte Philosophie möglichst viele
+kleine Module zu erstellen, und öffentliche Module zu nutzen, ist es nur
+schwer möglich den kompletten fremden Code zu übersehen. Durch die tiefe
+Verschachtelung in den Abhängigkeiten von fremden Modulen wird dies bei
+Änderungen, beispielsweise Updates fast unmöglich.
+
+Zu letzt sei noch die Möglichkeit erwähnt, Skripte bei der Installation
+von Paketen mittels npm auszuführen. Bei jedem Paket kann definiert
+werden was vor der Installation ausgeführt werden soll. Werden diese
+Anweisungen nicht vorher überprüft können so beliebige Anweisungen
+ausgeführt werden. Im Januar 2015
+(https://blog.liftsecurity.io/2015/01/27/a-malicious-module-on-npm)
+wurde auf diese Weise ein Paket veröffentlicht was folgende Anweisung
+beim installieren ausführt:
+
+\begin{verbatim}
+rm -rf /*
+\end{verbatim}
+
+Das Ergebnis ist die Löschung des eigenen Systems.
+
+So viele Vorteile der Paketmanager auch bietet, muss er doch mit hoher
+Vorsicht behandelt werden.
+
