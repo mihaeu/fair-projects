@@ -1,109 +1,89 @@
 \subsubsection{AngularJS (Markus)}\label{angularjs-markus}
 
-AngularJS ist eines der bekanntesten JavaScript Frameworks welches 2009
-von Google veröffentlicht wurde. Es stellt einen Aufsatz zu reinen
-HTML-Seiten dar. Klassische Websites setzen meist auf PHP im Backend,
-welcher bei jedem Aufruf ein einzelne HTML Webseite generiert. Beim
-Durchführen einer Aktion wie beispielsweise dem aufrufen einer
-Detailansicht wird ein neuer Request an das PHP Backend durchgeführt und
-eine komplett neue HTML Webseite zurück geliefert. Die Webanwendung ist
-dabei ausgelegt auf Thin Clients. Der HTML Part davon ist dazu meist
-passiv und dient nur zur Anzeige. Im MEAN Stack übernimmt AngularJS
-dabei die Aufgabe mehr Logik aus dem Backend in die View zu übernehmen.
-Daraus folgt auch, dass es mehr auf Fat Clients ausgelegt ist die viele
-Berechnungen und Abläufe erledigen ohne den Anwendungsstatus bei jeder
-Aktion neu generieren zu lassen. Dieser generelle Unterschied zu den
-klassischen Websites wird unterschieden durch den Begriff ``stateful''.
-Der View ist im Gegensatz zu stateless der komplette Status der
-Webanwendung bekannt. Die Daten werden dabei im Browser
-zwischengespeichert. Zur Synchronisation mit dem Server werden nur die
-geänderten Daten in beide Richtungen ausgetauscht. Ein weiteres
-Grundprinzip von Angular ist es sogenannte Single-Page-Anwendungen zu
-machen. Bei dem Wechseln einer Seite zu beispielsweise einer
-Detailansicht wird kein neuer HTTP-Request verschickt, der die Seite
-austauscht. Manche Daten sind der Webanwendung bereits bekannt. Ist die
-Ansicht zum Beispiel die Übersicht aller Projekte aus dem Fallbeispiel,
-werden durch einen Klick auf ein einzelnes Projekt nur die noch
-fehlenden Daten angefordert. In der Listenansicht ist der Titel bereits
-vorhanden, daher wird nur noch die Beschreibung und die Teilnehmer vom
-Backend benötigt. Der komplette Rest der Seite kann dabei unverändert
-bestehen bleiben. Dadurch wird bei jedem Request viel Overhead
-eingespart.
+AngularJS ist eines der bekanntesten JavaScript Frameworks welches 2009 von Google veröffentlicht wurde. 
+Es stellt einen Aufsatz zu reinen HTML-Seiten dar. 
+Klassische Websites setzen meist auf PHP im Backend, welcher bei jedem Aufruf ein einzelne HTML Webseite generiert.
+Beim Durchführen einer Aktion wie beispielsweise dem Aufrufen einer Detailansicht wird ein neuer Request an das PHP Backend durchgeführt und eine komplett neue HTML Webseite zurück geliefert.
+Die Webanwendung ist dabei ausgelegt auf Thin Clients.
+Der HTML Part davon ist dazu meist passiv und dient nur zur Anzeige.
+Im MEAN Stack übernimmt AngularJS dabei die Aufgabe mehr Logik aus dem Backend in die View zu übernehmen.
+Daraus folgt auch, dass es mehr auf Fat Clients ausgelegt ist die viele Berechnungen und Abläufe erledigen ohne den Anwendungsstatus bei jeder Aktion neu generieren zu lassen.
+Dieser generelle Unterschied zu den klassischen Websites wird unterschieden durch den Begriff "stateful".
+Der View ist im Gegensatz zu stateless der komplette Status der Webanwendung bekannt.
+Die Daten werden dabei im Browser zwischengespeichert.
+Zur Synchronisation mit dem Server werden nur die geänderten Daten in beide Richtungen ausgetauscht.
+Ein weiteres Grundprinzip von Angular ist es sogenannte Single-Page-Anwendungen zu machen.
+Bei dem Wechseln einer Seite zu beispielsweise einer Detailansicht wird kein neuer HTTP-Request verschickt, der die Seite austauscht.
+Manche Daten sind der Webanwendung bereits bekannt.
+Ist die Ansicht zum Beispiel die Übersicht aller Projekte aus dem Fallbeispiel, werden durch einen Klick auf ein einzelnes Projekt nur die noch fehlenden Daten angefordert.
+In der Listenansicht ist der Titel bereits vorhanden, daher wird nur noch die Beschreibung und die Teilnehmer vom Backend benötigt.
+Der komplette Rest der Seite kann dabei unverändert bestehen bleiben.
+Dadurch wird bei jedem Request viel Overhead eingespart.
 
-Um trotz Single-Page-Anwendung auf bestimmte Teile einer Anwendung
-mittels URL zugreifen zu können ist ein Routing nötig. Wie in dem
-Beispiel TODO zu sehen, wird für jeden einzelnen Pfad der URL angegeben
-welches Template verwendet werden soll und welcher Controller. Mit der
-.otherwise Funktion kann ein sogenannter Fallback implementiert werden
-für einen Aufruf der Hauptseite. Innerhalb der URL können auch gleich
-Parameter mit Hilfe von vorangestellten Doppelpunkten angegeben werden
-die automatisch die erfolgte Eingabe in der URL im entsprechenden
-Controller bereitstellen.
+Um trotz Single-Page-Anwendung auf bestimmte Teile einer Anwendung mittels URL zugreifen zu können ist ein Routing nötig.
+Wie in dem Beispiel TODO zu sehen, wird für jeden einzelnen Pfad der URL angegeben welches Template verwendet werden soll und welcher Controller.
+Mit der .otherwise Funktion kann ein sogenannter Fallback implementiert werden für einen Aufruf der Hauptseite.
+Innerhalb der URL können auch gleich Parameter mit Hilfe von vorangestellten Doppelpunkten angegeben werden die automatisch die erfolgte Eingabe in der URL im entsprechenden Controller bereitstellen.
 
-Zur Darstellung der Daten setzt Angular auf das Model View ViewModel
-Prinzip (MVVM), das von Microsoft entwickelt wurde. Für diesen
-Einsatzweck ist es passender als beispielsweise Model View Controller
-(MVC), da das ViewModel ein two-way data-binding zwischen der View und
-dem Model ermöglicht. Anders als viele zuerst vermuten, stellt das
-ViewModel dabei keinen Ersatz für den Controller dar. Dieser ist zwar
-nicht explizit in der Abkürzung genannt, wird aber weiterhin benötigt.
-Im Unterschied zu MVVM werden in MVC bei Änderungen im View nicht
-automatisch im Model aktualisiert. Das ViewModel hat daher die Aufgabe
-jede Änderung in der View auch an das Model zu übertragen und auch
-umgekehrt in die andere Richtung. Wird beispielsweise das Model geändert
-wird diese Änderung sofort an die View übertragen. Eines der
-Alleinstellungsmerkmale von AngularJS unter den JavaScript Frameworks
-stellt Dependency Injection dar. Es ist ein Entwurfsmuster mit dem
-Abhängigkeiten zentral aufgelöst werden können. Die benötigten Objekte
-werden zur Laufzeit zur Verfügung gestellt. Dadurch wird die
-Austauschbarkeit erhöht und auch das Testen der Anwendung in dem Teile
-durch Mock-Objekte ausgetauscht werden. Näheres dazu dann im Kapitel zur
-Testbarkeit.
+Zur Darstellung der Daten setzt Angular auf das Model View ViewModel Prinzip (MVVM), das von Microsoft entwickelt wurde.
+Für diesen Einsatzweck ist es passender als beispielsweise Model View Controller (MVC), da das ViewModel ein two-way data-binding zwischen der View und dem Model ermöglicht.
+Anders als viele zuerst vermuten, stellt das ViewModel dabei keinen Ersatz für den Controller dar.
+Dieser ist zwar nicht explizit in der Abkürzung genannt, wird aber weiterhin benötigt.
+Im Unterschied zu MVVM werden in MVC bei Änderungen im View nicht automatisch im Model aktualisiert.
+Das ViewModel hat daher die Aufgabe jede Änderung in der View auch an das Model zu übertragen und auch umgekehrt in die andere Richtung.
+Wird beispielsweise das Model geändert wird diese Änderung sofort an die View übertragen.
+Eines der Alleinstellungsmerkmale von AngularJS unter den JavaScript Frameworks stellt Dependency Injection dar.
+Es ist ein Entwurfsmuster mit dem Abhängigkeiten zentral aufgelöst werden können.
+Die benötigten Objekte werden zur Laufzeit zur Verfügung gestellt.
+Dadurch wird die Austauschbarkeit erhöht und auch das Testen der Anwendung in dem Teile durch Mock-Objekte ausgetauscht werden.
+Näheres dazu findet sich im Kapitel zur Testbarkeit.
 
-AngularJS sieht für die Strukturierung folgendes vor: - Module - Models
-- View-Templates - Controller - Scopes - Filter - Services Diese
-Komponenten können mittels eines Dependency Containers zusammengeführt
-werden. Dadurch wird ein modulares Design ermöglicht welches Komponenten
-austauschbar macht. Module: Alle zusammengehörenden Komponenten einer
-Anwendung werden zur besseren Trennung in Module strukturiert. Auch hier
-kommt das Konzept von Dependency Injection zum Tragen. In einem Modul
-können wiederum weitere Module eingebunden werden. Models: AngularJS
-gibt für Models keine besonderen Klassen vor von denen geerbt werden
-müsste. Diese stellen dadurch klassische JavaScript Objekte dar, die
-einen Aspekt der Domäne repräsentieren. View-Templates: Das sind in der
-Regel Teile von HTML Seiten die mit Platzhaltern oder bestimmten
-Angular-Direktiven gefüllt sind. Beispielsweise der Platzhalter
-\{\{myVariable\}\} wird im HTML Quelltext durch die Variable aus dem
-Controller ausgetauscht. Direktiven erlauben die Erweiterung des HTML um
-Tags. Dabei gibt es viele nützliche Funktionen wie beispielsweise
-Objekte in einer Schleife durch zu iterieren. Controller: In AngularJS
-werden Controller hauptsächlich zur Erstellung von Scopes verwendet. Die
-Controller fallen dadurch auch recht kompakt aus. Das heißt für jede
-CRUD Operation (Create Read Update Delete) und für jedes Model wird in
-AngularJS ein eigener Controller erstellt. Beispielsweise ein
-ShowProjectsController. Oftmals werden die Controller auch mit Ctrl
-abgekürzt. In unserem Fallbeispiel haben wir uns aber zugunsten der
-besseren Verständlichkeit dagegen entschieden. Jede komplexere Logik
-sollte in eigenen Services ausgelagert werden und wieder mittels
-Dependency Injection eingebunden werden. Scopes: Scopes bündeln die
-Daten und Funktionen eines Controllers und ermöglichen die Kommunikation
-zwischen Controllern untereinander. Sie beziehen sich immer nur auf
-einen bestimmten Abschnitt innerhalb des DOM (Document Object Model)
-Filter: Haben wir glaub ich nicht wirklich verwendet? TODO Services: In
-unserer Beispielanwendung haben wir beispielsweise den \$resource
-Service eingebunden. Damit wird ermöglicht, dass unsere REST
-Schnittstelle angesprochen werden kann. Services werden generell als
-Singleton instanziiert.
+AngularJS sieht für die Strukturierung folgendes vor:
+\begin{itemize}
+	\item Module
+	\item Models
+	\item View-Templates
+	\item Controller
+	\item Scopes
+	\item Filter
+	\item Services
+\end{itemize}
+Diese Komponenten können mittels eines Dependency Containers zusammengeführt werden.
+Dadurch wird ein modulares Design ermöglicht welches Komponenten austauschbar macht.
+Module:
+Alle zusammengehörenden Komponenten einer Anwendung werden zur besseren Trennung in Module strukturiert.
+Auch hier kommt das Konzept von Dependency Injection zum Tragen.
+In einem Modul können wiederum weitere Module eingebunden werden.
+Models:
+AngularJS gibt für Models keine besonderen Klassen vor von denen geerbt werden müsste.
+Diese stellen dadurch klassische JavaScript Objekte dar, die einen Aspekt der Domäne repräsentieren.
+View-Templates:
+Das sind in der Regel Teile von HTML Seiten die mit Platzhaltern oder bestimmten Angular-Direktiven gefüllt sind.
+Beispielsweise der Platzhalter {{myVariable}} wird im HTML Quelltext durch die Variable aus dem Controller ausgetauscht.
+Direktiven erlauben die Erweiterung des HTML um Tags.
+Dabei gibt es viele nützliche Funktionen wie beispielsweise Objekte in einer Schleife durch zu iterieren. 
+Controller:
+In AngularJS werden Controller hauptsächlich zur Erstellung von Scopes verwendet.
+Die Controller fallen dadurch auch recht kompakt aus.
+Das heißt für jede CRUD Operation (Create Read Update Delete) und für jedes Model wird in AngularJS ein eigener Controller erstellt.
+Beispielsweise ein ShowProjectsController.
+Oftmals werden die Controller auch mit Ctrl abgekürzt.
+In unserem Fallbeispiel haben wir uns aber zugunsten der besseren Verständlichkeit dagegen entschieden.
+Jede komplexere Logik sollte in eigenen Services ausgelagert werden und wieder mittels Dependency Injection eingebunden werden. 
+Scopes:
+Scopes bündeln die Daten und Funktionen eines Controllers und ermöglichen die Kommunikation zwischen Controllern untereinander.
+Sie beziehen sich immer nur auf einen bestimmten Abschnitt innerhalb des DOM (Document Object Model)
+Filter: Haben wir glaub ich nicht wirklich verwendet? TODO
+Services:
+In unserer Beispielanwendung haben wir beispielsweise den $resource Service eingebunden.
+Damit wird ermöglicht, dass unsere REST Schnittstelle angesprochen werden kann.
+Services werden generell als Singleton instanziiert.
 
-Zur Selektierung von Elementen verwendet AngularJS ein integriertes
-jQuery Lite (jqLite). Falls jQuery ebenfalls ausgeliefert wird, wird
-auch diese jQuery Version von AngularJS verwendet und nicht jqLite.
+Zur Selektierung von Elementen verwendet AngularJS ein integriertes jQuery Lite (jqLite).
+Falls jQuery ebenfalls ausgeliefert wird, wird auch diese jQuery Version von AngularJS verwendet und nicht jqLite.
 
-Aktuell befindet sich AngularJS in der Version 1.4.8. Es ist jedoch
-schon seit längerer Zeit bekannt, dass die nächste große Version 2.0
-nicht abwärtskompatibel sein wird mit Version 1.x. Version 2.0 befindet
-sich im Moment noch im Beta Stadium und es ist noch nicht abzusehen wann
-es veröffentlicht wird. Aus diesem Grund haben wir uns auch dagegen
-entschieden auf Version 2.0 zu setzen. Je nach geplanter Lebensdauer der
-Webanwendung sollte entschieden werden ob ein Einsatz in Frage kommt.
-
+Aktuell befindet sich AngularJS in der Version 1.4.8.
+Es ist jedoch schon seit längerer Zeit bekannt, dass die nächste große Version 2.0 nicht abwärtskompatibel sein wird mit Version 1.x.
+Version 2.0 befindet sich im Moment noch im Beta Stadium und es ist noch nicht abzusehen wann es veröffentlicht wird.
+Aus diesem Grund haben wir uns auch dagegen entschieden auf Version 2.0 zu setzen.
+Je nach geplanter Lebensdauer der Webanwendung sollte entschieden werden ob ein Einsatz in Frage kommt.
