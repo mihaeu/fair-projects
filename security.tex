@@ -1,4 +1,4 @@
-\subsubsection{Security: Das KO-Kriterium für den Produktiveinsatz
+\subsection{Security: Das KO-Kriterium für den Produktiveinsatz
 (Marinus)}\label{security-das-ko-kriterium-fuxfcr-den-produktiveinsatz-marinus}
 
 Immer wenn neue Technologien sich verbreiten stellt sich die Frage, wie
@@ -9,7 +9,7 @@ auch heute) oft in Verbindung mit erfolgreichen Angriffen in der Kritik.
 Im Nachfolgenden wird auf bekannte Angriffsvektoren speziell für den
 MEAN Stack eingegangen.
 
-\paragraph{JavaScript}\label{javascript}
+\subsubsection{JavaScript}\label{javascript}
 
 Wenn über die Angreifbarkeit eines MEAN Stacks gesprochen wird, können
 die Einflüsse der drunterliegenden Sprache nicht ignoriert werden.
@@ -19,7 +19,7 @@ von typisierten Sprachen zu erstellen. Aus diesem Grund ist die
 Unterstützung durch Entwicklungsumgebungen oder externen
 Überprüfungsprogrammen prinzip-bedingt eingeschränkt.
 
-\paragraph{Node.js}\label{node.js}
+\subsubsection{Node.js}\label{node.js}
 
 Node.js benutzt wie bereits erwähnt für alle Verbindungen lediglich
 einen Thread. Angreifer versuchen dieses Prinzip zu nutzen. Durch
@@ -53,14 +53,14 @@ starten. Mit der Methode 'exec()' des ``child\_process'' Moduls kann
 jeglicher Code ausgeführt werden. Hier sollte besser auf die Methode
 `execFile()' zurückgegriffen werden.
 
-\paragraph{Express}\label{express}
+\subsubsection{Express}\label{express}
 
 Zu Express selbst sind bisher nur wenige Angriffe bekannt. Dies liegt in
 erster Linie am beschränkten Funktionsumfang. Zu Angriffsszenarien wie
 Cross Site Request Forgery und ähnlichen Themen müssen eigener Code oder
 andere Bibliotheken verwendet werden.
 
-\paragraph{NPM}\label{npm}
+\subsubsection{NPM}\label{npm}
 
 Der Packet Manager von Node.js ist eines der kritischsten Punkte einer
 MEAN Anwendung. Mit npm ist es einfach möglich fremde Pakete in ein
@@ -92,4 +92,3 @@ Das Ergebnis ist die Löschung des eigenen Systems.
 
 So viele Vorteile der Paketmanager auch bietet, muss er doch mit hoher
 Vorsicht behandelt werden.
-

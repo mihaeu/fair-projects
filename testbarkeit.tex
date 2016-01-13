@@ -1,15 +1,12 @@
-\subsubsection{Testbarkeit (Michi)}\label{testbarkeit-michi}
+\subsection{Testbarkeit (Michi)}\label{testbarkeit-michi}
 
 Viele Javascript Projekte und darunter u.a. AngularJS werben damit
-leicht testbar zu sein
-\href{https://docs.angularjs.org/guide/unit-testing}{AngularJS Developer
-Guide - Unit Testing}.
+leicht testbar zu sein \cite{angular-testing}.
 
 Um die Qualität einer Single-Page Anwendung zu sichern, gilt es folgende
 Ebenen zu testen:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   Frontend Unit Tests
 \item
@@ -18,8 +15,8 @@ Ebenen zu testen:
   Integrations/E2E (End-to-End) Tests
 \end{itemize}
 
-Wir möchten die Testbarkeit eines MEAN Stacks nicht nur mit den in
-Javascript üblichen Praktiken vergleichen, sondern sprachübergreifende
+Wir möchten die Testbarkeit eines MEAN Stacks nicht nur mit den, in
+Javascript üblichen, Praktiken vergleichen, sondern sprachübergreifende
 Erwartungen an die Testbarkeit einer verteilten Anwendung stellen.
 
 Während der Vorbereitung auf dieses Projekt fanden wir keine Quellen
@@ -27,7 +24,7 @@ oder Beispielimplementierungen, welche den gesamten Testprozess des MEAN
 Stacks beschreiben. Darüber hinaus haben viele häufig verwendete
 Erweiterungen keine oder nur unzureichende Testabdeckung.
 
-\paragraph{Frontend Unit Tests}\label{frontend-unit-tests}
+\subsubsection{Frontend Unit Tests}\label{frontend-unit-tests}
 
 AngularJS unterstützt das Testframework
 \href{http://jasmine.github.io/}{Jasmine} und die meisten anderen
@@ -53,7 +50,7 @@ die Tests automatisiert auf verschiedenen Browsern auszuführen.
 TODO evtl. hier noch auf Mockproblematik mit Jasmine verweisen oder auf
 das nächste Kapitel verweisen
 
-\paragraph{Backend Unit Tests}\label{backend-unit-tests}
+\subsubsection{Backend Unit Tests}\label{backend-unit-tests}
 
 In der Dokumentation von Express wird der Testvorgang oder generell
 Testbarkeit nicht behandelt. Wie bereits im Kapitel zu Express genannt,
@@ -98,7 +95,7 @@ erstellen. Die Tests werden dann so geschrieben, dass die Testbedingung
 (assert) erst geprüft wird, wenn das Promise aus dem Mockobjekt erfüllt
 ist.
 
-\paragraph{E2E Tests}\label{e2e-tests}
+\subsubsection{E2E Tests}\label{e2e-tests}
 
 Bei End-to-End (oder auch: Systemtests) wird das gesamte System mit
 allen Abhängigkeiten getestet. In anderen Sprachen wird dabei z.B. die
@@ -132,7 +129,7 @@ beschriebenen Problematik) und testen die Endpunkte der Express API.
 Erweiterung für Jasmine und erlaubt es für REST Anfragen die Antworten
 zu testen (z.B. hinsichtlich Status Code oder Body).
 
-\paragraph{Testabdeckung}\label{testabdeckung}
+\subsubsection{Testabdeckung}\label{testabdeckung}
 
 Testabdeckung kann für alle oben genannten Testframeworks (sogar für E2E
 Tests die mit Protractor geschrieben wurden, dies ist jedoch nur bedingt
@@ -151,7 +148,7 @@ Webservices wie
 Climate}, welche sich auf Trendanalysen von Testabdeckung spezialisiert
 haben. Diesen Service verwendet auch Fair Projects.
 
-\paragraph{Testautomatisierung}\label{testautomatisierung}
+\subsubsection{Testautomatisierung}\label{testautomatisierung}
 
 Da es sich bei Travis um ein Open-Source Projekt handelt verwenden wir
 Travis CI als Continuous Integration Server.
@@ -173,13 +170,13 @@ Displays an Servern die kein Display haben) ein Display zu emulieren.
 Auch hier würde sich ein interner CI Server mit Display und echter
 Browserumgebung anbieten um korrekte Testergebnisse zu bekommen.
 
-\subsubsection{Werkzeuge (Michi)}\label{werkzeuge-michi}
+\subsection{Werkzeuge (Michi)}\label{werkzeuge-michi}
 
 Die folgenden Kapitel diskutieren die verschiedenen Werkzeuge, die bei
 der Entwicklung von Fair Projects verwendet wurden und Alternativen,
 falls vorhanden.
 
-\paragraph{Dependency Management}\label{dependency-management}
+\subsubsection{Dependency Management}\label{dependency-management}
 
 In jeder Node Installation ist der bereits erwähnte Node Package Manager
 npm integriert. Dieser wird zur lokalen und globalen Installtion von
@@ -191,7 +188,7 @@ Für Abhängigkeiten im Frontend Bereich hat sich
 Um die Installation zu erleichtern führt npm bei der Installation der
 Abhängigkeiten anschließend \texttt{bower\ install} aus.
 
-\paragraph{Build Management}\label{build-management}
+\subsubsection{Build Management}\label{build-management}
 
 Build Management ist v.a. aus kompilierten Sprachen wie C oder Java
 bekannt. Bekannte Vertreter hierfür sind z.B. Make, Ant, Maven oder
@@ -248,7 +245,7 @@ Das Build Management ist somit kein reines Argument für MEAN, da die
 meisten Aufgaben die von Grunt erledigt werden das Frontend betreffen
 und dies Browser-bedingt immer Javascript ist.
 
-\paragraph{Qualitätssicherung}\label{qualituxe4tssicherung}
+\subsubsection{Qualitätssicherung}\label{qualituxe4tssicherung}
 
 Wie bereits im vorigen Kapitel erwähnt, verwendet Fair Projects
 statische analysen um den Javascript Code zu prüfen. Ein klarer Vorteil
@@ -270,7 +267,7 @@ Viele Firmen wie Google oder Microsoft benutzen Technologien (GWT) oder
 Sprachen (Typescript, Dart) die typsicher sind oder mehr Struktur bieten
 und auf Javascript kompiliert werden können (siehe Ausblick).
 
-\paragraph{Entwicklungsumgebung}\label{entwicklungsumgebung}
+\subsubsection{Entwicklungsumgebung}\label{entwicklungsumgebung}
 
 Die im vorigen Kapitel genannten Eigenschaften von Javascript führen
 leider dazu, dass die Entwicklungsumgebungen für Javascript nicht die
@@ -285,7 +282,7 @@ Fremdbibliotheken aufbaut, erschwert dies die Entwicklung.
 Werkzeuge wie Grunt, JSHint usw. werden allerdings einwandfrei
 unterstützt und ermöglichen ohne den Einsatz der Konsole zu arbeiten.
 
-\paragraph{Debugging und Profiling}\label{debugging-und-profiling}
+\subsubsection{Debugging und Profiling}\label{debugging-und-profiling}
 
 Sehr angenehm hingegen waren unsere Erfahrungen mit Profiling und
 Debugging. Da sowohl Mozilla als auch Google viel Javascript in ihren
@@ -305,9 +302,9 @@ können.
 \href{https://developer.chrome.com/devtools/docs/javascript-memory-profiling}{Quelle}
 \href{https://developer.chrome.com/devtools/docs/cpu-profiling}{Quelle}
 
-\subsubsection{Auslieferung (Michi)}\label{auslieferung-michi}
+\subsection{Auslieferung (Michi)}\label{auslieferung-michi}
 
-\paragraph{Installation}\label{installation}
+\subsubsection{Installation}\label{installation}
 
 Die einzige benötigte Abhängigkeit auf einem aktuellen Linux Server sind
 Node und MongoDB. Beide können in der Regel über den Paketmanager der
@@ -346,7 +343,7 @@ bestimmten Größe lohnen.
 Darüber hinaus benötigt man Monitoring um Node beim Absturz oder falls
 es zu einem Memoryloch kam, automatisch neu zu starten.
 
-\paragraph{Docker}\label{docker}
+\subsubsection{Docker}\label{docker}
 
 Fair Projects nutzt Docker um das Setup der verschiedenen Komponenten am
 Server zu automatisieren (Provisioning). Die Anwendung wird beim
@@ -360,4 +357,3 @@ theoretisch auch) vertikal zu skalieren.
 Die Kombination aus MongoDB und Node lässt sich somit leicht skalieren
 (falls Sessions in der Datenbank gespeichert werden) und bei steigender
 Last können auf Mausklick neue Instanzen gestartet werden.
-
