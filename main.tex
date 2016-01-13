@@ -33,58 +33,111 @@
 \usepackage[ngerman]{babel}
 \usepackage{ellipsis}
 \usepackage{microtype}
+\usepackage{bibgerm}
+\usepackage{xcolor}
+\usepackage{framed}
+\definecolor{shadecolor}{gray}{.85}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=false, pdfborder={0 0 0}, breaklinks=true]{hyperref}
+\floatsetup[figure]{capbesideposition={inside,top}}
+\floatsetup[table]{capbesideposition={inside,top},style=plaintop}
+\renewfloatcommand{fcapside}{figure}[\capbeside][\FBwidth]
+\newfloatcommand{tcapside}{table}[\capbeside][\FBwidth]
+\selectlanguage{ngerman}
+\deffootnote{1em}{1em}{\makebox[1em][l]{\thefootnotemark}}
+\newcommand{\real}{\mathord{\mathrm{I\!R}}}
+\DeclareGraphicsExtensions{.eps, .jpg}
+\textheight23.5cm
+\textwidth15.5cm
+\topmargin-1.6cm
+\headheight1cm
+\headsep0.7cm
+\topskip0.7cm
+\oddsidemargin0cm
+\evensidemargin0cm
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+\setcounter{tocdepth}{1} 
+\setlength{\parindent}{0.0cm}
 
+\usepackage{ifxetex,ifluatex}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
 
-%\usepackage{lmodern}
-%\usepackage{amssymb,amsmath}
-%\usepackage{ifxetex,ifluatex}
-
-%\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-
-
-
-
-
-
-
-
-
-\author{Michael Häuslmann, Markus Rodler, Marinus Noichl, Fabian Gerbig}
-\title{Fair Projects - Analyse des MEAN Stacks}
-
-\linespread{1.5}
 
 \begin{document}
-
-\maketitle
-\newpage
-\tableofcontents
-
-\input{./einfuehrung}
-\input{./motivation}
-\input{./fallstudie}
-
-\input{./mongodb}
-\input{./express}
-\input{./angular}
-\input{./node}
-
-\input{./testbarkeit}
-\input{./security}
-\input{./mean-frameworks}
-\input{./ausblick}
-\input{./fazit}
-
-\appendix
-
-\section{Danksagung?}\label{danksagung}
-
-\begin{thebibliography}{9}
 	
-	\bibitem{angular-testing}
-	  https://docs.angularjs.org/guide/unit-testing
+	\thispagestyle{empty}
+	\input{Titelblatt}
+	\newpage 
+	\thispagestyle{empty}
+	\text{} \newpage
 	
-\end{thebibliography}
+	\renewcommand{\chaptermark}[1]{\markboth{Kapitel \thechapter \hspace{1em} #1}{}}
+	\renewcommand{\sectionmark}[1]{\markright{\thesection \hspace{1em} #1}}
+	\cfoot{}
+	
+	\pagenumbering{roman}
+	\setcounter{page}{3} 
+	
+	\tableofcontents
+	
+	\newpage
+	\pagenumbering{arabic}
+	
+	\parskip1.5ex
+	
+	% Hier Kapitel einfuegen
+	\input{./einfuehrung}
+	\input{./definition}	
+	\input{./motivation}
+	\input{./fallstudie}
+	
+	\input{./mongodb}
+	\input{./express}
+	\input{./angular}
+	\input{./node}
+	
+	\input{./testbarkeit}
+	\input{./security}
+	\input{./mean-frameworks}
+	\input{./ausblick}
+	\input{./fazit}
+	
+	\part*{Anhang}
+	\renewcommand{\chaptermark}[1]{\markboth{Anhang \thechapter \hspace{1em} #1}{}}
+	\begin{appendix}
+		%% \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+		\bibliography{bibfile}
+		\bibliographystyle{geralpha}
+	\end{appendix}
+	
+	\chapter{Danksagung?}\label{danksagung}
+	
+	\begin{thebibliography}{9}
+		
+		\bibitem{angular-testing}
+		  https://docs.angularjs.org/guide/unit-testing
+		
+	\end{thebibliography}
 
 \end{document}

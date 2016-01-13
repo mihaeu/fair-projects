@@ -1,4 +1,4 @@
-\subsection{Express (Michi)}\label{express-michi}
+\chapter{Express (Michi)}\label{express-michi}
 
 \textbf{Grobschrift, da muss noch viel geändert und zitiert werden.}
 
@@ -36,7 +36,7 @@ Erweiterte Funktionalität muss bei Express über 3rd-Party Erweiterungen
 hinzugefügt werden. Die Wartung dieser Erweiterungen wird dabei nicht
 kontrolliert oder von den Entwicklern von Express beeinflusst.
 
-\subsubsection{Installation und
+\section{Installation und
 Versionierung}\label{installation-und-versionierung}
 
 Die Installation von Express erfolgt über npm (den Node Package Manager)
@@ -54,7 +54,7 @@ der Ersatz die entsprechenden Versionen von Express und Node
 unterstützt. Auf Grund der häufig sehr hohen Anzahl an Erweiterungen ist
 dies oft problematisch.
 
-\subsubsection{Kernfunktionalität}\label{kernfunktionalituxe4t}
+\chapter{Kernfunktionalität}\label{kernfunktionalituxe4t}
 
 Die Kernfunktionalität von Express ist, wie bereits erwähnt wurde, sehr
 beschränkt. Im Prinzip übernimmt Express lediglich das Routing der
@@ -64,7 +64,7 @@ Erweiterte Funktionalität wird über Middlewares ermöglicht. Middlewares
 können das Request und Response Objekt verändern und weiter- bzw.
 umleiten oder terminieren (z.B. falls keine Zugriffsrechte bestehen).
 
-\subsubsection{Anwendung}\label{anwendung}
+\chapter{Anwendung}\label{anwendung}
 
 Da Javascript eine Prototyp-basierte Sprache ist, die zumindest vor dem
 ES6 Standard kein Klassenkonzept kennt und auf Grund der Art wie Express
@@ -102,7 +102,7 @@ module.exports = function() {
 };
 \end{verbatim}
 
-\subsubsection{Dependency Injection}\label{dependency-injection}
+\section{Dependency Injection}\label{dependency-injection}
 
 Da die Funktionalität in Express üblicherweise (vgl.
 \href{http://expressjs.com/en/starter/basic-routing.html}{Dokumentation})
@@ -145,7 +145,7 @@ Mit dieser Implementierung war es uns möglich die Controller zu testen,
 da lediglich Mockobjekte für \texttt{req} und \texttt{res} erzeugt
 werden müssen.
 
-\subsubsection{Typische Probleme der
+\section{Typische Probleme der
 Webentwicklung}\label{typische-probleme-der-webentwicklung}
 
 Express unterstützt die häufigst verwendeten Javascript Template Engines
