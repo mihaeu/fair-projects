@@ -101,7 +101,7 @@ module.exports = function() {
   return new ProjectController();
 };
 \end{verbatim}
-
+\lstset{basicstyle=\footnotesize\ttfamily, language=JavaScript, showspaces=false }
 \section{Dependency Injection}\label{dependency-injection}
 
 Da die Funktionalität in Express üblicherweise (vgl.
@@ -131,15 +131,20 @@ verletzt u.a. das Single Responsibility Principle
 The Principles of OOD von Uncle Bob}. Express verhindert jedoch eine
 andere Implementierungsweise.
 
-\begin{verbatim}
-var dicMiddleware = function(req, res, next) {
-  req.dic = {
-    subjectRepository: require('../models/SubjectRepository'),
-  };
-  next();
-};
-subjectRouter.use('/', dicMiddleware);
-\end{verbatim}
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+		var dicMiddleware = function(req, res, next) {
+		  req.dic = {
+		    subjectRepository: require('../models/SubjectRepository'),
+		  };
+		  next();
+		};
+		subjectRouter.use('/', dicMiddleware);
+	\end{lstlisting}
+	\caption[dicMiddleware]{TODO: Programmbeispiel für eine dicMiddleware}
+	\label{f:dicMiddleware}
+\end{figure}
 
 Mit dieser Implementierung war es uns möglich die Controller zu testen,
 da lediglich Mockobjekte für \texttt{req} und \texttt{res} erzeugt
