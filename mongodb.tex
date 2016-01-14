@@ -146,7 +146,26 @@ Durch diese Bibliothek soll Object Data Modelling (ODM) im Zusammenhang mit Mong
 Der Hauptvorteil von Mongoose besteht in der Abstraktion von Daten der MongoDB.
 Man kann sich Mongoose als abstrakte Schicht über MongoDB, der die schemalosen Daten auf Objekte Mappt vorstellen.
 Viele Entwickler, die es vorher mit SQL-Datenbanken zu tun hatten dürften damit wesentlich besser zurecht kommen,
-als mit den dynamischen Sammlungen von MongoDB. Durch das Verwenden von Schemas und Models werden Strukturen definiert.
+als mit den dynamischen Sammlungen von MongoDB.
+
+\begin{figure}[h]
+	\centering
+	\begin{lstlisting}
+		var mongoose = require('mongoose');
+		mongoose.connect('mongodb://localhost/test');
+
+		var Cat = mongoose.model('Cat', { name: String });
+
+		var kitty = new Cat({ name: 'Zildjian' });
+		kitty.save(function (err) {
+		if (err) // ...
+		console.log('meow');
+});
+	\end{lstlisting}
+	\caption[mongooseSchema]{Programmbeispiel}
+\end{figure}
+
+Anhand dieses Beispiels erkennt man wie mithilfe von Schemas und Models Strukturen definiert werden.
 
 Außerdem bietet diese Bibliothek auch noch einige andere Funktionalitäten. Unter anderem zum Einsatz von Middleware, Plug-Ins und zur Validierung.
 
