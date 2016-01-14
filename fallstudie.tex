@@ -1,12 +1,12 @@
-\section{Fallstudie: Fair Projects (Markus)}
+\section{Fallstudie: Fair Projects}
 \label{fallstudie-fair-projects}
 
 Als Beispielanwendung für die Erstellung einer MEAN Anwendung kommt das Problem der Verteilung von Projekten zum Einsatz.
 So sind Projektarbeiten im Studienumfeld oft anzutreffen und die zu erarbeitenden Themen sind dabei für die Teilnehmer oftmals vordefiniert.
 Jetzt stellt sich das Problem, welcher Teilnehmer, welches Projekt zugeteilt bekommen.
 Die Verteilung ist dabei oft recht langwierig.
-Um dieses Problem zu lösen ist das Windhundprinzip sehr beliebt. Dort erhält der der zuerst kommt, den Zuschlag erhält.
-Das fürht meist dazu, dass dies der mit dem am stärksten ausgeprägten Stimmorgan ist. 
+Um dieses Problem zu lösen ist das Windhundverfahren sehr beliebt. Dort erhält der der zuerst kommt, den Zuschlag erhält.
+Das führt meist dazu, dass dies der mit dem am stärksten ausgeprägten Stimmorgan ist. 
 
 Unsere Idee, um dieses Problem fair zu lösen, ist die Verteilung mittels Priorisierung.
 Dazu soll eine Webanwendung entwickelt werden, auf die alle Teilnehmer Zugriff haben. 
@@ -20,6 +20,19 @@ Der grundlegende Ablauf dabei sieht folgendermaßen aus:
 	\item Die Studenten können anschließend ihre Prioritäten für jedes der Projekte vergeben
 	\item Der Professor kann die Projekte anschließend, anhand der Übersichtstabelle mit allen Prioritäten, verteilen
 \end{itemize}
+
+Einen ersten Grobentwurf für die Webanwendung ist dabei unter Abbildung \ref{f:fallstudie:firstdraft} zu finden. Dargestellt sind die einzelnen Oberflächen und die Übergänge dazwischen. Benutzer können sich im Fenster oben links einloggen und erhalten danach eine Liste aller Fächer für die eine Umfrage existiert. Diese Fächer können dort auch wieder gelöscht werden. In der ersten Iteration dieser Anwendung wird noch nicht zwischen Personen unterschieden, da es nur als technischer Durchstich dienen soll. Das heißt, dass Person A in der Rolle Student könnte auch wieder Umfragen löschen, die von Person B in der Rolle als Professor erstellt wurden. Ein entsprechendes Rollenkonzept würde in einer der nächsten Iterationen kommen.
+Ein Student könnte, wie im Fenster unten links zu sehen ist, an einer Umfrage teilnehmen und seine Prioritäten für die Fächer verteilen.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/fairprojectsFirstDraft.png}
+	\caption{Erster Entwurf von FairProjects}
+	\label{f:fallstudie:firstdraft}
+\end{figure}
+
+
+
 \begin{itemize}
 	\item Mockups
 	\item Architektur
