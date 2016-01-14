@@ -85,7 +85,7 @@ aus.
 Die Daten werden im sogenannten BSON Format gespeichert und
 ausgetauscht.
 
-BASE
+Bedingt durch die oben genannten Konzepte ist eine strenge Einhaltung der ACID (atomar, consistency, isolation, durability) Kriterien nicht möglich. Es wird ein Tradeoff von Konsistenz und Isolation zu einer besseren Performanz und Skalierbarkeit eingegangen. Da man auf Konsistenz allerdings nicht vollständig verzichten kann wird das abgeschwächte BASE (Basically Available, Soft state, Eventual consistency) angestrebt. Hierbei wird nur eine "weiche" Konsistenz gewährleistet. Dadurch steigt der Aufwand für die Anwendungsentwicklung, die daraus entstehende Probleme abfangen muss.
 
 \section{Usecases}\label{usecases}
 
@@ -99,6 +99,14 @@ BASE
 
 \section{Mongoose}\label{mongoose}
 
-Bei Mongoose handelt es sich um ein Modul für NodeJS. Object Data
-Modelling (ODM)
+Bei Mongoose handelt es sich um eine Bibliothek für das Node Framework. Durch diese Bibliothek soll Object Data Modelling (ODM) im Zusammenhang mit MongoDB als Datenbank ermöglicht werden.
 
+Der Hauptvorteil von Mongoose besteht in der Abstraktion von Daten der MongoDB. Viele Entwickler, die es vorher mit SQL-Datenbanken zu tun hatten dürften damit wesentlich besser zurecht kommen, als mit den dynamischen Sammlungen von MongoDB. Durch das Verwenden von Schemas und Models können Strukturen definiert werden.
+
+Außerdem bietet diese Bibliothek auch noch einige andere Funktionalitäten. Unter anderem zum Einsatz von Middleware, Plug-Ins und zur Validierung.
+
+Mongoose verwendet das Konzept Active Records. Dies ist ein durchaus umstrittenes Konzept, da es auf der einen Seite als leicht und schnell erlernbar gesehen wird, allerdings auf der anderen Seite das Testen erschwert und zu Flaschenhälsen in der Performanz führt.
+
+Die Dokumentation auf der offiziellen Webseite ist sehr unübersichtlich. Hierdurch wird das Arbeiten mit dieser Bibliothek erschwert.
+
+Die aktuelle Version von Mongoose wurde im Januar 2016 als 4.3.5. veröffentlicht.
