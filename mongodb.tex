@@ -46,7 +46,7 @@ ObjectID.
 Es gibt unterschiedliche Wege in der Datenbank zu referenzieren.
 Eine Möglichkeit ist die Referenzierung durch die Verschachtelung der Dokumente.
 Hierbei referenziert ein Dokument auf ein anderes einzelnes Dokument.
-Allerdings führt dies zu einer hohen Komplexität, wenn ein update auf
+Allerdings führt dies zu einer hohen Komplexität, wenn z.B. ein Update auf
 eine verschachtelte Information durchgeführt werden soll.
 
 Bei der ObjectID handelt es sich um die Standard ID, die jedes Dokument
@@ -69,8 +69,8 @@ Die Replikationen spielen bei NoSQL-Datenbanken eine zentrale Rolle. Diese sorge
 Server. Im Gegensatz zu RDBMS sind bei NoSQL-Datenbanken Rundanzen erwünscht.
 Denn diese dienen sowohl als Backup der Daten, als auch um die Performanz bei
 Leseoperationen zu steigern. Nachteil hierbei ist, dass die Konsistenz nicht mehr gewährleistet werden kann.
-Ein weiterer Nachteil ist das mehr Speicherplatz benötigt wird. Dies fällt jedoch bei
-verteilten Systemen nicht so stark ins Gewicht.
+Ein weiterer Nachteil ist das mehr Speicherplatz benötigt wird. Dies sollte jedoch, da es um
+verteilte Systeme geht, kein Problem darstellen.
 
 Bei MongoDB funktionieren die Replikationen nach dem Master-Slave-Prinzip. \cite{mongodb:replication}
 D.h. es existieren in der Datenbank lauter Replikationssets. Diese bestehten
@@ -82,14 +82,14 @@ inkonsistent sind. Es kann daher keine Konsistenz zum Transaktionszeitpunkt gara
 Im schlimmsten Fall funktioniert eine Schreiboperation auf der ausführenden primären Replikation und
 diese fällt aus bevor sie die Schreiboperation an die sekundären Replikationen
 weitergegeben konnte. Dies führt nämlich zu Datenverlust, ohne das MongoDB
-etwas davon mitbekommt. Die Datenbank denkt dann dass die Operation
+etwas davon mitbekommt. Die Datenbank denkt dann das die Operation
 erfolgreich ausgeführt wurde, obwohl das gar nicht der Fall ist.
 
-Jetzt könnte man sich fragen, warum eine Schreiboperation nur auf einer primären Replikationen ausgeführt wird.
+Jetzt könnte man sich fragen, warum eine Schreiboperation nur auf einer der primären Replikationen ausgeführt wird.
 Dadurch wird ja ein Flaschenhals bei der Performanz von Schreiboperation erzeugt.
 Das stimmt zwar, aber der Vorteil des automatischen failover überwiegt. Falls also
-der primäre Replikationen bei dem Versuch eine Schreiboperation auszuführen nicht erreicht werden kann,
-wird ein ehemals sekundärer Replikationen zum neuen primären definiert. Da es sich bei den sekundären Replikationen
+die primäre Replikation bei dem Versuch eine Schreiboperation auszuführen nicht erreicht werden kann,
+wird eine der ehemals sekundären Replikationen zur neuen primären Replikation definiert. Da es sich bei den sekundären Replikationen
 um eine Kopie der primären handelt ist dies ohne großen Aufwand möglich.
 
 Für Leseoperationen kann man MongoDB nach seinen eigenen Wünschen konfigurieren. \cite{mongodb:replication}
@@ -98,7 +98,7 @@ Vorteil hiervon wäre eine bessere Performanz bei Leseoperationen, da man quasi 
 Skalierungeseffekt erhält. Allerdings kann man nicht sicher
 sein, dass alle sekundären Replikationen die aktuellsten Daten beinhalten.
 D.h. man bekommt unter Umständen alte Datenstände zurück. Daher kann es durchaus sinnvoll sein
-auch Leseoperationen nur von der primären Replikation durchführen zu lassen.
+MongoDB so zu konfigurieren, dass auch Leseoperationen nur von der primären Replikation durchgeführt werden.
 
 \subsubsection{Sharding}
 Um den in der heutigen Zeit nicht ungewöhnlichen stark wachsenden Datenmengen
@@ -106,19 +106,20 @@ zu begegnen gibt es das automatische Sharding. Dieses sorgt für die
 Verteilung der Daten über mehrere Server. Dies wird auch als
 horizontale Skalierung bezeichnet. Hierdurch ergeben sich vielfältige Vorteile. Zum
 einen verursacht das vertikales Skalieren, also der Einsatz immer
-besserer Hardware exponentielle Kosten und ist irgendwo auch limitiert. Zum anderenen ist der Lokale
-Speicher möglicherweise einfach nicht groß genug. Da man einfach zusätzliche Server
+besserer Hardware exponentielle Kosten und ist auch nicht unbegrenzt möglich. Zum anderen ist der lokale
+Speicher möglicherweise einfach nicht groß genug. Da man durch das automatische Sharding einfach zusätzliche Server
 in das Datenbank System integrieren kann hat man diese Probleme nicht.
 
 Die Komponenten sind Shards, Config Server und mongos. Jedes Shard entspricht einem oben
 beschriebenen Replikationsset. Die Config Server beinhalten die
 Metadaten von dem Cluster. Sprich eine Map von den angefragten Daten und
-ihren Speicherorten. Um eine ausreichende Redundanz und Verfügbarkeit zu gewährleisten zu können
+ihren Speicherorten. Um eine ausreichende Redundanz und Verfügbarkeit gewährleisten zu können
 muss es drei Config Server geben. Dann gibt es noch die mongos. Diese
 werden von der Applikation angesprochen und führen die query Kommandos
 aus.
 
-Im Bereich Sharding wird außerdem Map and Reduce eingesetzt. Map and Reduce entspricht dem Group Operator in RDBMS.
+Um Sharding durchführen zu können wird außerdem Map and Reduce eingesetzt. Map and Reduce entspricht dem Group Operator in RDBMS.
+Hierbei werden auf allen Servern parallel Map Operationen ausgeführt. Danach fast die Reduce Operation alles zu einem Ergebnis zusammen.
 
 \subsubsection{BASE}
 Bedingt durch die oben genannten Konzepte ist eine strenge Einhaltung der ACID (atomar, consistency, isolation, durability) Kriterien nicht möglich. Es wird ein Tradeoff von Konsistenz und Isolation zu einer besseren Performanz und Skalierbarkeit eingegangen. Da man auf Konsistenz allerdings nicht vollständig verzichten kann wird das abgeschwächte BASE (Basically Available, Soft state, Eventual consistency) angestrebt. Hierbei wird nur eine "weiche" Konsistenz gewährleistet.
@@ -136,15 +137,15 @@ Den Hauptnachteil stellt die nicht wirklich gegebene Konsistenz dar.
 Dadurch steigt der Aufwand für die Anwendungsentwicklung, die daraus entstehende Probleme abfangen muss.
 
 MongoDB wird damit für viele Anwendungsfälle nicht geeignet sein, da man einen Tradeoff eingehen muss.
-Welche Datenbank verwendet werden sollte hängt somit immer von den Anforderungen ab.
+Welche Datenbank verwendet werden sollte hängt somit immer von den konkreten Anforderungen ab.
 
 \section{Mongoose}\label{mongoose}
 
 Bei Mongoose handelt es sich um ein Modul für das NodeJS Framework.
-Durch diese Bibliothek soll Object Data Modelling (ODM) im Zusammenhang mit MongoDB als Datenbank ermöglicht werden.
+Durch dieses Modul soll Object Data Modelling (ODM) im Zusammenhang mit MongoDB ermöglicht werden.
 
 Der Hauptvorteil von Mongoose besteht in der Abstraktion von Daten der MongoDB.
-Man kann sich Mongoose als abstrakte Schicht über MongoDB, der die schemalosen Daten auf Objekte Mappt vorstellen.
+Man kann sich Mongoose als abstrakte Schicht über MongoDB, der die schemalosen Daten auf Objekte mappt vorstellen.
 Viele Entwickler, die es vorher mit SQL-Datenbanken zu tun hatten dürften damit wesentlich besser zurecht kommen,
 als mit den dynamischen Sammlungen von MongoDB.
 
