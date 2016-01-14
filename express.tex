@@ -56,8 +56,7 @@ dies oft problematisch.
 \section{Kernfunktionalität}\label{kernfunktionalituxe4t}
 
 Die Kernfunktionalität von Express ist, wie bereits erwähnt wurde, sehr
-beschränkt. Im Prinzip übernimmt Express lediglich das Routing der
-Requests auf, vom Entwickler definierte, Callbacks.
+beschränkt. Im Prinzip übernimmt Express lediglich das Routing\footnote{Mapping der URL auf die Funktionen einer Anwendung} der Requests auf, vom Entwickler definierte, Callbacks.
 
 Einige Funktionen wie z.B. das Parsing einer Anfrage oder senden von Cookies
 sind eigentlich Kern einer jeder Webanwendung. Express benötigt jedoch sogar für
@@ -69,10 +68,10 @@ umleiten oder terminieren (z.B. falls keine Zugriffsrechte bestehen).
 
 \section{Anwendung}\label{anwendung}
 
-Da Javascript ist eine Prototyp-basierte Sprache, die zumindest vor dem
+Javascript ist eine Prototyp-basierte Sprache, die zumindest vor dem
 ES6 Standard kein Klassenkonzept kennt. Deshalb und auf Grund der Art wie Express
-die Routes (URI Endpunkte einer Anwendung) verarbeitet, ist es nicht möglich Controller als Klassen wie
-in einer typischen MVC (Model View Controller) Architektur umzusetzen.
+die Routes verarbeitet, ist es nicht möglich Controller als Klassen wie
+in einer typischen MVC (Model View Controller) Architektur umzusetzen\footnote{Dies gilt auch für Frameworks wie Total.js die damit werben ein komplettes MVC Framework zu sein]}.
 
 Aus Gründen der Übersichtlichkeit und um die Funktionalität zu kapseln
 und damit ggf. wiederverwendbar zu machen, haben wir die Callbacks der Routes in
@@ -81,37 +80,43 @@ auf den Controllern entsprechen dabei statischen Funktionen anderer
 Programmiersprachen\footnote{wie bereits erwähnt ist es in Express nicht möglich
 Methoden auf instanziierten Controllern aufzurufen}.
 
-\begin{verbatim}
-/**
- * Creates a ProjectController
- * @returns {ProjectController}
- */
-module.exports = function() {
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+	/**
+	* Creates a ProjectController
+	* @returns {ProjectController}
+	*/
+	module.exports = function() {
+	
+		'use strict';
+		
+		/**
+		* Updates an given project and returns the updated object.
+		*
+		* @param {http.IncomingMessage} req Express Request Objectistist
+		* @param {http.OutgoingMessage} res Express Response Object
+		* @callback next Callback which calls the next matching route.
+		*/
+		ProjectController.prototype.update = function(req, res, next) {
+			// ...
+		};
+		
+		return new ProjectController();
+	};
+	\end{lstlisting}
+	\caption[controller]{TODO: Programmbeispiel für das Controller Prinzip}
+	\label{f:controller}
+\end{figure}
 
-  'use strict';
-
-  /**
-   * Updates an given project and returns the updated object.
-   *
-   * @param {http.IncomingMessage} req Express Request Object
-   * @param {http.OutgoingMessage} res Express Response Object
-   * @callback next Callback which calls the next matching route.
-   */
-  ProjectController.prototype.update = function(req, res, next) {
-    // ...
-  };
-
-  return new ProjectController();
-};
-\end{verbatim}
-\lstset{basicstyle=\footnotesize\ttfamily, language=JavaScript, showspaces=false }
 \section{Dependency Injection}\label{dependency-injection}
 
 Da die Funktionalität in Express üblicherweise\cite{express-routing}
 via Callbacks realisiert wird, ist es nicht möglich Abhängigkeiten
 separat zu verwalten. Die Callbacks von Express kennen lediglich die
 Parameter \texttt{req}, \texttt{res} und \texttt{next}. Express
-unterstützt Dependency Injection nicht als Kernfunktionalität.
+unterstützt Dependency Injection nicht als Kernfunktionalität und bietet
+auch sonst keine Möglichkeit zur Inversion of Control (TODO).
 
 Dies hat zur Folge, dass die Erstellung von Objekten vielfach dupliziert
 wird und außerdem schlecht testbar ist. Die Abhängigkeiten werden
@@ -154,21 +159,18 @@ werden müssen.
 Webentwicklung}\label{typische-probleme-der-webentwicklung}
 
 Express unterstützt die häufigst verwendeten Javascript Template Engines
-(\href{http://github.com/visionmedia/jade}{Jade},
-\href{http://github.com/visionmedia/ejs}{EJS},
-\href{http://github.com/visionmedia/haml.js}{Haml}), liefert jedoch
+(Jade\cite{jade}, EJS\cite{ejs}, Haml\cite{haml}), liefert jedoch
 keine eigene Implementierung.
 
-Fair Projects nutzt Express als API und somit finden Templates in der
+Fair Projects nutzt Express als API Framework und somit finden Templates in der
 aktuellen Implementierung keinerlei Verwendung. Ein technischer
-Durchstich hat sowohl mit Jade als auch EJS einwandfrei funktioniert.
+Durchstich hat allerdings sowohl mit Jade als auch EJS einwandfrei funktioniert.
 
 Authentifizierung und Authorisierung kommen in den meisten klassischen
 und modernen Single-Page Anwendungen vor. Express unterstützt weder
-Sessions (es gibt aber eine offizielle Erweiterung
-\href{https://github.com/expressjs/session}{express-session}), noch
+Sessions (es gibt aber eine offizielle Erweiterung \cite{express-session}), noch
 Cookies und damit auch keine Authentifizierung. Die de-facto Erweiterung
-zur Authentifizierung ist \href{http://passportjs.org/}{Passport}.
+zur Authentifizierung ist Passport\cite{passport}.
 
 Fair Projects sollte ursprünglich ein externes
 Authentifizierungsverfahren von Github, Twitter oder Facebook verwenden.
@@ -187,19 +189,3 @@ Dokumentation diese nicht ausreichend beschreibt.
 Die aktuelle Implementierung legt Benutzer in der MongoDB Datenbank ab,
 verifiziert diese bei (API) Login und speichert die Session via Node.
 Benutzer müssen über die API erstellt werden.
-
-\begin{quote}
-Hierbei handelt es sich um ein minimalistisches und flexibles
-Webframework für Node.js. Es dient der einfacheren Entwicklung moderner
-Webanwendungen.
-\end{quote}
-
-\begin{quote}
-Vorteile - sehr viele Plugins - modularer Aufbau
-\end{quote}
-
-\begin{quote}
-Nachteile - erlaubt keine schoene Kapselung (Controller Problem also
-z.B. hat eine Methode keinen Zugriff auf this) - DI (Dependency
-Injection) nur ueber Umweg ueber Middleware moeglich - quick and dirty
-\end{quote}
