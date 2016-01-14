@@ -21,9 +21,7 @@ einsetzbaren Frameworks. Obwohl alle Technologien von MEAN einzeln
 betrachtet produktiv einsetzbar sind, erweist sich die Kombination
 dieser als problematisch.
 
-Die Entwickler haben aus den Problemen von Mean.IO, zum Beispiel dem
-nicht vorhandenen Versions Schema gelernt. Was wurde gegenüber Mean.IO
-geändert?
+\subsubsection{Was wurde gegenüber Mean.IO geändert?}
 
 Hinsichtlich der Modularität des Stacks wurden zwei wesentliche Änderungen durchgeführt. Erstens eine Änderung der Backend Struktur um das MVC Pattern zu unterstützen. Zweitens der AngularJS Teil wurde angepasst um vertikale Module zu ermöglichen.
 
@@ -37,6 +35,18 @@ In Zukunft soll die Kernfunktionalität weiter verbessert und Fehler behoben wer
 
 \cite{meanJS:blog} \cite{meanJS:article}
 
+Weitere Unterschiede sind im Build System zu erkennen. MeanJS setzt auf grunt und Mean.IO hat zu gulp gewechselt.
+Außerdem Unterscheidet sich die Boilerplate. MeanJS nutzt den Yeoman Generator, während Mean.IO auf eine Eigenentwicklung namens "mean" baut.
+
+\subsubsection{Welcher von Beiden ist der bessere?}
+
+Amon Haviv kann im MeanJS Projekt seine Erfahrungen nutzen, die er im Mean.IO Projekt gesammelt hat.
+Dabei geht es hauptsächlich um die oben angesprochenen Punkte wie Modularität, Versionierung und Community.
+
+Die Vorteile von Mean.IO sind im wesentlichen die größere Community, da dieser Stack schon länger existiert.
+
+Viele empfehlen langfristig eher auf MeanJS zu setzen, da es ein stark wachsendes Projekt ist und Mean.IO vermutlich von der Community und Relevanz überholen wird. \cite{meanJS:article}
+
 \section{MeteorJS}\label{meteor.js}
 
 Ein weiteres interessantes Open-Source Framework ist MeteorJS. Die
@@ -47,7 +57,7 @@ Technologien MongoDB, NodeJS und AngularJS. Die Aktuelle Version ist
 die 1.2.1. Interessant zu erwähnen ist das bereits 2012 11.2 Millionen
 \$ von Sponsoren zur Verfügung gestellt wurden.
 	
-Die Installation verläuft deutlich einfacher als gewohnt, da mit einem Befehl alle Frameworks intalliert werden und auch schon miteinander funktionieren. Bei Mean.IO beispielsweise müssen die anderen Frameworks wie MongoDB und NodeJS zunächst einzeln installiet werden.
+Die Installation verläuft deutlich einfacher als gewohnt, da mit dem in Abbildung \ref{f:instMeteor} zu sehenden Befehl alle benötigten Frameworks intalliert werden und auch schon miteinander funktionieren. Bei Mean.IO beispielsweise müssen die anderen Frameworks wie MongoDB und NodeJS zunächst einzeln installiet werden.
 
 \begin{figure}[h]
 	\centering
@@ -60,7 +70,7 @@ Die Installation verläuft deutlich einfacher als gewohnt, da mit einem Befehl a
 
 \cite{meteor:t3n}
 	
-Dazu kommt noch das MeteorJS viel  "out of the box" bietet, wie z.B. Socket.IO. Desweiteren sollen in der Zukunft auch noch andere Datenbanken außer MongoDB unterstützt werden. Darunter auch RDBMS als Alternative. Dadurch wird der MeteorJS zu einem ziemlich flexibel einsetzbaren Stack. Dies ist allerdings noch Zukunftsmusik und es bleibt abzuwarten ob bzw. wann dies tatsächlich umgesetzt wird.
+Dazu kommt noch das MeteorJS viel out-of-the-box bietet, wie z.B. Socket.IO. Desweiteren sollen in der Zukunft auch noch andere Datenbanken außer MongoDB unterstützt werden. Darunter auch RDBMS als Alternative. Dadurch wird der MeteorJS zu einem ziemlich flexibel einsetzbaren Stack. Dies ist allerdings noch Zukunftsmusik und es bleibt abzuwarten ob bzw. wann dies tatsächlich umgesetzt wird.
 	
 Keine Callback-Hell, da es auf einem Single-Thread request-basiert und nicht auf einem Asynchronen Callback Konzept wie NodeJS.
 	
