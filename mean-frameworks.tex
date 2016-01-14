@@ -25,18 +25,15 @@ Die Entwickler haben aus den Problemen von Mean.io, zum Beispiel dem
 nicht vorhandenen Versions Schema gelernt. Was wurde gegenüber Mean.io
 geändert?
 
-Modularity - Support von MVC Modulen - Angular.js, Support vertikaler
-Module
+Hinsichtlich der Modularität des Stacks wurden zwei wesentliche Änderungen durchgeführt. Erstens eine Änderung der Backend Struktur um das MVC Pattern zu unterstützen. Zweitens der AngularJS Teil wurde angepasst um vertikale Module zu ermöglichen.
 
-Legacy Support - Versions Schema eingeführt
+Es wurde ein Versions Schema eingeführt. Es werden gerade Nummern für stabile Versionen verwendet, um diese hervorzuheben. Auch das Änderungen nicht direkt in den Master branch commited werden, sondern in einem eigenen branch ist neu. Daran erkennt man, dass sich nicht nur die Entwicklung an sich, sondern auch die Art und Weise der Benutzung von Tools, z.B. zur Versionierung geändert hat.
 
-Community - Besserer Support für MEAN Entwickler - Twitter, Facebook,
-Google Gruppe, IRC-Channel (real-time support)
+Für die Community ist es sehr wichtig auf eine sehr detaillierte und ausführliche Dokumentation zurückgreifen zu können. Daher ist dies auch ein wichtiges Thema.
 
-Zukunftsziele - Mean Kern verbessern und Fehler beheben (Bug fixing) -
-Building companion modules to extend MEAN with different web application
-features - Building a Yeoman Generator - Admin panel for managing MEAN
-application
+Der Support für Entwickler, die mit MEAN.JS arbeiten wurde verbessert. Dies wurde durch die Nutzung von Twitter, Facebook, einer Google Gruppe und einem IRC-Channel (Internet Relay Chat) erreicht.
+
+In Zukunft soll die Kernfunktionalität weiter verbessert und Fehler behoben werden. Außerdem soll MEAN.JS noch um weitere Module ergänzt werden um weitere Funktionen für Webapplikationen bieten zu können. Eine Administrator Oberfläche zum Verwalten der MEAN-Anwendungen ist auch noch in Plannung.
 
 \section{Meteor.js}\label{meteor.js}
 
@@ -47,16 +44,19 @@ hierbei um eine client-server Plattform. Meteor.js setzt auf die
 Technologien MongoDB, Node.js und Angular.js. Die Aktuelle Version ist
 die 1.2.1. Interessant zu erwähnen ist das bereits 2012 11.2 Millionen
 \$ von Sponsoren zur Verfügung gestellt wurden.
-
-Vorteile - Schnell \& einfach zu lernen / entwickeln - Gute
-Dokumentation - Bietet viel ``out of the box'' - Keine callback hell
-
-Nachteile - frühes Entwicklungsstadium - Automatisiertes Testen wird
-nicht unterstützt
+	
+Die Installation verläuft deutlich einfacher als gewohnt, da mit einem Befehl alle Frameworks intalliert werden und auch schon miteinander funktionieren. Bei Mean.IO beispielsweise müssen die anderen Frameworks wie MongoDB und NodeJS zunächst einzeln installiet werden.
+	
+Dazu kommt noch das MeteorJS viel  "out of the box" bietet, wie z.B. Socket.IO. Desweiteren sollen in der Zukunft auch noch andere Datenbanken außer MongoDB unterstützt werden. Darunter auch RDBMS als Alternative. Dadurch wird der MeteorJS zu einem ziemlich flexibel einsetzbaren Stack. Dies ist allerdings noch Zukunftsmusik und es bleibt abzuwarten ob bzw. wann dies tatsächlich umgesetzt wird.
+	
+Keine Callback Hell, da es auf einem Single-Thread request-basiert und nicht auf einem Asynchronen Callback Konzept wie NodeJS.
+	
+Zu beachten ist jedoch, dass sich MeteorJS trotz allem noch in einem recht frühen Entwicklungsstadium befindet. Daher muss man immer damit rechnen, dass noch nicht alles wie gewünscht funktioniert und es zu unerwarteten Fehlern kommt.
+	
+Außerdem wird das automatisierte Testen zu diesem Zeitpunkt noch nicht unterstützt.
 
 Zukunftsaussichten
 
-Es soll nicht nur MongoDB unterstützt werden, sondern noch viele andere
-Datenbanken. Unter anderem auch SQL-Datenbanken.
+Es soll nicht nur MongoDB unterstützt werden, sondern noch viele andere Datenbanken. Unter anderem auch SQL-Datenbanken.
 
 Wird von manchen als möglicher Nachfolger für MEAN.io angesehen.
