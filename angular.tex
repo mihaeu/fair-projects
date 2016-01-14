@@ -25,22 +25,60 @@ Der komplette Rest der Seite kann dabei unverändert bestehen bleiben.
 Dadurch wird bei jedem Request viel Overhead eingespart.
 
 Um trotz Single-Page-Anwendung auf bestimmte Teile einer Anwendung mittels URL zugreifen zu können ist ein Routing nötig.
-Wie in dem Beispiel TODO zu sehen, wird für jeden einzelnen Pfad der URL angegeben welches Template verwendet werden soll und welcher Controller.
+Wie in Abbildung \ref{f:angularjs:routing} zu sehen ist, wird für jeden einzelnen Pfad der URL angegeben, welches Template verwendet werden soll und welcher Controller dafür zuständig ist.
 Mit der .otherwise Funktion kann ein sogenannter Fallback implementiert werden für einen Aufruf der Hauptseite.
 Innerhalb der URL können auch gleich Parameter mit Hilfe von vorangestellten Doppelpunkten angegeben werden die automatisch die erfolgte Eingabe in der URL im entsprechenden Controller bereitstellen.
 
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+	app.config(function($routeProvider, $httpProvider) {
+		$routeProvider
+		.when('/login', {
+			templateUrl: 'views/authentication/login.html',
+			controller: 'LoginController',
+			controllerAs: 'LoginController',
+		})
+		.when('/', {
+			templateUrl: 'views/subject/list.html',
+			controller: 'SubjectListController',
+			controllerAs: 'SubjectListController',
+		})
+		.when('/subject/:subjectId', {
+			templateUrl: 'views/subject/show.html',
+			controller: 'SubjectShowController',
+			controllerAs: 'SubjectShowController',
+		})
+		.otherwise({
+			redirectTo: '/',
+		});		
+	});
+	\end{lstlisting}
+	\caption{Programmbeispiel für das Routing in AngularJS}
+	\label{f:angularjs:routing}
+\end{figure}
+
 Zur Darstellung der Daten setzt Angular auf das Model View ViewModel Prinzip (MVVM), das von Microsoft entwickelt wurde.
-Für diesen Einsatzweck ist es passender als beispielsweise Model View Controller (MVC), da das ViewModel ein two-way data-binding zwischen der View und dem Model ermöglicht.
+Für diesen Einsatzweck ist es passender als das Model View Controller (MVC) Entwurfsmuster, da das ViewModel ein two-way data-binding zwischen der View und dem Model ermöglicht.
 Anders als viele zuerst vermuten, stellt das ViewModel dabei keinen Ersatz für den Controller dar.
 Dieser ist zwar nicht explizit in der Abkürzung genannt, wird aber weiterhin benötigt.
 Im Unterschied zu MVVM werden in MVC bei Änderungen im View nicht automatisch im Model aktualisiert.
 Das ViewModel hat daher die Aufgabe jede Änderung in der View auch an das Model zu übertragen und auch umgekehrt in die andere Richtung.
 Wird beispielsweise das Model geändert wird diese Änderung sofort an die View übertragen.
+Diese Verhalten wird in AngularJS durch den sogenannten Dirty-Checking Algorithmus realisiert.
+Dabei wird bei jedem Event innerhalb von AngularJS geprüft ob eine Änderung vorliegt.
+Außerdem wird nochmals jede Sekunde zusätzlich geprüft ob eventuell von außerhalb eine Änderung vorliegt.
+Da dieses Verhalten standardmäßig aktiv ist reduziert es zwar den Programmieraufwand, jedoch auf Kosten von durchgehender zusätzlicher Belastung für den Prozessor.
+
 Eines der Alleinstellungsmerkmale von AngularJS unter den JavaScript Frameworks stellt Dependency Injection dar.
 Es ist ein Entwurfsmuster mit dem Abhängigkeiten zentral aufgelöst werden können.
 Die benötigten Objekte werden zur Laufzeit zur Verfügung gestellt.
 Dadurch wird die Austauschbarkeit erhöht und auch das Testen der Anwendung in dem Teile durch Mock-Objekte ausgetauscht werden.
 Näheres zum Thema Testbarkeit findet sich im Kapitel \ref{testbarkeit-michi}.
+
+Vorteil:
+- verwendet datentypen von javascript. kein glue code nötig um Fremdbibliotheken nutzen zu können
+
 
 \section{Komponenten}
 AngularJS sieht für die Strukturierung folgende Komponenten vor:
