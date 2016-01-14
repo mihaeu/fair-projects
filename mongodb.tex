@@ -10,11 +10,11 @@
 \end{figure}
 
 Die Entwicklung von MongoDB wurde im Jahr 2007 von dem Unternehmen 10gen
-ins Leben gerufen. Hierfür wurde die Programmiersprache C++ verwendet.
-Da die Datenmengen seit ein paar Jahren durch Big Data heutzutage immer rasanter steigen \cite{csc:bigdata}
+ins Leben gerufen. Als Programmiersprache wurde C++ verwendet.
+Da die Datenmengen seit einigen Jahren durch Big Data immer rasanter steigen \cite{csc:bigdata}
 werden die Skalierbarkeit und die Performanz bei großen Datenmengen zu
-immer wichtigeren Themen. MongoDB wirbt mit agility, scalability und
-performance. Dies soll durch denn Einsatz von verteilten Systemen
+immer wichtigeren Themen. MongoDB wirbt mit Flexibilität, Skalierbarkeit und
+Performanz. Dies soll durch denn Einsatz von verteilten Systemen
 ermöglicht werden. Der Name mongo leitet sich aus dem Wort humongous ab,
 welches gigantisch bedeutet. Hierdurch wird auf die Idee eine Datenbank
 für große Datenmengen zu entwickeln angespielt.
@@ -22,7 +22,7 @@ für große Datenmengen zu entwickeln angespielt.
 Wie in der Abbildung \ref{f:mongodb:ranking} zu sehen steht MongoDB aktuell auf dem
 vierten Platz der populärsten Datenbanken. Damit ist sie hinter drei
 klassischen Relational Database Management System (RDBMS) die populärste
-NoSQL-Datenbank.
+NoSQL-Datenbank. Bei der aktuellen Version handelt es sich um die 3.2.
 
 \section{Konzepte}\label{konzepte}
 
@@ -32,77 +32,106 @@ Schema-freie, dokumentenbasierte Open-Source-Datenbank. Diese beinhaltet
 Sammlungen, die jeweils aus mehreren Dokumente ohne ein festes Schema
 bestehen. Jedes Dokument darin kann sich von den Feldern und Strukturen
 von den anderen unterscheiden. Dokumente bestehen aus mehreren
-Schlüsselwert-Paaren und stellen die Basiseinheit für Daten dar. Die
-hierbei verwendbaren Datentypen sind die bekannten Standard-Datentypen
-(Integer, Float, Boolean, String, Array), Date, Embedded-Doc, DBRef und
-ObjectID. Es gibt unterschiedliche Wege in der Datenbank zu
-referenzieren. Dies kann durch Verschachtelung der Dokumente geschehen.
+Schlüsselwert-Paaren und stellen die Basiseinheit für Daten dar.
+
+Die hierbei verwendbaren Datentypen sind die bekannten Standard-Datentypen
+Integer, Float, Boolean, String, Array. Zusätzlich gibt es noch die Date, Embedded-Doc, DBRef und
+ObjectID.
+
+Es gibt unterschiedliche Wege in der Datenbank zu referenzieren.
+Eine Möglichkeit ist die Referenzierung durch die Verschachtelung der Dokumente.
+Hierbei referenziert ein Dokument auf ein anderes einzelnes Dokument.
 Allerdings führt dies zu einer hohen Komplexität, wenn ein update auf
-eine verschachtelte Information durchgeführt werden soll. Bei der
-ObjectID handelt es sich um die Standard ID, die jedes Dokument
+eine verschachtelte Information durchgeführt werden soll.
+
+Bei der ObjectID handelt es sich um die Standard ID, die jedes Dokument
 aufweist. Diese wird bei der Erzeugung eines jeden Dokuments generiert
-und ist durch ihren komplexen Aufbau eindeutig. Durch Verwendung der
-ObjectID können auch Referenzen hergestellt werden. Bei Verwendung von
+und ist durch ihren komplexen Aufbau eindeutig. Bei Verwendung der
 ObjectID handelt es sich im Gegensatz zu verschachtelten Dokumenten um
-einen ``echten'' Join. Der DBRef entspricht dem Fremdschlüssel aus dem
-RDBMS. Also dient er als Identifier für Dokument / Collection /
-Datenbank. MongoDB verwendet eine integrierte Query Language. Durch
-diese können die Create, Read, Update, Delete (CRUD) Operationen
-realisiert werden.
+einen ``echten'' Join. Hier referenzieren mehrere Dokumente auf ein Dokument
+in der gleichen Collection.
 
-Die Replikationen spielen bei NoSQL-Datenbanken eine zentrale Rolle. Die
-Replikationen bestimmen über die Synchronisierung von Daten über mehrere
-Server. Bei MongoDB funktionieren diese nach dem Master-Slave-Prinzip.
-D.h. es existiert ein Replikationsset. Dieses besteht aus einem primären
-und beliebig vielen sekundären Knoten. Alle Schreiboperationen gehen nur
-an den primären Knoten. Dieser synchronisiert seine sekundären Knoten
-erst nach und nach. Das bedeutet, dass die Daten für eine gewisse Zeit
-inkonsistent sind. Es kann daher keine Konsistenz zum
-Transaktionszeitpunkt garantiert werden wie bei RDBMS. Im schlimmsten
-Fall funktioniert die Schreiboperation auf den primären Knoten und
-dieser fällt bevor er die Schreiboperation an die sekundären Knoten
-weitergegeben hat aus. Dies führt nämlich zu Datenverlust, MongoDB denkt
-aber die Operation wurde erfolgreich durchgeführt. Ein Vorteil ist, dass
-ein automatischer failover möglich ist. Falls also der primäre Knoten
-nicht erreicht werden kann wird ein ehemals sekundärer Knoten zum neuen
-primären. Bei Leseoperationen dagegen kann auch auf die sekundären
-Knoten zugegriffen werden, um einen Skalierungseffekt zu erhalten. Einen
-Flaschenhals stellen also die Schreiboperationen dar, die
-Leseoperationen eher nicht. Dies birgt allerdings das Risiko alte
-Datenstände zurückzubekommen. Der daraus resultierende erhöhte
-Speicherbedarf fällt dank dem Einsatz verteilter Systeme nicht ins
-Gewicht. Allerdings sorgen die Replikationen für eine hohe Verfügbarkeit
-und dienen auch als Backup der Daten.
+Der DBRef entspricht dem Fremdschlüssel aus dem
+RDBMS. Also dient er als Identifier für Dokument, Collection und
+Datenbank. Dadurch können mehrere Dokumente auf ein Dokument in einer anderen
+Collection referenzieren.
 
-Um denn in der heutigen Zeit nicht ungewöhnlichen wachsenden Datenmengen
-zu begegnen gibt es automatisches Sharding. Dieses sorgt für die
-Verteilung der Daten über mehrere Systeme. Dies wird auch als
-horizontale Skalierung bezeichnet. Dies bietet vielfältige Vorteile. Zum
+MongoDB verwendet eine integrierte Query Language. Durch
+diese können Abfragen, Replikationen und Sharding auf den mongos ausgeführt werden.
+
+Die Replikationen spielen bei NoSQL-Datenbanken eine zentrale Rolle. Diese sorgen für die Synchronisierung von Daten über mehrere
+Server. Im Gegensatz zu RDBMS sind bei NoSQL-Datenbanken Rundanzen erwünscht.
+Denn diese dienen sowohl als Backup der Daten, als auch um die Performanz bei
+Leseoperationen zu steigern. Nachteil hierbei ist, dass die Konsistenz nicht mehr gewährleistet werden kann.
+Ein weiterer Nachteil ist das mehr Speicherplatz benötigt wird. Dies fällt jedoch bei
+verteilten Systemen nicht so stark ins Gewicht.
+
+Bei MongoDB funktionieren die Replikationen nach dem Master-Slave-Prinzip. \cite{mongodb:replication}
+D.h. es existieren in der Datenbank lauter Replikationssets. Diese bestehten
+aus einer primären Replikationen und beliebig vielen sekundären Replikationen, also Kopien von den
+primären Replikationen. Alle Schreiboperationen gehen nur an die primären Replikationen. Diese synchronisieren ihre sekundären
+Replikationen erst nach und nach. Das bedeutet, dass die Daten für eine gewisse Zeit
+inkonsistent sind. Es kann daher keine Konsistenz zum Transaktionszeitpunkt garantiert werden wie bei RDBMS.
+
+Im schlimmsten Fall funktioniert eine Schreiboperation auf der ausführenden primären Replikation und
+diese fällt aus bevor sie die Schreiboperation an die sekundären Replikationen
+weitergegeben konnte. Dies führt nämlich zu Datenverlust, ohne das MongoDB
+etwas davon mitbekommt. Die Datenbank denkt dann dass die Operation
+erfolgreich ausgeführt wurde, obwohl das gar nicht der Fall ist.
+
+Jetzt könnte man sich fragen, warum eine Schreiboperation nur auf einer primären Replikationen ausgeführt wird.
+Dadurch wird ja ein Flaschenhals bei der Performanz von Schreiboperation erzeugt.
+Das stimmt zwar, aber der Vorteil des automatischen failover überwiegt. Falls also
+der primäre Replikationen bei dem Versuch eine Schreiboperation auszuführen nicht erreicht werden kann,
+wird ein ehemals sekundärer Replikationen zum neuen primären definiert. Da es sich bei den sekundären Replikationen
+um eine Kopie der primären handelt ist dies ohne großen Aufwand möglich.
+
+Für Leseoperationen kann man MongoDB nach seinen eigenen Wünschen konfigurieren. \cite{mongodb:replication}
+Eine Möglichkeit ist die Last auch auf sekundäre Replikationen zu verteilen.
+Vorteil hiervon wäre eine bessere Performanz bei Leseoperationen, da man quasi einen
+Skalierungeseffekt erhält. Allerdings kann man nicht sicher
+sein, dass alle sekundären Replikationen die aktuellsten Daten beinhalten.
+D.h. man bekommt unter Umständen alte Datenstände zurück. Daher kann es durchaus sinnvoll sein
+auch Leseoperationen nur von der primären Replikation durchführen zu lassen.
+
+Um den in der heutigen Zeit nicht ungewöhnlichen stark wachsenden Datenmengen
+zu begegnen gibt es das automatische Sharding. Dieses sorgt für die
+Verteilung der Daten über mehrere Server. Dies wird auch als
+horizontale Skalierung bezeichnet. Hierdurch ergeben sich vielfältige Vorteile. Zum
 einen verursacht das vertikales Skalieren, also der Einsatz immer
-besserer Hardware exponentielle Kosten. Zum anderenen ist der Lokale
-Speicher möglicherweise einfach nicht groß genug. Die Komponenten sind
-Shards, Config Server und mongos. Jedes Shard entspricht einem oben
+besserer Hardware exponentielle Kosten und ist irgendwo auch limitiert. Zum anderenen ist der Lokale
+Speicher möglicherweise einfach nicht groß genug. Da man einfach zusätzliche Server
+in das Datenbank System integrieren kann hat man diese Probleme nicht.
+
+Die Komponenten sind Shards, Config Server und mongos. Jedes Shard entspricht einem oben
 beschriebenen Replikationsset. Die Config Server beinhalten die
 Metadaten von dem Cluster. Sprich eine Map von den angefragten Daten und
-wo sie gespeichert sind. Um Redundanz und Verfügbarkeit zu gewährleisten
+ihren Speicherorten. Um eine ausreichende Redundanz und Verfügbarkeit zu gewährleisten zu können
 muss es drei Config Server geben. Dann gibt es noch die mongos. Diese
 werden von der Applikation angesprochen und führen die query Kommandos
 aus.
 
+Im Bereich Sharding wird außerdem Map and Reduce eingesetzt. Map and Reduce entspricht dem Group Operator in RDBMS.
+
 Die Daten werden im sogenannten BSON Format gespeichert und
 ausgetauscht.
 
-Bedingt durch die oben genannten Konzepte ist eine strenge Einhaltung der ACID (atomar, consistency, isolation, durability) Kriterien nicht möglich. Es wird ein Tradeoff von Konsistenz und Isolation zu einer besseren Performanz und Skalierbarkeit eingegangen. Da man auf Konsistenz allerdings nicht vollständig verzichten kann wird das abgeschwächte BASE (Basically Available, Soft state, Eventual consistency) angestrebt. Hierbei wird nur eine "weiche" Konsistenz gewährleistet. Dadurch steigt der Aufwand für die Anwendungsentwicklung, die daraus entstehende Probleme abfangen muss.
+Bedingt durch die oben genannten Konzepte ist eine strenge Einhaltung der ACID (atomar, consistency, isolation, durability) Kriterien nicht möglich. Es wird ein Tradeoff von Konsistenz und Isolation zu einer besseren Performanz und Skalierbarkeit eingegangen. Da man auf Konsistenz allerdings nicht vollständig verzichten kann wird das abgeschwächte BASE (Basically Available, Soft state, Eventual consistency) angestrebt. Hierbei wird nur eine "weiche" Konsistenz gewährleistet.
 
 \section{Usecases}\label{usecases}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  rapid prototyping
-\item
-  Leselastige Anwendungen
-\end{itemize}
+Ein großer Vorteil von MongoDB ist, dass es schnell einsetzbar / konfigurierbar ist.
+Außerdem stellt eine sich öfter ändernde Datenstruktur kein Problem da.
+Damit eignet sie sich hervorragend für rapid prototyping bei kleineren Projekten.
+
+Allerdings eignet sie sich durch das Replizieren und ihre Skalierfähigkeit auch für große Datenmengen
+und besonders für Leselastige Anwendungen.
+
+Den Hauptnachteil stellt die nicht wirklich gegebene Konsistenz dar.
+Dadurch steigt der Aufwand für die Anwendungsentwicklung, die daraus entstehende Probleme abfangen muss.
+
+MongoDB wird damit für viele Anwendungsfälle nicht geeignet sein, da man einen Tradeoff eingehen muss.
+Welche Datenbank verwendet werden sollte hängt somit immer von den Anforderungen ab.
 
 \section{Mongoose}\label{mongoose}
 
