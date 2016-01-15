@@ -66,14 +66,14 @@ diese können Abfragen, Replikationen und Sharding auf den mongos ausgeführt we
 
 \subsubsection{Replikation}
 Die Replikationen spielen bei NoSQL-Datenbanken eine zentrale Rolle. Diese sorgen für die Synchronisierung von Daten über mehrere
-Server. Im Gegensatz zu RDBMS sind bei NoSQL-Datenbanken Rundanzen erwünscht.
+Server. Im Gegensatz zu RDBMS sind bei NoSQL-Datenbanken Redundanzen erwünscht.
 Denn diese dienen sowohl als Backup der Daten, als auch um die Performanz bei
 Leseoperationen zu steigern. Nachteil hierbei ist, dass die Konsistenz nicht mehr gewährleistet werden kann.
 Ein weiterer Nachteil ist das mehr Speicherplatz benötigt wird. Dies sollte jedoch, da es um
 verteilte Systeme geht, kein Problem darstellen.
 
 Bei MongoDB funktionieren die Replikationen nach dem Master-Slave-Prinzip. \cite{mongodb:replication}
-D.h. es existieren in der Datenbank lauter Replikationssets. Diese bestehten
+D.h. es existieren in der Datenbank lauter Replikationssets. Diese bestehen
 aus einer primären Replikationen und beliebig vielen sekundären Replikationen, also Kopien von den
 primären Replikationen. Alle Schreiboperationen gehen nur an die primären Replikationen. Diese synchronisieren ihre sekundären
 Replikationen erst nach und nach. Das bedeutet, dass die Daten für eine gewisse Zeit
@@ -95,7 +95,7 @@ um eine Kopie der primären handelt ist dies ohne großen Aufwand möglich.
 Für Leseoperationen kann man MongoDB nach seinen eigenen Wünschen konfigurieren. \cite{mongodb:replication}
 Eine Möglichkeit ist die Last auch auf sekundäre Replikationen zu verteilen.
 Vorteil hiervon wäre eine bessere Performanz bei Leseoperationen, da man quasi einen
-Skalierungeseffekt erhält. Allerdings kann man nicht sicher
+Skalierungseffekt erhält. Allerdings kann man nicht sicher
 sein, dass alle sekundären Replikationen die aktuellsten Daten beinhalten.
 D.h. man bekommt unter Umständen alte Datenstände zurück. Daher kann es durchaus sinnvoll sein
 MongoDB so zu konfigurieren, dass auch Leseoperationen nur von der primären Replikation durchgeführt werden.
