@@ -1,45 +1,37 @@
 \chapter{Fazit (Marinus)}
 \label{fazit}
-Welche Änderungen sind in naher Zukunft zu erwarten?
 
-Während der Entwicklung der Fallstudie FairProjects, wurde im Dezember
-2015 die Version 2 von Angular vom Alpha zum Beta Status geändert. Es
-ist deshalb zu erwarten dass in naher Zukunft die neue Angular Version
-offizell veröffentlicht wird. Gerade in der Schnelllebigkeit der
-JavaScript Entwicklung, ist es fraglich wie lange Angular der Version 1
-dann noch unterstützt wird. Auch wenn zu erwarten ist, dass es
-Hilfestellungen zum Upgrade geben wird, ist ein Umstieg auf die neue
-Version unweigerlich mit Mehraufwand verbunden. Da sich nicht nur die
-API sondern auch zentrale Konzepte verändert haben, muss mit
-zusätzlicher Einarbeitungszeit für Entwickler gerechnet werden.
+Ist die Entwicklung von Webanwendungen basierend auf dem MEAN-Stack zu
+empfehlen?
 
-Führt man diesen Gedanken weiter, ist es mehr als fraglich, heute noch
-Entwickler für Angular 1 weiterzubilden. Wenn das Know-How nicht bereits
-vorhanden ist, kann dieser Schritt nicht mit gutem Gewissem empfohlen
-werden. Da Angular 2 jedoch aktuell noch nicht über den Beta-Status
-hinaus ist, steht man an dieser Stelle vor einer schwierigen Situation.
-Auch wenn die grundlegenden Änderungen vorgenommen wurden, sind
-Änderungen an der API noch möglich beziehungsweise noch zu erwarten.
+Unserer Meinung nach: \emph{größtenteils nein}. Es mag Einsatzszenarien
+geben bei denen dieser Ansatz seine Vorteile hat. Bei vielen Projekten
+dürfte es jedoch an den zu erwarteten Wartungskosten scheitern. Bereits
+in der kurzen Entwicklungszeit für diese Fallstudie hatten wir mehrmals
+mit den Auswirkungen von Abhängigkeitskonflikten, als auch nicht mehr
+weiterentwickelten Fremdbibliotheken, zu kämpfen. Da Express nur sehr
+wenig Unterstützung für Standardproblemstellungen liefert, ist mit
+gleichen Problemen bei fast jedem Projekt zu rechnen. Was bei
+Änderungswünschen an unserer Fallstudie nötig wäre, kann momentan nicht
+abgeschätzt werden. Es ist für uns jedoch nicht abwegig dass einige der
+von uns aktuell verwendeten Pakete in der jetzigen Form nicht mehr
+unterstützt werden. Uns ist bewusst dass dieses Problem auch mit anderen
+Technologien auftritt, die kurze Zeitspanne, in der oftmals weit
+eingesetzte Pakete nicht abwärtskompatible Änderungen vollziehen, lässt
+jedoch aufhorchen.
 
-Wenngleich der Versionswechsel von Angular aktuell den Einsatz des
-Frameworks erschwert, ist er unserer Meinung nach der größte
-Hoffnungsschimmer. Nach einer längeren experimentellen Phase setzt
-Angular in der neuen Version offiziell auf die Sprache TypeScript.
+Eine Ausnahme darf aus unserer Sichtweise gemacht werden:
+\emph{Prototyping}. Um Prototypen für Beispielsweise
+Marktbedarfsanalysen erstellen zu können, eignet sich der MEAN Stack
+bestens. Die oftmals beschränkten Ressourcen sprechen für das Szenario
+eine Sprache für alle Technologien zu setzen. Des Weiteren kann durch
+den schemalosen Ansatz von MongoDB einfach auf Änderungen am Datenmodell
+reagiert werden ohne bisherige Datensätze aufwendig migrieren zu müssen.
+Erst dies ermöglicht einen iterativen Entwicklungsprozess.
 
-\emph{TypeScript} ist eine von Microsoft entwickelte Sprache die
-JavaScript erweitert. Gülitiger JavaScript Code kann dabei auch in
-TypeScript ausgeführt werden. Zusätzlich werden jedoch auch
-Sprachkonstrukte wie Klassen, Interfaces und Generics unterstützt.
-Grundlegender unterschied ist auch die statische Typisierung von
-TypeScript. Mit Compilern kann TypeScript Code in gültigen JavaScript
-Code nach Standard ECMAScript 5 kompiliert werden. Einige der Konzepte
-von TypeScript sollen in den Standard ECMAScript 6 einfließen.
-
-Für die Zukunft könnte der MEAN Stack komplett mit TypeScript umgesetzt
-werden. Der ursprüngliche Gedanke eine Sprache für alle Schichten einer
-Webanwendung zu haben bleibt dadurch erhalten. Durch die zusätzlichen
-Sprachkonzepte fallen jedoch viele Einschränkungen basierend auf der
-dynamischen Typisierung weg. Das Entwickeln dürfte dadurch erleichtert
-werden. Durch Konzepte wie Klassen und Vererbung, wird auch der Einstieg
-für JavaScript-unerfahrene Entwickler leichter als in die
-Prototyp-basierte Vererbung in JavaScript fallen.
+Zweifelsohne haben alle Technologien für sich selbst ihre
+Daseinsberechtigung. Wir würden sie jederzeit wiederverwenden. Meist
+jedoch nur einzelne Teile, angepasst auf das jeweilige Problem. Die
+Anforderungen die heute an eine Webanwendung gestellt werden, sind so
+unterschiedlich, als dass sie alle mit einer Patentlösung abgedeckt
+werden könnten.

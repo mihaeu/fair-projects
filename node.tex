@@ -5,13 +5,11 @@
 Ryan Dahl stellte 2009 Node.js als serverseitige Plattform für
 Netzwerkanwendungen vor. Anfangs nur für Linux Betriebssysteme geeignet,
 wurde in den folgenden Jahren auch die Kompatibilität zu Mac und Windows
-hergestellt. Stetig anwachsende Entwicklerzahlen
-(https://github.com/nodejs/node/graphs/contributors) sowie Suchanfragen
-(https://www.google.de/trends/explore\#q=nodejs) lassen auf die
+hergestellt. Stetig anwachsende Entwicklerzahlen \cite{github-nodejs}
+sowie Suchanfragen \cite{google-trend-nodejs} lassen auf die
 wachsende Bedeutung schließen. Im Januar 2014 wurde Node.js von
 Thoughtworks Technologie Radar erstmals für den Unternehmenseinsatz
-geeignet eingestuft
-(https://www.thoughtworks.com/radar/platforms/node-js).
+geeignet eingestuft \cite{thoughtworks-node}.
 
 \section{Konzepte}\label{konzepte-1}
 
@@ -24,13 +22,13 @@ in nativen Maschinen-Code zur Verfügung. Erst diese Technologie
 ermöglicht den performanten serverseitigen Einsatz von JavaScript.
 
 Zentrales Konzept ist die asynchrone, nicht blockierende Verarbeitung
-von Ein- und Ausgabe mittels des ``Event-Loop'' Konzepts. Im Gegensatz
+von Ein- und Ausgabe mittels des \emph{Event-Loop} Konzepts. Im Gegensatz
 zum weiterverbreiteten Ansatz für jede Verbindung einen eigenen Thread
 zu erstellen, werden dabei alle Verbindungen über einen einzigen Thread
 verwaltet. Um dennoch mehrere Verbindungen (nahezu) gleichzeitig
 abarbeiten zu können, muss die Abarbeitung einzelner Anfragen asynchron
 beziehungsweise nicht blockierend erfolgen. Teure Operationen, wie
-beispielsweise I/O Zugriffe, werden (bei sinnvoller Umsetzung) dabei
+beispielsweise Ein- und Ausgabe-Zugriffe, werden (bei sinnvoller Umsetzung) dabei
 nicht wartend ausgeführt. Ist eine Operation abgeschlossen wird ein
 Signal abgegeben und die Event-Loop führt im nächst möglichen Schritt
 die Ergebnis Abarbeitung durch (Callback).
@@ -40,8 +38,8 @@ durch eigene Module, beziehungsweise Module von Dritten hinzuzufügen,
 ist auch der komplette Kern von Node.js in Module gegliedert. Einige
 dieser Module werden aus Performanz Gründen in binär-Code für die
 jeweiligen Plattformen zur Verfügung gestellt. Seit 2011 steht mit
-``npm'' ein Tool zur Verwaltung der Pakete bereit. Mit npm können Pakete
-installiert sowie verteilt werden, wobei auch Abhängigkeiten aufgelöst
+\emph{npm} ein Tool zur Verwaltung der Pakete bereit. Mit npm können Pakete
+installiert, sowie verteilt werden, wobei auch Abhängigkeiten aufgelöst
 werden.
 
 Basierend auf diesen Erkenntnissen werden im folgenden die Vor- und
@@ -99,8 +97,8 @@ werden.
 
 \paragraph{Callback}\label{callback}
 
-Callbacks sind in Node.js ein so zentrales Element dass hierfür ein
-eigener Absatz gewidmet wird. Um Node.js zu beherrschen zu können ist es
+Callbacks sind in Node.js ein so zentrales Element, dass hierfür ein
+eigener Absatz gewidmet wird. Um Node.js beherrschen zu können, ist es
 wichtig die Konzepte und Schwierigkeiten von Callbacks zu verstehen.
 Callbacks sind dabei keine Erfindung von Node.js sondern ein Teil von
 JavaScript.
@@ -110,15 +108,20 @@ späteren Zeitpunkt ausgeführt werden. Dies ermöglicht es, auf das
 Ergebnis einer anderen Funktion zu warten, ohne dabei blockierend zu
 arbeiten.
 
-\begin{verbatim}
-var filesystem = require('fs');
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+        var filesystem = require('fs');
 
-filesystem.readFile('test.txt', function handleFile(error, fileContents) {
-  doSomething();
-});
+        filesystem.readFile('test.txt', function handleFile(error, fileContents) {
+          doSomething();
+        });
 
-otherFunction();
-\end{verbatim}
+        otherFunction();
+    \end{lstlisting}
+	\caption[node-example-1]{Asynchrone Aufrufe mit tiefer Verschachtelung}
+	\label{f:node-example-1}
+\end{figure}
 
 In diesem Codebeispiel wird eine Datei eingelesen um aus dieser etwas
 auszulesen. Um nicht auf den Zugriff auf das Dateisystem blockierend
@@ -130,28 +133,33 @@ wahrscheinlich die Funktion \texttt{otherFunction} noch vor
 
 Welche Schwierigkeiten ergeben sich dadurch? Zum einen muss beim lesen
 von Code darauf geachtet werden, dass nicht wie beim prozeduralen
-Vorgehen Zeile für Zeile nacheinander ausgeführt wird. Der Kontrollfluss
+Vorgehen, Zeile für Zeile nacheinander ausgeführt wird. Der Kontrollfluss
 ist dadurch schwieriger Nachzuvollziehen. Des Weiteren entstehen so
 leicht tiefe Verschachtelungen.
 
-\begin{verbatim}
-doFirstThing(function() {
-  doSecondThing(function() {
-    doThirdThing();
-  });
-}); 
-\end{verbatim}
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+        doFirstThing(function() {
+          doSecondThing(function() {
+            doThirdThing();
+          });
+        });
+    \end{lstlisting}
+	\caption[node-example-2]{Asynchrone Aufrufe mit benannten Funktionen}
+	\label{f:node-example-2}
+\end{figure}
 
 Dies wäre eine naive Implementierung bei der drei Funktionen
 hintereinander ausgeführt werden. Es braucht nicht viel
 Vorstellungskraft dass bei etwas mehr auszuführenden Schritten
 (beispielsweise Fehlerbehandlung) so schnell unübersichtlicher Code
-entsteht. Dieses Problem wird auch als ``Callback-Hell'' bezeichnet und
+entsteht. Dieses Problem wird auch als \emph{Callback-Hell} bezeichnet und
 vor allem von Anfängern oft begangen.
 
 Welche Möglichkeiten gibt es diese tiefen Verschachtelungen zu umgehen?
 Im nachfolgenden werden zwei Ansätze vorgestellt um der
-``Callback-Hell'' zu umgehen.
+Callback-Hell zu entgehen.
 
 \emph{Sprechende Funktionen}
 
@@ -160,17 +168,22 @@ Funktionen nicht wie im obrigen Beispiel anonym definiert, sondern in
 einer Variable mit aussagekräftiger Bezeichnung zugewiesen. Für das
 bisherige Beispiel würde dies folgendermaßen umgesetzt werden:
 
-\begin{verbatim}
-doFirstThing(afterFirstThing);
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+        doFirstThing(afterFirstThing);
 
-function afterFirstThing() {
-  doSecondThing(afterSecondThing);
-}
+        function afterFirstThing() {
+          doSecondThing(afterSecondThing);
+        }
 
-function afterSecondThing() {
-  doThirdThing();
-}
-\end{verbatim}
+        function afterSecondThing() {
+          doThirdThing();
+        }
+    \end{lstlisting}
+	\caption[node-example-3]{Asynchrone Aufrufe mit Funktionsübgergabe}
+	\label{f:node-example-3}
+\end{figure}
 
 So können die tiefen Versdchachtelungs-Ebenen verhindert werden. Jedoch
 wird bei komplexeren Szenarien mit mehreren Verzweigungen der
@@ -181,7 +194,7 @@ Programmablauf nur schwer erkennbar und unübersichtlich.
 Um hier ein lesbareres Konzept zu haben, werden Promises verwendet. Eine
 ausführliche Erklärung dieses Konzept würde an dieser Stelle zu weit
 gehen, jedoch wird im Folgenden kurz der Aufruf von Funktionen die ein
-solches ``Promise-Objekt'' zurückgeben erläutert.
+solches \emph{Promise-Objekt} zurückgeben erläutert.
 
 Durch aneinander gekettete Aufrufe von Funktionen (Chaining) können für
 verschiedene Ereignisse auszuführende Funktionen Registriert werden. So
@@ -192,16 +205,21 @@ eigenen Funktion abgehandelt werden (\texttt{.catch()}). Mit diesem
 Konzept können Abläufe lesbar programmiert werden. Für vorheriges
 Beispiel ergibt sich folgender Code:
 
-\begin{verbatim}
-doFirstThing()
-.then(function doSecondThing() {
-  //Code here
-  }
-).then(function doThirdThing() {
-  // Code here
-  }
-);
-\end{verbatim}
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+        doFirstThing()
+        .then(function doSecondThing() {
+          //Code here
+          }
+        ).then(function doThirdThing() {
+          // Code here
+          }
+        );
+    \end{lstlisting}
+	\caption[node-example-4]{Asynchrone Aufrufe mit Promises}
+	\label{f:node-example-4}
+\end{figure}
 
 Um dies zu ermöglichen muss eine Funktion jedoch ein Promise Objekt
 zurückgeben. Die Details hierzu werden nicht behandelt, jedoch ist

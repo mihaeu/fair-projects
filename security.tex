@@ -30,18 +30,19 @@ Architekturen, die pro Verbindung einen eigenen Thread nutzen.
 
 Werden Benutzereingaben nicht ausreichend validiert, kann ein Absturz
 des kompletten Services die Folge einer bösartigen Anfrage sein. Die
-Gefahr durch ``Denial of Service'' (DoS) Angriffe ist deshalb stark von
+Gefahr durch \emph{Denial of Service} (DoS) Angriffe ist deshalb stark von
 der Validierung abhängig.
 
-Auch für DoS Angriffe genutzt werden Anweisungen die blockierend im
-Haupt Thread ausgeführt werden, jedoch zeitintensiver als vorhergesehen
+Auch für DoS Angriffe genutzt werden Anweisungen, die blockierend im
+Haupt-Thread ausgeführt werden, jedoch zeitintensiver als vorhergesehen
 sind. Beispiel hierfür ist das Validieren von Regulären Ausdrücken.
 Durch geschickt gewählte Zeichenketten, kann so die benötigte Zeit zum
-Validieren in die Höhe getrieben werden.
+Validieren in die Höhe getrieben werden. Diese Aufgabe sollte in einen
+asynchronen Aufruf verpackt werden.
 
-Die JavaScript Funktion `eval' wurde schon lange vor Node.js als
+Die JavaScript Funktion \texttt{eval} wurde schon lange vor Node.js als
 sicherheitsbedenklich eingestuft. Die Funktion ist jedoch auch auf
-server-seitigen Javascript benutzbar. Mit `eval' kann ein String als
+server-seitigen Javascript benutzbar. Mit \texttt{eval} kann ein String als
 Code behandelt und ausgeführt werden. Werden damit Benutzereingaben
 verarbeitet, kann dies als mächtiges Einfallstor genutzt werden. Der
 unsichere Code muss dabei nicht selbst geschrieben sein, sondern kann
@@ -49,9 +50,9 @@ durch das Einbinden von fremden Modulen unbeabsichtigt eingeführt
 werden.
 
 Ähnlich verhält es sich mit der Möglichkeit von Node aus Bash Scripte zu
-starten. Mit der Methode 'exec()' des ``child\_process'' Moduls kann
+starten. Mit der Methode \texttt{exec()} des \texttt{child\_process} Moduls, kann
 jeglicher Code ausgeführt werden. Hier sollte besser auf die Methode
-`execFile()' zurückgegriffen werden.
+\texttt{execFile()} zurückgegriffen werden.
 
 \section{Express}\label{express}
 
@@ -60,7 +61,7 @@ erster Linie am beschränkten Funktionsumfang. Zu Angriffsszenarien wie
 Cross Site Request Forgery und ähnlichen Themen müssen eigener Code oder
 andere Bibliotheken verwendet werden.
 
-\section{NPM}\label{npm}
+\section{npm}\label{npm}
 
 Der Packet Manager von Node.js ist eines der kritischsten Punkte einer
 MEAN Anwendung. Mit npm ist es einfach möglich fremde Pakete in ein
@@ -68,25 +69,29 @@ Projekt einzubinden. Dieses Feature wird deshalb oft genutzt. Bei
 unvorsichtigem Vorgehen ergeben sich so jedoch mehrere
 Angriffsmöglichkeiten.
 
-Zu erst wäre hier das unreflektierte übernehmen von fremden Code
+Zuerst wäre hier das unreflektierte übernehmen von fremden Code
 aufzuführen. Durch die von Node forcierte Philosophie möglichst viele
 kleine Module zu erstellen, und öffentliche Module zu nutzen, ist es nur
 schwer möglich den kompletten fremden Code zu übersehen. Durch die tiefe
 Verschachtelung in den Abhängigkeiten von fremden Modulen wird dies bei
 Änderungen, beispielsweise Updates fast unmöglich.
 
-Zu letzt sei noch die Möglichkeit erwähnt, Skripte bei der Installation
+Desweiteren sei noch die Möglichkeit erwähnt, Skripte bei der Installation
 von Paketen mittels npm auszuführen. Bei jedem Paket kann definiert
 werden was vor der Installation ausgeführt werden soll. Werden diese
 Anweisungen nicht vorher überprüft können so beliebige Anweisungen
-ausgeführt werden. Im Januar 2015
-(https://blog.liftsecurity.io/2015/01/27/a-malicious-module-on-npm)
+ausgeführt werden. Im Januar 2015\cite{security-npm}
 wurde auf diese Weise ein Paket veröffentlicht was folgende Anweisung
 beim installieren ausführt:
 
-\begin{verbatim}
-rm -rf /*
-\end{verbatim}
+\begin{figure}[t]
+	\centering
+	\begin{lstlisting}
+        rm -rf /*
+	\end{lstlisting}
+	\caption[security-npm]{Beispielcode eines schadhaften Skripts}
+	\label{f:security-npm}
+\end{figure}
 
 Das Ergebnis ist die Löschung des eigenen Systems.
 
