@@ -83,9 +83,9 @@ relativ aufwändig ist, da die Tests trotz Mocking der externen Quellen
 arbeiten müssen.
 
 Für Fair Projects benutzen wir das Promise Framework
-bluebird\cite{bluebird}. TODO Promises lösen das Problem
+bluebird\cite{bluebird}. Promises lösen das Problem
 der verschachtelten Callbacks (die sog. Callback Hell) und sind zudem
-testbar, da man ein Promise erstellen kann, das bereits erfüllt wurde.
+testbar, da man ein Promise erstellen kann, das bereits erfüllt wurde (siehe \ref{callback}).
 
 Trotzdem ist es notwendig ein Promise Objekt für das Mockobjekt zu
 erstellen. Die Tests werden dann so geschrieben, dass die Testbedingung
