@@ -23,6 +23,8 @@ Ist die Ansicht zum Beispiel die Übersicht aller Projekte aus dem Fallbeispiel,
 In der Listenansicht ist der Titel des Projekts vorhanden, daher werden nur noch die Beschreibung und die Teilnehmer vom Server benötigt.
 Der komplette Rest der Seite kann dabei unverändert bestehen bleiben.
 Dadurch wird bei jedem Request viel Overhead eingespart.
+Ein Nachteil davon ergibt sich aber durch die erschwerte Umsetzung von Barrierefreiheit.
+So wird viel Aufwand benötigt, damit eine solche Anforderung umgesetzt werden kann \cite{thoughtworks:disabilities}.
 
 Um trotz Single-Page-Anwendung auf bestimmte Teile einer Anwendung mittels URL zugreifen zu können ist ein Routing nötig.
 Wie in Abbildung \ref{f:angularjs:routing} zu sehen ist, wird für jeden einzelnen Pfad der URL angegeben, welches Template verwendet werden soll und welcher Controller dafür zuständig ist.
@@ -36,21 +38,18 @@ Innerhalb der URL können auch gleich Parameter mit Hilfe von vorangestellten Do
 		$routeProvider
 		.when('/login', {
 			templateUrl: 'views/authentication/login.html',
-			controller: 'LoginController',
-			controllerAs: 'LoginController',
+			controller:  'LoginController',
 		})
 		.when('/', {
 			templateUrl: 'views/subject/list.html',
-			controller: 'SubjectListController',
-			controllerAs: 'SubjectListController',
+			controller:  'SubjectListController',
 		})
 		.when('/subject/:subjectId', {
 			templateUrl: 'views/subject/show.html',
-			controller: 'SubjectShowController',
-			controllerAs: 'SubjectShowController',
+			controller:  'SubjectShowController',
 		})
 		.otherwise({
-			redirectTo: '/',
+			redirectTo:  '/',
 		});		
 	});
 	\end{lstlisting}
@@ -63,7 +62,7 @@ Für diesen Einsatzweck ist es passender als das Model View Controller (MVC) Ent
 Anders als viele zuerst vermuten, stellt das ViewModel dabei keinen Ersatz für den Controller dar.
 Dieser ist zwar nicht explizit in der Abkürzung genannt, wird aber weiterhin benötigt.
 Im Unterschied zu MVVM werden in MVC bei Änderungen im View nicht automatisch im Model aktualisiert.
-Das ViewModel hat daher die Aufgabe jede Änderung in der View auch an das Model zu übertragen und auch umgekehrt in die andere Richtung.
+Das ViewModel hat die Aufgabe jede Änderung in der View auch an das Model zu übertragen und auch umgekehrt in die andere Richtung.
 Wird beispielsweise das Model geändert wird diese Änderung sofort an die View übertragen.
 Diese Verhalten wird in AngularJS durch den sogenannten Dirty-Checking Algorithmus realisiert.
 Dabei wird bei jedem Event innerhalb von AngularJS geprüft ob eine Änderung vorliegt.
